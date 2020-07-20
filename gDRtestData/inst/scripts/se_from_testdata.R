@@ -53,4 +53,4 @@ seL <- lapply(seq_len(length(seL)), function(x){
   }
   seL[[x]]
 })
-saveRDS(seL, "inst/testdata/seL.rds")
+saveRDS(seL, seL_file)
