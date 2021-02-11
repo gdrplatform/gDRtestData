@@ -13,7 +13,10 @@ devtools::load_all('../../../../gDRwrapper/gDRwrapper')
 devtools::load_all('../../../../gDRcore/gDR')
 library(reshape2)
 
-# generic functions and parameters for 60 drugs across 15 cell lines (3 tissues)
+
+
+#### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+# generic parameters for 60 drugs across 15 cell lines (3 tissues)
 CellLines = data.frame(
     clid = paste0('CL000', 11:25),
     CellLineName = paste0('cellline_', LETTERS[1:15]),
@@ -74,9 +77,15 @@ colnames(e_max) = CellLines$clid
 rownames(e_max) = Drugs$Gnumber
 quantile(e_max)
 
+#### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 
 
+
+#### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+# function to generate the data
+# df_raw should contains the cell line, drug, concentration, and replicate columns 
+#     along with the annotations that needs to be propagated
 
 add_data_replicates <- function(df_raw) {
   df_raw <- rbind(cbind(Barcode = 'plate_1', df_raw),
@@ -88,16 +97,14 @@ add_concentration <- function(df_raw) {
   df_raw <- merge(df_raw, data.frame(Concentration = c(0, 0, Concentrations)), by = NULL)
 }
 
-# function to generate the data
-# df_raw should contains the cell line, drug, concentration, and replicate columns 
-#     along with the annotations that needs to be propagated
 generate_response_data <- function(df_raw, noise_level = .1) {
   set.seed(2)
   df_raw$ReadoutValue <- round(100 * pmax(
         apply( df_raw, 1, function(x)
           e_max[x['Gnumber'],x['clid']] + (1-e_max[x['Gnumber'],x['clid']])*
-              (ec50[x['Gnumber'],x['clid']]**2 / (as.numeric(x['Concentration'])**2 +
-                  ec50[x['Gnumber'],x['clid']]**2))) +
+              (ec50[x['Gnumber'],x['clid']] ** hill_coef[x['Gnumber'],x['clid']] / 
+                (as.numeric(x['Concentration']) ** hill_coef[x['Gnumber'],x['clid']] +
+                  ec50[x['Gnumber'],x['clid']] ** hill_coef[x['Gnumber'],x['clid']]))) +
           (noise_level*runif(nrow(df_raw)) - (noise_level/2)),  # add some noise
         0.01*runif(nrow(df_raw))+.005), # avoid hard 0 values
       1)
@@ -109,8 +116,9 @@ generate_response_data <- function(df_raw, noise_level = .1) {
     df_raw$ReadoutValue = df_raw$ReadoutValue *
       apply( df_raw, 1, function(x)
         e_max[x['Gnumber_2'],x['clid']] + (1-e_max[x['Gnumber_2'],x['clid']])*
-            (ec50[x['Gnumber_2'],x['clid']]**2 / (as.numeric(x['Concentration_2'])**2 +
-                ec50[x['Gnumber_2'],x['clid']]**2)))
+            (ec50[x['Gnumber_2'],x['clid']] ** hill_coef[x['Gnumber'],x['clid']] / 
+              (as.numeric(x['Concentration_2']) ** hill_coef[x['Gnumber'],x['clid']] +
+                ec50[x['Gnumber_2'],x['clid']] ** hill_coef[x['Gnumber'],x['clid']])))
 
     levels(df_raw$Gnumber_2) <- c(levels(df_raw$Gnumber_2), 'vehicle')
     df_raw$Gnumber_2[df_raw$Concentration_2 == 0] <- 'vehicle'
@@ -140,54 +148,76 @@ test_accuracy <- function(finalSE) {
 
   df_QC = rbind(quantile(acast(dt, Gnumber ~ clid, value.var = 'e_max') - 
       e_max[ rowData(finalSE)$Gnumber, colData(finalSE)$clid ], c(.05, .5, .95)),
-    quantile(acast(dt, Gnumber ~ clid, value.var = 'ec50') - 
-      ec50[ rowData(finalSE)$Gnumber, colData(finalSE)$clid ], c(.05, .5, .95)),
+    quantile(log10(acast(dt, Gnumber ~ clid, value.var = 'ec50')) - 
+      log10(ec50[ rowData(finalSE)$Gnumber, colData(finalSE)$clid ]), c(.05, .5, .95)),
+    quantile(acast(dt, Gnumber ~ clid, value.var = 'h_RV') - 
+      hill_coef[ rowData(finalSE)$Gnumber, colData(finalSE)$clid ], c(.05, .5, .95)),
+    quantile( (acast(dt, Gnumber ~ clid, value.var = 'h_RV') - 
+      hill_coef[ rowData(finalSE)$Gnumber, colData(finalSE)$clid ])[
+        acast(dt, Gnumber ~ clid, value.var = 'ec50') < 3 & 
+        acast(dt, Gnumber ~ clid, value.var = 'e_max') < .8 
+      ], c(.05, .5, .95)),
     1-quantile(acast(dt, Gnumber ~ clid, value.var = 'RV_r2') , c(.05, .5, .95))
   )
-  rownames(df_QC) = c('delta_emax', 'delta_ec50', '1_r2')
+  rownames(df_QC) = c('delta_emax', 'delta_ec50', 'delta_hill', 'd_hill_fitted', '1_r2')
   return(df_QC)
 }
+#### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 
+
+#### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # generate the data for the 1st test set: no noise
 #   only for testing purpuses not displayed as example
 df_raw = merge(CellLines[2:11,], Drugs[2:11,], by = NULL)
 df_raw = add_data_replicates(df_raw)
 df_raw = add_concentration(df_raw)
 
-df_data = generate_response_data(df_raw, 0)
-finalSE_1_no_noise = process_data_to_SE(df_data)
-print(test_accuracy(finalSE_1_no_noise))
+df_merged_data = generate_response_data(df_raw, 0)
+finalSE_1_no_noise = process_data_to_SE(df_merged_data)
+dt_test = test_accuracy(finalSE_1_no_noise)
+print(dt_test)
 # test: 
-all(abs(test_accuracy(finalSE_1_no_noise))<1e-3)
+apply(abs(dt_test) < c(1e-3, 1e-3, 0.02, 0.015, 1e-5),1,all)
 
 saveRDS(finalSE_1_no_noise, '../testdata/finalSE_1_no_noise.RDS', compress = FALSE)
 
 
+#### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # generate the data for the 1st test set with noise
 df_raw = merge(CellLines[2:11,], Drugs[2:11,], by = NULL)
 df_raw = add_data_replicates(df_raw)
 df_raw = add_concentration(df_raw)
 
-df_data = generate_response_data(df_raw)
-finalSE_1 = process_data_to_SE(df_data)
-print(test_accuracy(finalSE_1))
+df_merged_data = generate_response_data(df_raw)
+finalSE_1 = process_data_to_SE(df_merged_data)
+
+dt_test = test_accuracy(finalSE_1)
+print(dt_test)
+# test: 
+apply(abs(dt_test) < c(0.5, 0.1, 1.5, 1.2, 0.05),1,all)
 
 saveRDS(finalSE_1, '../testdata/finalSE_1.RDS', compress = FALSE)
 
 
+#### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # generate the data for the 2nd (large) test set with single agent
 df_raw = merge(CellLines, Drugs, by = NULL)
 df_raw = add_data_replicates(df_raw)
 df_raw = add_concentration(df_raw)
 
-df_data = generate_response_data(df_raw)
-finalSE_2 = process_data_to_SE(df_data)
-print(test_accuracy(finalSE_2))
+df_merged_data = generate_response_data(df_raw)
+finalSE_2 = process_data_to_SE(df_merged_data)
+
+dt_test = test_accuracy(finalSE_2)
+print(dt_test)
+# test: 
+apply(abs(dt_test) < c(0.5, 0.2, 2.5, 1.2, 0.3),1,all)
 
 saveRDS(finalSE_2, '../testdata/finalSE_2.RDS', compress = FALSE)
 
 
+#### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # generate the data for the 3rd test set with combo (single dose)
 df_raw = merge(CellLines[2:11,], Drugs[2:11,], by = NULL)
 df_raw = add_data_replicates(df_raw)
@@ -197,12 +227,13 @@ df_2 = cbind(Drugs[c(1,1,1),], Concentration = c(0, .2, 1))
 colnames(df_2) = paste0(colnames(df_2), '_2')
 df_raw_2 = merge(df_raw, df_2, by = NULL)
 
-df_data = generate_response_data(df_raw_2)
-finalSE_combo = process_data_to_SE(df_data)
+df_merged_data = generate_response_data(df_raw_2)
+finalSE_combo = process_data_to_SE(df_merged_data)
 
 saveRDS(finalSE_combo, '../testdata/finalSE_combo.RDS', compress = FALSE)
 
 
+#### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # generate the data for the 4th test set with combo (co-dilution)
 df_raw = merge(CellLines[seq(1,15,2),], Drugs[1:4,], by = NULL)
 df_raw = add_data_replicates(df_raw)
@@ -214,13 +245,14 @@ df_raw_2 = cbind(df_raw, df_2)
 df_raw_2[df_raw_2$Concentration_2 > 0 , c('Concentration', 'Concentration_2')] = 
   df_raw_2[df_raw_2$Concentration_2 > 0 , c('Concentration', 'Concentration_2')] / 2
 
-df_data = generate_response_data(df_raw_2)
-finalSE_codilution = process_data_to_SE(df_data)
+df_merged_data = generate_response_data(df_raw_2)
+finalSE_codilution = process_data_to_SE(df_merged_data)
 # add calculation for co-dilution
 
 saveRDS(finalSE_codilution, '../testdata/finalSE_codilution.RDS', compress = FALSE)
 
 
+#### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # generate the data for the 5th test set with combo (matrix)
 df_raw = merge(CellLines[seq(1,15,4),], Drugs[c(1,2,11,12,16,17),], by = NULL)
 df_raw = add_data_replicates(df_raw)
@@ -234,8 +266,8 @@ colnames(df_2)[colnames(df_2) %in% c(colnames(Drugs),'Concentration')] =
 
 df_raw_2 = merge(df_raw, df_2)
 
-df_data = generate_response_data(df_raw_2)
-finalSE_matrix = process_data_to_SE(df_data)
+df_merged_data = generate_response_data(df_raw_2)
+finalSE_matrix = process_data_to_SE(df_merged_data)
 # add calculation for combo matrix
 
 saveRDS(finalSE_matrix, '../testdata/finalSE_matrix.RDS', compress = FALSE)
