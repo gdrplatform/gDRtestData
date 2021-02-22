@@ -2,6 +2,7 @@
 
 se_from_testdata <-
   function(key_valuesL,
+           discard_keys_l,
            testDataNumb = 1,
            subdirName = "data",
            log_file = tempfile()) {
@@ -14,7 +15,10 @@ se_from_testdata <-
     testDataDir <-
       system.file(package = "gDRtestData", "testdata", paste0(subdirName, testDataNumb))
     lRef <- gDR::read_ref_data(testDataDir)
-    normSE = gDR::normalize_SE(lRef$df_raw_data, log_file, key_values = key_valuesL[[testDataNumb]])
+    normSE = gDR::normalize_SE(lRef$df_raw_data,
+                               log_file,
+                               key_values = key_valuesL[[testDataNumb]],
+                               discard_keys = discard_keys_l[[testDataNumb]])
     avgSE = gDR::average_SE(normSE)
     metricsSE = gDR::metrics_SE(avgSE)
     metricsSE
@@ -40,13 +44,30 @@ key_valuesL <-
        NULL,
        list(E2 = 1e-4))
 
+discard_keys_l <-
+  list(
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    "Replicate",
+    "Replicate",
+    "Replicate",
+    NULL,
+    "Replicate",
+    "Replicate",
+    NULL
+  )
 
 # new datasets
 seL <- lapply(1:13, function(x) {
   print(x)
-  se_from_testdata(key_valuesL, testDataNumb = x)
+  se_from_testdata(key_valuesL, discard_keys_l, testDataNumb = x)
 })
 seL <- lapply(seq_len(length(seL)), function(x){
+  print(x)
   attr(seL[[x]], "synthetic") <- FALSE
   if (x %in% c(8,9,11,12)){
     attr(seL[[x]], "synthetic") <- TRUE
