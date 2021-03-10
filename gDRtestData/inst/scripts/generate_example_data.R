@@ -126,11 +126,11 @@ generate_response_data <- function(df_raw, noise_level = .1) {
 #   df_raw$DrugName = factor(df_raw$DrugName)
 #   df_raw$gcsi_moa = factor(df_raw$gcsi_moa)
 #   levels(df_raw$Gnumber) <- c(levels(df_raw$Gnumber), 'vehicle')
-#   df_raw$Gnumber[df_raw$Concentration %in% 0] <- 'vehicle'
+  df_raw$Gnumber[df_raw$Concentration %in% 0] <- 'vehicle'
 #   levels(df_raw$DrugName) <- c(levels(df_raw$DrugName), 'vehicle')
-#   df_raw$DrugName[df_raw$Concentration %in% 0] <- 'vehicle'
+  df_raw$DrugName[df_raw$Concentration %in% 0] <- 'vehicle'
 #   levels(df_raw$gcsi_moa) <- c(levels(df_raw$gcsi_moa), 'vehicle')
-#   df_raw$gcsi_moa[df_raw$Concentration %in% 0] <- 'vehicle'
+  df_raw$gcsi_moa[df_raw$Concentration %in% 0] <- 'vehicle'
   
 
   if ('Gnumber_2' %in% colnames(df_raw)) { # combo data
@@ -147,16 +147,24 @@ generate_response_data <- function(df_raw, noise_level = .1) {
     # df_raw$gcsi_moa_2 = factor(df_raw$gcsi_moa_2)
     
     # levels(df_raw$Gnumber_2) <- c(levels(df_raw$Gnumber_2), 'vehicle')
-    # df_raw$Gnumber_2[df_raw$Concentration_2 == 0] <- 'vehicle'
+    df_raw$Gnumber_2[df_raw$Concentration_2 == 0] <- 'vehicle'
     # levels(df_raw$DrugName_2) <- c(levels(df_raw$DrugName_2), 'vehicle')
-    # df_raw$DrugName_2[df_raw$Concentration_2 == 0] <- 'vehicle'
+    df_raw$DrugName_2[df_raw$Concentration_2 == 0] <- 'vehicle'
     # levels(df_raw$gcsi_moa_2) <- c(levels(df_raw$gcsi_moa_2), 'vehicle')
-    # df_raw$gcsi_moa_2[df_raw$Concentration %in% 0] <- 'vehicle'
+    df_raw$gcsi_moa_2[df_raw$Concentration %in% 0] <- 'vehicle'
   }
 
   return(df_raw)
 }
 
+
+process_data_to_SE2 <- function(df_raw, key_values = NULL) {
+  se <- gDR::create_SE2(df_raw, key_values = key_values)
+  normSE <- gDR::normalize_SE2(se)  
+  avgSE <- gDR::average_SE2(normSE)
+  metricsSE <- gDR::fit_SE2(avgSE)
+#   finalSE <- gDR::add_codrug_group_SE(metricsSE)
+}
 
 process_data_to_SE <- function(df_raw, key_values = NULL) {
   normSE <- gDR::normalize_SE(df_raw, key_values)  
@@ -164,10 +172,9 @@ process_data_to_SE <- function(df_raw, key_values = NULL) {
   metricsSE <- gDR::metrics_SE(avgSE)
   finalSE <- gDR::add_codrug_group_SE(metricsSE)
 }
-
 # function to test accuracy of the fitted metrics based on the model
 test_accuracy <- function(finalSE) {
-  dt = assay_to_dt(finalSE, 5, merge_metrics = TRUE)
+  dt = assay_to_dt(finalSE, 'Metrics', merge_metrics = TRUE)
 
   df_QC = rbind(quantile(acast(dt, Gnumber ~ clid, value.var = 'e_max') - 
       e_max[ rowData(finalSE)$Gnumber, colData(finalSE)$clid ], c(.05, .5, .95)),
@@ -200,15 +207,12 @@ df_raw = add_concentration(df_raw)
 
 df_merged_data = generate_response_data(df_raw, 0)
 
-se <- create_SE2(df_merged_data)
-
-normalize_SE2(as.data.table(df_merged_data))
-
-finalSE_1_no_noise = process_data_to_SE(df_merged_data)
+# finalSE_1_no_noise = process_data_to_SE(df_merged_data)
+finalSE_1_no_noise = process_data_to_SE2(df_merged_data)
 dt_test = test_accuracy(finalSE_1_no_noise)
 print(dt_test)
 # test: 
-apply(abs(dt_test) < c(1e-3, 1e-3, 0.02, 0.015, 1e-5),1,all)
+apply(abs(dt_test) < c(1e-3, 2e-3, 0.02, 0.015, 1e-4),1,all)
 
 saveRDS(finalSE_1_no_noise, '../testdata/finalSE_small_no_noise.RDS', compress = FALSE)
 
@@ -316,7 +320,7 @@ saveRDS(finalSE_2, '../testdata/finalSE_many_drugs.RDS', compress = FALSE)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # generate the data for the 3rd test set with combo (two single dose)
-df_raw = merge(CellLines[2:11,], Drugs[2:11,], by = NULL)
+df_raw = merge(CellLines[2:4,], Drugs[2:4,], by = NULL)
 df_raw = add_data_replicates(df_raw)
 df_raw = add_concentration(df_raw)
 
@@ -325,7 +329,11 @@ colnames(df_2) = paste0(colnames(df_2), '_2')
 df_raw_2 = merge(df_raw, df_2, by = NULL)
 
 df_merged_data = generate_response_data(df_raw_2)
-finalSE_combo = process_data_to_SE(df_merged_data)
+
+gDR::create_SE2(df_merged_data)
+
+finalSE_combo = process_data_to_SE2(df_merged_data)
+# finalSE_combo = process_data_to_SE(df_merged_data)
 
 saveRDS(finalSE_combo, '../testdata/finalSE_combo_2dose.RDS', compress = FALSE)
 
