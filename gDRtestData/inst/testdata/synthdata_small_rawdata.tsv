@@ -1,4 +1,4 @@
-Barcode	clid	CellLineName	Tissue	ReferenceDivisionTime	Gnumber	DrugName	gcsi_moa	Concentration	ReadoutValue	BackgroundValue	Duration
+Barcode	clid	CellLineName	Tissue	ReferenceDivisionTime	Gnumber	DrugName	drug_moa	Concentration	ReadoutValue	BackgroundValue	Duration
 plate_1	CL00011	cellline_BA	tissue_x	26	vehicle	vehicle	vehicle	0	96.8	0	72
 plate_1	CL00012	cellline_CA	tissue_x	30	vehicle	vehicle	vehicle	0	102	0	72
 plate_1	CL00013	cellline_DA	tissue_x	34	vehicle	vehicle	vehicle	0	100.7	0	72
