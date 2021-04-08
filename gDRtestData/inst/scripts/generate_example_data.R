@@ -45,7 +45,7 @@ finalSE_1_no_noise <- process_data_to_SE2(df_merged_data)
 dt_test <- test_accuracy(finalSE_1_no_noise, e_inf, ec50, hill_coef)
 print(dt_test)
 # test: 
-print(apply(abs(dt_test) < c(1e-3, 2.2e-3, 0.04, 0.015, 1e-4),1,all))
+print(apply(abs(dt_test) < c(1e-3, 2.2e-3, 0.04, 0.015, 1e-4), 1, all))
 
 write.table(df_merged_data, '../testdata/synthdata_small_no_noise_rawdata.tsv', quote = F, row.names = F, sep = '\t')
 saveRDS(finalSE_1_no_noise, '../testdata/finalSE_small_no_noise.RDS', compress = FALSE)
@@ -64,7 +64,7 @@ finalSE_1 <- process_data_to_SE2(df_merged_data)
 dt_test <- test_accuracy(finalSE_1, e_inf, ec50, hill_coef)
 print(dt_test)
 # test: 
-print(apply(abs(dt_test) < c(0.5, 0.1, 1.5, 1.2, 0.05),1,all))
+print(apply(abs(dt_test) < c(0.5, 0.1, 1.5, 1.2, 0.05), 1, all))
 
 write.table(df_merged_data, '../testdata/synthdata_small_rawdata.tsv', quote = F, row.names = F, sep = '\t')
 # write.table(assay_to_dt(finalSE_1, 'Averaged')[,-1:-2], '../testdata/synthdata_small_avg.tsv', quote = F, row.names = F, sep = '\t')
@@ -97,7 +97,7 @@ finalSE_1_Ligand <- process_data_to_SE2(df_merged_data, override_untrt_controls 
 dt_test <- test_accuracy(finalSE_1_Ligand[rowData(finalSE_1_Ligand)$Ligand > 0,], e_inf, ec50, hill_coef)
 print(dt_test)
 # test: 
-print(apply(abs(dt_test) < c(1e-3, 3e-3, 0.031, 0.015, 1e-4),1,all))
+print(apply(abs(dt_test) < c(1e-3, 3e-3, 0.031, 0.015, 1e-4), 1, all))
 # test fit quality for Ligand = 0 and that delta(e_inf) < 0
 dt_test <- test_accuracy(finalSE_1_Ligand[rowData(finalSE_1_Ligand)$Ligand == 0,], e_inf, ec50, hill_coef)
 print(dt_test)
@@ -121,7 +121,7 @@ finalSE_2 <- process_data_to_SE2(df_merged_data)
 dt_test <- test_accuracy(finalSE_2, e_inf, ec50, hill_coef)
 print(dt_test)
 # test: 
-print(apply(abs(dt_test) < c(0.5, 0.2, 2.5, 1.2, 0.3),1,all))
+print(apply(abs(dt_test) < c(0.5, 0.2, 2.5, 1.2, 0.3), 1, all))
 
 write.table(df_merged_data, '../testdata/synthdata_medium_rawdata.tsv', quote = F, row.names = F, sep = '\t')
 saveRDS(finalSE_2, '../testdata/finalSE_medium.RDS', compress = FALSE)
@@ -139,7 +139,7 @@ finalSE_3 <- process_data_to_SE2(df_merged_data)
 dt_test <- test_accuracy(finalSE_3, e_inf, ec50, hill_coef)
 print(dt_test)
 # test: 
-print(apply(abs(dt_test) < c(0.5, 0.2, 2.5, 1.2, 0.3),1,all))
+print(apply(abs(dt_test) < c(0.5, 0.2, 2.5, 1.2, 0.3), 1, all))
 
 write.table(df_merged_data, '../testdata/synthdata_many_lines_rawdata.tsv', quote = F, row.names = F, sep = '\t')
 saveRDS(finalSE_3, '../testdata/finalSE_many_lines.RDS', compress = FALSE)
@@ -158,7 +158,7 @@ finalSE_4 <- process_data_to_SE2(df_merged_data)
 dt_test <- test_accuracy(finalSE_4, e_inf, ec50, hill_coef)
 print(dt_test)
 # test: 
-print(apply(abs(dt_test) < c(0.5, 0.2, 2.5, 1.2, 0.3),1,all))
+print(apply(abs(dt_test) < c(0.5, 0.2, 2.5, 1.2, 0.3), 1, all))
 
 write.table(df_merged_data, '../testdata/synthdata_many_drugs_rawdata.tsv', quote = F, row.names = F, sep = '\t')
 saveRDS(finalSE_4, '../testdata/finalSE_many_drugs.RDS', compress = FALSE)
@@ -182,7 +182,7 @@ finalSE_combo <- process_data_to_SE2(df_merged_data)
 dt_test <- test_accuracy(finalSE_combo[rowData(finalSE_combo)$Concentration_2 == 0, ], e_inf, ec50, hill_coef)
 print(dt_test)
 # test: 
-print(apply(abs(dt_test) < c(1e-3, 2e-3, 0.02, 0.015, 1e-4),1,all))
+print(apply(abs(dt_test) < c(1e-3, 2e-3, 0.02, 0.015, 1e-4), 1, all))
 # test the assignment of drug_combinations
 print(length(metadata(finalSE_combo)$drug_combinations)==3)
 print(all(sapply(metadata(finalSE_combo)$drug_combinations, 
@@ -213,7 +213,7 @@ finalSE_combo2 <- process_data_to_SE2(df_merged_data)
 dt_test <- test_accuracy(finalSE_combo2[rowData(finalSE_combo2)$Concentration_2 == 0, ], e_inf, ec50, hill_coef)
 print(dt_test)
 # test: 
-print(apply(abs(dt_test) < c(1e-3, 2e-3, 0.02, 0.015, 1e-4),1,all))
+print(apply(abs(dt_test) < c(1e-3, 2e-3, 0.02, 0.015, 1e-4), 1, all))
 
 # compare to other way of processing the data
 DT1 <- convert_se_assay_to_dt(finalSE_combo, 'Metrics')
@@ -246,7 +246,7 @@ df_merged_data <- generate_response_data(df_layout_2, 0)
 finalSE_combo3 <- process_data_to_SE2(df_merged_data)
 
 dt_test <- test_accuracy(finalSE_combo3[rowData(finalSE_combo3)$Concentration_2 == 0, ], e_inf, ec50, hill_coef)
-print(apply(abs(dt_test) < c(1e-3, 2e-3, 0.02, 0.015, 1e-4),1,all))
+print(apply(abs(dt_test) < c(1e-3, 2e-3, 0.02, 0.015, 1e-4), 1, all))
 
 # compare to the complete data
 DT1 = convert_se_assay_to_dt(finalSE_combo,'Metrics')
@@ -283,7 +283,7 @@ finalSE_combo <- process_data_to_SE2(df_merged_data)
 
 # test accuracy of the processing and fitting for the single agent
 dt_test <- test_accuracy(finalSE_combo[rowData(finalSE_combo)$Concentration_2 == 0, ], e_inf, ec50, hill_coef)
-print(apply(abs(dt_test) < c(0.5, 0.2, 2.5, 1.2, 0.3),1,all))
+print(apply(abs(dt_test) < c(0.5, 0.2, 2.5, 1.2, 0.3), 1, all))
 # test the effect of the combination treatment
 dt_test <- test_accuracy(finalSE_combo[rowData(finalSE_combo)$Concentration_2 > 0, ], e_inf, ec50, hill_coef)
 print(apply(dt_test[c('delta_einf', '1_r2'),] < c(-.1, .01), 1, function(x) sum(x)==2))
@@ -320,7 +320,7 @@ finalSE_matrix <- process_data_to_SE2(df_merged_data)
 
 # test accuracy of the processing and fitting for the single agent
 dt_test <- test_accuracy(finalSE_matrix[rowData(finalSE_matrix)$Concentration_2 == 0, ], e_inf, ec50, hill_coef)
-print(apply(abs(dt_test) < c(1e-3, 6e-3, 0.12, 0.015, 1e-4),1,all))
+print(apply(abs(dt_test) < c(1e-3, 6e-3, 0.12, 0.015, 1e-4), 1, all))
 # test proper processing of the combo metadata
 print(all(table(rowData(finalSE_matrix)[,c('Gnumber','Gnumber_2')])[, Drugs$Gnumber[c(21,26)]]==8))
 print(all(table(rowData(finalSE_matrix)[rowData(finalSE_matrix)$DrugName_2 != 'vehicle','Concentration_2'])==6))
@@ -408,7 +408,7 @@ finalSE_matrix <- process_data_to_SE2(df_merged_data)
 
 # test accuracy of the processing and fitting for the single agent
 dt_test <- test_accuracy(finalSE_matrix[rowData(finalSE_matrix)$Concentration_2 == 0, ], e_inf, ec50, hill_coef)
-print(apply(abs(dt_test) < c(1e-3, 6e-3, 0.12, 0.015, 1e-4),1,all))
+print(apply(abs(dt_test) < c(1e-3, 6e-3, 0.12, 0.015, 1e-4), 1, all))
 # test proper processing of the combo metadata
 print(all(table(rowData(finalSE_matrix)[,c('Gnumber','Gnumber_2')])[, Drugs$Gnumber[c(21,26)]]==24))
 print(all(table(rowData(finalSE_matrix)[rowData(finalSE_matrix)$DrugName_2 != 'vehicle','Concentration_2'])==18))

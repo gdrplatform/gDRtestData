@@ -2,6 +2,7 @@
 # only for testing purpuses not displayed as example in the visualization
 
 
+
 library(SummarizedExperiment)
 devtools::load_all('../../../../BumpyMatrix')
 devtools::load_all('../../../../gDRutils/gDRutils')
@@ -45,7 +46,7 @@ all(abs(dt_values$GRvalue.y - dt_values$GRvalue.x)<2e-3)
 dt_test <- test_accuracy(finalSE_1_no_noise_day0, e_inf, ec50, hill_coef)
 print(dt_test)
 # test: 
-print(apply(abs(dt_test) < c(1e-3, 2.2e-3, 0.04, 0.015, 1e-4),1,all))
+print(apply(abs(dt_test) < c(1e-3, 2.2e-3, 0.04, 0.015, 1e-4), 1, all))
 
 write.table(df_merged_data_day0, '../testdata/synthdata_small_wDay0_no_noise_rawdata.tsv', quote = F, row.names = F, sep = '\t')
 saveRDS(finalSE_1_no_noise, '../testdata/finalSE_small_wDay0_no_noise.RDS', compress = FALSE)
@@ -79,7 +80,7 @@ finalSE_1_Ligand_day0 <- process_data_to_SLigand(df_merged_data_day0, override_u
 dt_test <- test_accuracy(finalSE_1_Ligand_day0[rowData(finalSE_1_Ligand_day0)$Ligand > 0,], e_inf, ec50, hill_coef)
 print(dt_test)
 # test: 
-print(apply(abs(dt_test) < c(1e-3, 3e-3, 0.031, 0.015, 1e-4),1,all))
+print(apply(abs(dt_test) < c(1e-3, 3e-3, 0.031, 0.015, 1e-4), 1, all))
 
 dt = convert_se_assay_to_dt(finalSE_1_Ligand,'Averaged')
 dt_day0 = convert_se_assay_to_dt(finalSE_1_Ligand_day0,'Averaged')
