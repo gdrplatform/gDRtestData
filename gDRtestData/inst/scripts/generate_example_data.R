@@ -67,8 +67,6 @@ print(dt_test)
 print(apply(abs(dt_test) < c(0.5, 0.1, 1.5, 1.2, 0.05), 1, all))
 
 write.table(df_merged_data, '../testdata/synthdata_small_rawdata.tsv', quote = F, row.names = F, sep = '\t')
-# write.table(assay_to_dt(finalSE_1, 'Averaged')[,-1:-2], '../testdata/synthdata_small_avg.tsv', quote = F, row.names = F, sep = '\t')
-# write.table(assay_to_dt(finalSE_1, 'Metrics', T)[,-1:-2], '../testdata/synthdata_small_metrics.tsv', quote = F, row.names = F, sep = '\t')
 saveRDS(finalSE_1, '../testdata/finalSE_small.RDS', compress = FALSE)
 
 
@@ -407,7 +405,8 @@ finalSE_matrix <- process_data_to_SE2(df_merged_data)
 
 
 # test accuracy of the processing and fitting for the single agent
-dt_test <- test_accuracy(finalSE_matrix[rowData(finalSE_matrix)$Concentration_2 == 0, ], e_inf, ec50, hill_coef)
+dt_test <- test_accuracy(finalSE_matrix[rowData(finalSE_matrix)$Concentration_2 == 0 & 
+    rowData(finalSE_matrix)$Concentration_3 == 0, ], e_inf, ec50, hill_coef)
 print(apply(abs(dt_test) < c(1e-3, 6e-3, 0.12, 0.015, 1e-4), 1, all))
 # test proper processing of the combo metadata
 print(all(table(rowData(finalSE_matrix)[,c('Gnumber','Gnumber_2')])[, Drugs$Gnumber[c(21,26)]]==24))
@@ -415,7 +414,7 @@ print(all(table(rowData(finalSE_matrix)[rowData(finalSE_matrix)$DrugName_2 != 'v
 print(all(table(rowData(finalSE_matrix)[,paste0('Concentration',c('_2', '_3'))]) == c(3,array(6,8))))
 
 dt = convert_se_assay_to_dt(finalSE_matrix, 'Averaged')
-print(all(dim(table(dt[dt$DrugName_2 != 'vehicle',paste0('Concentration',c('', '_2', '_3'))]))==c(8,8,3))
+print(all(dim(table(dt[dt$DrugName_2 != 'vehicle',paste0('Concentration',c('', '_2', '_3'))]))==c(8,8,3)))
 # test the assignment of drug_combinations
 print(length(metadata(finalSE_matrix)$drug_combinations)==18)
 print(all(sapply(metadata(finalSE_matrix)$drug_combinations, 
@@ -446,6 +445,7 @@ finalSE_codilution <- process_data_to_SE2(df_merged_data)
 # add and test calculation for combo matrix
 # TODO when the functions are cleaned up
 
+write.table(df_merged_data, '../testdata/synthdata_combo_codilution_small_rawdata.tsv', quote = F, row.names = F, sep = '\t')
 saveRDS(finalSE_codilution, '../testdata/finalSE_combo_codilution_small.RDS', compress = FALSE)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -466,5 +466,6 @@ finalSE_codilution <- process_data_to_SE2(df_merged_data)
 # add and test calculation for combo matrix
 # TODO when the functions are cleaned up
 
+write.table(df_merged_data, '../testdata/synthdata_combo_codilution_rawdata.tsv', quote = F, row.names = F, sep = '\t')
 saveRDS(finalSE_codilution, '../testdata/finalSE_combo_codilution.RDS', compress = FALSE)
 
