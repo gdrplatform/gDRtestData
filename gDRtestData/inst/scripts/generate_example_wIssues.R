@@ -39,6 +39,47 @@ print(apply(abs(dt_test) < c(1e-3, 2.2e-3, 0.05, 0.015, 1e-4), 1, all))
 
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+#### test missing data
+# generate the data for the 1st test set: no noise
+#   without masked
+df_layout <- merge(CellLines[2:5,], Drugs[2:6,], by = NULL)
+df_layout <- add_data_replicates(df_layout)
+df_layout <- add_concentration(df_layout)
+
+df_merged_data <- generate_response_data(df_layout, 0)
+
+finalSE_1_no_noise <- process_data_to_SE2(df_merged_data)
+
+# test accurarcy of the processing and fitting (no noise => low tolerance)
+dt_test <- test_accuracy(finalSE_1_no_noise, e_inf, ec50, hill_coef)
+# test: 
+print(apply(abs(dt_test) < c(1e-3, 2.2e-3, 0.05, 0.015, 1e-4), 1, all))
+
+
+# remove some samples by cell line/drug
+df_merged_data_missing <- df_merged_data[df_merged_data$clid != 'CL00011', ]
+
+finalSE_1_no_noise <- process_data_to_SE2(df_merged_data_missing)
+
+# test accurarcy of the processing and fitting (no noise => low tolerance)
+dt_test <- test_accuracy(finalSE_1_no_noise, e_inf, ec50, hill_coef)
+# test: 
+print(apply(abs(dt_test) < c(1e-3, 5e-3, 0.05, 0.015, 1e-4), 1, all))
+
+
+
+df_merged_data_missing <- df_merged_data[df_merged_data$clid != 'CL00012' & 
+            df_merged_data$Gnumber != 'G00004', ]
+finalSE_1_no_noise <- process_data_to_SE2(df_merged_data_missing)
+
+
+df_merged_data_missing <- df_merged_data[df_merged_data$clid != 'CL00011' | 
+            df_merged_data$Gnumber != 'G00002', ]
+finalSE_1_no_noise <- process_data_to_SE2(df_merged_data_missing)
+
+
+
+#### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 #### test 'masked'
 # generate the data for the 1st test set: no noise
 #   with masked = F
@@ -58,7 +99,7 @@ dt_test <- test_accuracy(finalSE_1_no_noise, e_inf, ec50, hill_coef)
 print(apply(abs(dt_test) < c(1e-3, 2.2e-3, 0.05, 0.015, 1e-4), 1, all))
 
 
-# remove some samples randomly
+# mask some samples randomly
 df_merged_data <- generate_response_data(df_layout, 0)
 df_merged_data_masked <- df_merged_data
 set.seed(2)
@@ -72,7 +113,7 @@ dt_test <- test_accuracy(finalSE_1_no_noise, e_inf, ec50, hill_coef)
 print(apply(abs(dt_test) < c(1e-3, 5e-3, 0.05, 0.015, 1e-4), 1, all))
 
 
-# remove some samples randomly (40%)
+# mask some samples randomly (40%)
 df_merged_data <- generate_response_data(df_layout, 0)
 df_merged_data_masked <- df_merged_data
 set.seed(2)
@@ -87,7 +128,7 @@ print(apply(abs(dt_test) < c(1e-3, 5e-3, 0.06, 0.015, 1e-4), 1, all))
 
 
 
-# remove some samples for one cell line/drug
+# mask some samples for one cell line/drug
 df_merged_data <- generate_response_data(df_layout, 0)
 df_merged_data_masked = df_merged_data
 df_merged_data_masked$masked = F
@@ -103,7 +144,7 @@ print(is.na(assay(finalSE_1_no_noise, "Averaged")[rowData(finalSE_1_no_noise)$Gn
     colData(finalSE_1_no_noise)$clid == 'CL00011'][[1]][1,'RelativeViability']))
 
 
-# remove all samples of a cell line
+# mask all samples of a cell line
 df_merged_data <- generate_response_data(df_layout, 0)
 df_merged_data_masked = df_merged_data
 df_merged_data_masked$masked = F
@@ -131,7 +172,7 @@ print(all(sapply(assay(finalSE_1_no_noise, "Metrics")[,
     function(x) is.na(x['RV', 'x_mean']))))
     
 
-# remove all samples of a drug
+# mask all samples of a drug
 df_merged_data <- generate_response_data(df_layout, 0)
 df_merged_data_masked = df_merged_data
 df_merged_data_masked$masked = F
