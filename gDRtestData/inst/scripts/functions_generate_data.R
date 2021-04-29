@@ -186,25 +186,23 @@ test_accuracy <- function(finalSE, e_inf, ec50, hill_coef) {
   
   # by passing until 'flatten' in debugged
 
-  # dt <- gDRutils::convert_se_assay_to_dt(finalSE, 'Metrics')
-  # gDRutils::flatten(dt, groups = c('normalization_type', 'fit_source'), 
-  #       wide_cols = gDRutils::get_header('response_metrics'))
-
-  # df_QC <- rbind(quantile(acast(dt, Gnumber ~ clid, value.var = 'E_inf') - 
-  #     e_inf[ rowData(finalSE)$Gnumber, colData(finalSE)$clid ], c(.05, .5, .95)),
-  #   quantile(log10(acast(dt, Gnumber ~ clid, value.var = 'EC50')) - 
-  #     log10(ec50[ rowData(finalSE)$Gnumber, colData(finalSE)$clid ]), c(.05, .5, .95)),
-  #   quantile(acast(dt, Gnumber ~ clid, value.var = 'h_RV') - 
-  #     hill_coef[ rowData(finalSE)$Gnumber, colData(finalSE)$clid ], c(.05, .5, .95)),
-  #   quantile( (acast(dt, Gnumber ~ clid, value.var = 'h_RV') - 
-  #     hill_coef[ rowData(finalSE)$Gnumber, colData(finalSE)$clid ])[
-  #       acast(dt, Gnumber ~ clid, value.var = 'EC50') < 3 & 
-  #       acast(dt, Gnumber ~ clid, value.var = 'E_inf') < .8 
-  #     ], c(.05, .5, .95)),
-  #   1-quantile(acast(dt, Gnumber ~ clid, value.var = 'RV_r2') , c(.05, .5, .95))
-  # )
-
-  df_QC = as.data.frame( matrix(1, 5, 3)) # to remove 
+  dt <- gDRutils::convert_se_assay_to_dt(finalSE, 'Metrics')
+  dt <- gDRutils::flatten(dt, groups = c('normalization_type', 'fit_source'), 
+        wide_cols = gDRutils::get_header('response_metrics'))
+  colnames(dt) = prettify_flat_metrics(colnames(dt), F)
+  df_QC <- rbind(quantile(acast(dt, Gnumber ~ clid, value.var = 'E_inf') - 
+      e_inf[ rowData(finalSE)$Gnumber, colData(finalSE)$clid ], c(.05, .5, .95)),
+    quantile(log10(acast(dt, Gnumber ~ clid, value.var = 'EC50')) - 
+      log10(ec50[ rowData(finalSE)$Gnumber, colData(finalSE)$clid ]), c(.05, .5, .95)),
+    quantile(acast(dt, Gnumber ~ clid, value.var = 'h_RV') - 
+      hill_coef[ rowData(finalSE)$Gnumber, colData(finalSE)$clid ], c(.05, .5, .95)),
+    quantile( (acast(dt, Gnumber ~ clid, value.var = 'h_RV') - 
+      hill_coef[ rowData(finalSE)$Gnumber, colData(finalSE)$clid ])[
+        acast(dt, Gnumber ~ clid, value.var = 'EC50') < 3 & 
+        acast(dt, Gnumber ~ clid, value.var = 'E_inf') < .8 
+      ], c(.05, .5, .95)),
+    1-quantile(acast(dt, Gnumber ~ clid, value.var = 'RV_r2') , c(.05, .5, .95))
+  )
 
   rownames(df_QC) <- c('delta_einf', 'delta_ec50', 'delta_hill', 'd_hill_fitted', '1_r2')
   return(df_QC)
