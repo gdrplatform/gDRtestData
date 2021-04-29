@@ -219,8 +219,8 @@ DT2 <- convert_se_assay_to_dt(finalSE_combo2,'Metrics')
 DT1$rId <- gsub('_\\d\\d?$', '', DT1$rId)
 DT2$rId <- gsub('_\\d\\d?$', '', DT2$rId)
 # merge the two results
-delta <- merge(DT1[ , c('rId', 'cId', 'dr_metric', 'x_0', 'x_max')], 
-        DT2[ , c('rId', 'cId', 'dr_metric', 'x_0', 'x_max')], by = c('rId', 'cId', 'dr_metric'))
+delta <- merge(DT1[ , c('rId', 'cId', 'normalization_type', 'x_0', 'x_max')], 
+        DT2[ , c('rId', 'cId', 'normalization_type', 'x_0', 'x_max')], by = c('rId', 'cId', 'normalization_type'))
 # test:
 print(all(abs(quantile((delta$x_0.x - delta$x_0.y)[!grepl('vehicle', delta$rId)])) < .0005))
 
@@ -251,8 +251,8 @@ DT1 = convert_se_assay_to_dt(finalSE_combo,'Metrics')
 DT3 = convert_se_assay_to_dt(finalSE_combo3,'Metrics')
 DT1$rId = gsub('_\\d\\d?$', '', DT1$rId)
 DT3$rId = gsub('_\\d\\d?$', '', DT3$rId)
-delta = merge(DT1[ , c('rId', 'cId', 'dr_metric', 'x_0', 'x_inf', 'r2')], 
-        DT3[ , c('rId', 'cId', 'dr_metric', 'x_0', 'x_inf', 'r2')], by = c('rId', 'cId', 'dr_metric'))
+delta = merge(DT1[ , c('rId', 'cId', 'normalization_type', 'x_0', 'x_inf', 'r2')], 
+        DT3[ , c('rId', 'cId', 'normalization_type', 'x_0', 'x_inf', 'r2')], by = c('rId', 'cId', 'normalization_type'))
 
 # checking the x_0 value was properly fitted for most cases (there are a few failures but it is ok)
 print(sum(abs(delta$x_0.x - delta$x_0.y)>.004)<4)
