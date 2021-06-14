@@ -7,7 +7,7 @@ library(SummarizedExperiment)
 devtools::load_all('../../../../BumpyMatrix')
 devtools::load_all('../../../../gDRutils/gDRutils')
 devtools::load_all('../../../../gDRwrapper/gDRwrapper')
-devtools::load_all('../../../../gDRcore/gDR')
+devtools::load_all('../../../../gDRcore/gDRcore')
 library(reshape2)
 
 source('functions_generate_data.R')
