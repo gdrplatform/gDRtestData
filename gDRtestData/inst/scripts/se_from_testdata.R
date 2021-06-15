@@ -7,21 +7,22 @@ se_from_testdata <-
            subdirName = "data",
            log_file = tempfile()) {
 
-    if (!requireNamespace("gDR", quietly = TRUE)) {
-      stop("Package 'gDR' needed for this function to work. Please install it.",
+    if (!requireNamespace("gDRcore", quietly = TRUE)) {
+      stop("Package 'gDRcore' needed for this function to work. Please install it.",
            call. = FALSE)
     }
 
     testDataDir <-
       system.file(package = "gDRtestData", "testdata", paste0(subdirName, testDataNumb))
-    lRef <- gDR::read_ref_data(testDataDir)
-    normSE = gDR::normalize_SE(lRef$df_raw_data,
-                               log_file,
-                               key_values = key_valuesL[[testDataNumb]],
-                               discard_keys = discard_keys_l[[testDataNumb]])
-    avgSE = gDR::average_SE(normSE)
-    metricsSE = gDR::metrics_SE(avgSE)
-    metricsSE
+    lRef <- gDRcore::read_ref_data(testDataDir)
+    se <– gDRcore::create_SE(lRef$df_raw_data,
+                             nested_keys = key_valuesL[[testDataNumb]],
+                             override_untrt_controls = discard_keys_l[[testDataNumb]])
+    normSE <- gDRcore::normalize_SE(se)
+    avgSE <- gDRcore::average_SE(normSE)
+    metricsSE <- gDRcore::fit_SE(avgSE)
+    finalmetricsSE <- gDRcore::add_codrug_group_SE(metricsSE)
+    finalmetricsSE
   }
 
 #### MAIN ####

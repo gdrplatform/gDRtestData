@@ -11,7 +11,7 @@ library(SummarizedExperiment)
 devtools::load_all('../../../../BumpyMatrix')
 devtools::load_all('../../../../gDRutils/gDRutils')
 devtools::load_all('../../../../gDRwrapper/gDRwrapper')
-devtools::load_all('../../../../gDRcore/gDR')
+devtools::load_all('../../../../gDRcore/gDRcore')
 library(reshape2)
 
 source('functions_generate_data.R')
@@ -29,7 +29,7 @@ df_merged_data <- generate_response_data(df_layout, 0)
 df_merged_data = df_merged_data
 df_merged_data$Barcode = NULL
 
-finalSE_1_no_noise <- process_data_to_SE2(df_merged_data)
+finalSE_1_no_noise <- process_data_to_SE(df_merged_data)
 
 # test accurarcy of the processing and fitting (no noise => low tolerance)
 dt_test <- test_accuracy(finalSE_1_no_noise, e_inf, ec50, hill_coef)
@@ -48,7 +48,7 @@ df_layout <- add_concentration(df_layout)
 
 df_merged_data <- generate_response_data(df_layout, 0)
 
-finalSE_1_no_noise <- process_data_to_SE2(df_merged_data)
+finalSE_1_no_noise <- process_data_to_SE(df_merged_data)
 
 # test accurarcy of the processing and fitting (no noise => low tolerance)
 dt_test <- test_accuracy(finalSE_1_no_noise, e_inf, ec50, hill_coef)
@@ -59,7 +59,7 @@ print(apply(abs(dt_test) < c(1e-3, 2.2e-3, 0.05, 0.015, 1e-4), 1, all))
 # remove some samples by cell line/drug
 df_merged_data_missing <- df_merged_data[df_merged_data$clid != 'CL00011', ]
 
-finalSE_1_no_noise <- process_data_to_SE2(df_merged_data_missing)
+finalSE_1_no_noise <- process_data_to_SE(df_merged_data_missing)
 
 # test accurarcy of the processing and fitting (no noise => low tolerance)
 dt_test <- test_accuracy(finalSE_1_no_noise, e_inf, ec50, hill_coef)
@@ -70,12 +70,12 @@ print(apply(abs(dt_test) < c(1e-3, 5e-3, 0.05, 0.015, 1e-4), 1, all))
 
 df_merged_data_missing <- df_merged_data[df_merged_data$clid != 'CL00012' & 
             df_merged_data$Gnumber != 'G00004', ]
-finalSE_1_no_noise <- process_data_to_SE2(df_merged_data_missing)
+finalSE_1_no_noise <- process_data_to_SE(df_merged_data_missing)
 
 
 df_merged_data_missing <- df_merged_data[df_merged_data$clid != 'CL00011' | 
             df_merged_data$Gnumber != 'G00002', ]
-finalSE_1_no_noise <- process_data_to_SE2(df_merged_data_missing)
+finalSE_1_no_noise <- process_data_to_SE(df_merged_data_missing)
 
 
 
@@ -91,7 +91,7 @@ df_merged_data <- generate_response_data(df_layout, 0)
 
 df_merged_data$masked <- FALSE
 
-finalSE_1_no_noise <- process_data_to_SE2(df_merged_data)
+finalSE_1_no_noise <- process_data_to_SE(df_merged_data)
 
 # test accurarcy of the processing and fitting (no noise => low tolerance)
 dt_test <- test_accuracy(finalSE_1_no_noise, e_inf, ec50, hill_coef)
@@ -105,7 +105,7 @@ df_merged_data_masked <- df_merged_data
 set.seed(2)
 df_merged_data_masked$masked <- runif(nrow(df_merged_data))>.9
 
-finalSE_1_no_noise <- process_data_to_SE2(df_merged_data_masked)
+finalSE_1_no_noise <- process_data_to_SE(df_merged_data_masked)
 
 # test accurarcy of the processing and fitting (no noise => low tolerance)
 dt_test <- test_accuracy(finalSE_1_no_noise, e_inf, ec50, hill_coef)
@@ -119,7 +119,7 @@ df_merged_data_masked <- df_merged_data
 set.seed(2)
 df_merged_data_masked$masked <- runif(nrow(df_merged_data)) > .6
 
-finalSE_1_no_noise <- process_data_to_SE2(df_merged_data_masked)
+finalSE_1_no_noise <- process_data_to_SE(df_merged_data_masked)
 
 # test accurarcy of the processing and fitting (no noise => low tolerance)
 dt_test <- test_accuracy(finalSE_1_no_noise, e_inf, ec50, hill_coef)
@@ -135,7 +135,7 @@ df_merged_data_masked$masked = F
 df_merged_data_masked$masked[df_merged_data$clid == 'CL00011' & df_merged_data$Gnumber == 'G00004'] = TRUE
 
 
-finalSE_1_no_noise <- process_data_to_SE2(df_merged_data_masked)
+finalSE_1_no_noise <- process_data_to_SE(df_merged_data_masked)
 
 print(nrow(assay(finalSE_1_no_noise, "Averaged")[rowData(finalSE_1_no_noise)$Gnumber == 'G00004', 
     colData(finalSE_1_no_noise)$clid == 'CL00011'])==1)
@@ -150,7 +150,7 @@ df_merged_data_masked = df_merged_data
 df_merged_data_masked$masked = F
 df_merged_data_masked$masked[df_merged_data$clid == 'CL00011'] = TRUE
 
-finalSE_1_no_noise <- process_data_to_SE2(df_merged_data_masked)
+finalSE_1_no_noise <- process_data_to_SE(df_merged_data_masked)
 
 
 se <- gDR::create_SE2(df_merged_data_masked)
@@ -178,7 +178,7 @@ df_merged_data_masked = df_merged_data
 df_merged_data_masked$masked = F
 df_merged_data_masked$masked[df_merged_data$Gnumber == 'G00004'] = TRUE
 
-finalSE_1_no_noise <- process_data_to_SE2(df_merged_data_masked)
+finalSE_1_no_noise <- process_data_to_SE(df_merged_data_masked)
 
 
 print(all(sapply(assay(finalSE_1_no_noise, "Averaged")[ 

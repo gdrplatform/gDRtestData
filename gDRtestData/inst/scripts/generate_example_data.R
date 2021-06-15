@@ -23,7 +23,7 @@ library(SummarizedExperiment)
 devtools::load_all('../../../../BumpyMatrix')
 devtools::load_all('../../../../gDRutils/gDRutils')
 devtools::load_all('../../../../gDRwrapper/gDRwrapper')
-devtools::load_all('../../../../gDRcore/gDR')
+devtools::load_all('../../../../gDRcore/gDRcore')
 library(reshape2)
 
 source('functions_generate_data.R')
@@ -39,7 +39,7 @@ df_layout <- add_concentration(df_layout)
 
 df_merged_data <- generate_response_data(df_layout, 0)
 
-finalSE_1_no_noise <- process_data_to_SE2(df_merged_data)
+finalSE_1_no_noise <- process_data_to_SE(df_merged_data)
 
 # test accurarcy of the processing and fitting (no noise => low tolerance)
 dt_test <- test_accuracy(finalSE_1_no_noise, e_inf, ec50, hill_coef)
@@ -58,7 +58,7 @@ df_layout <- add_data_replicates(df_layout)
 df_layout <- add_concentration(df_layout)
 
 df_merged_data <- generate_response_data(df_layout)
-finalSE_1 <- process_data_to_SE2(df_merged_data)
+finalSE_1 <- process_data_to_SE(df_merged_data)
 
 # test accurarcy of the processing and fitting (noise => medium tolerance)
 dt_test <- test_accuracy(finalSE_1, e_inf, ec50, hill_coef)
@@ -89,7 +89,7 @@ df_merged_data2$ReadoutValue <- round(df_merged_data2$ReadoutValue,1)
 df_merged_data2$Barcode <- paste0(df_merged_data2$Barcode, '1')
 df_merged_data <- rbind(df_merged_data, df_merged_data2)
 
-finalSE_1_Ligand <- process_data_to_SE2(df_merged_data, override_untrt_controls = c(Ligand = 0.1))
+finalSE_1_Ligand <- process_data_to_SE(df_merged_data, override_untrt_controls = c(Ligand = 0.1))
 
 # test accurarcy of the processing and fitting for Ligand = 0.1 (noise => medium tolerance)
 dt_test <- test_accuracy(finalSE_1_Ligand[rowData(finalSE_1_Ligand)$Ligand > 0,], e_inf, ec50, hill_coef)
@@ -113,7 +113,7 @@ df_layout <- add_data_replicates(df_layout)
 df_layout <- add_concentration(df_layout)
 
 df_merged_data <- generate_response_data(df_layout)
-finalSE_2 <- process_data_to_SE2(df_merged_data)
+finalSE_2 <- process_data_to_SE(df_merged_data)
 
 # test accurarcy of the processing and fitting 
 dt_test <- test_accuracy(finalSE_2, e_inf, ec50, hill_coef)
@@ -131,7 +131,7 @@ df_layout <- add_data_replicates(df_layout)
 df_layout <- add_concentration(df_layout)
 
 df_merged_data <- generate_response_data(df_layout)
-finalSE_3 <- process_data_to_SE2(df_merged_data)
+finalSE_3 <- process_data_to_SE(df_merged_data)
 
 # test accurarcy of the processing and fitting 
 dt_test <- test_accuracy(finalSE_3, e_inf, ec50, hill_coef)
@@ -150,7 +150,7 @@ df_layout <- add_data_replicates(df_layout)
 df_layout <- add_concentration(df_layout)
 
 df_merged_data <- generate_response_data(df_layout)
-finalSE_4 <- process_data_to_SE2(df_merged_data)
+finalSE_4 <- process_data_to_SE(df_merged_data)
 
 # test accurarcy of the processing and fitting 
 dt_test <- test_accuracy(finalSE_4, e_inf, ec50, hill_coef)
@@ -174,7 +174,7 @@ colnames(df_2) <- paste0(colnames(df_2), '_2')
 df_layout_2 <- merge(df_layout, df_2, by = NULL)
 
 df_merged_data <- generate_response_data(df_layout_2, 0)
-finalSE_combo <- process_data_to_SE2(df_merged_data)
+finalSE_combo <- process_data_to_SE(df_merged_data)
 
 # test the single agent response
 dt_test <- test_accuracy(finalSE_combo[rowData(finalSE_combo)$Concentration_2 == 0, ], e_inf, ec50, hill_coef)
@@ -205,7 +205,7 @@ df_merged_data <- generate_response_data(df_layout_2, 0)
 df_merged_data <- df_merged_data[!(df_merged_data$Gnumber %in% c('vehicle', Drugs$Gnumber[26]) & 
         df_merged_data$Gnumber_2 == Drugs$Gnumber[26]),]
 
-finalSE_combo2 <- process_data_to_SE2(df_merged_data)
+finalSE_combo2 <- process_data_to_SE(df_merged_data)
 
 # test accurarcy of the processing and fitting 
 dt_test <- test_accuracy(finalSE_combo2[rowData(finalSE_combo2)$Concentration_2 == 0, ], e_inf, ec50, hill_coef)
@@ -241,7 +241,7 @@ df_layout_2 <- merge(df_layout, df_2, by = NULL)
 df_layout_2 = df_layout_2[!(df_layout_2$Concentration == 0 & df_layout_2$Concentration_2 > 0), ]
 
 df_merged_data <- generate_response_data(df_layout_2, 0)
-finalSE_combo3 <- process_data_to_SE2(df_merged_data)
+finalSE_combo3 <- process_data_to_SE(df_merged_data)
 
 dt_test <- test_accuracy(finalSE_combo3[rowData(finalSE_combo3)$Concentration_2 == 0, ], e_inf, ec50, hill_coef)
 print(apply(abs(dt_test) < c(1e-3, 2e-3, 0.02, 0.015, 1e-4), 1, all))
@@ -277,7 +277,7 @@ colnames(df_2) <- paste0(colnames(df_2), '_2')
 df_layout_2 <- merge(df_layout, df_2, by = NULL)
 
 df_merged_data <- generate_response_data(df_layout_2)
-finalSE_combo <- process_data_to_SE2(df_merged_data)
+finalSE_combo <- process_data_to_SE(df_merged_data)
 
 # test accuracy of the processing and fitting for the single agent
 dt_test <- test_accuracy(finalSE_combo[rowData(finalSE_combo)$Concentration_2 == 0, ], e_inf, ec50, hill_coef)
@@ -310,7 +310,7 @@ colnames(df_2)[colnames(df_2) %in% c(colnames(Drugs),'Concentration')] <-
 df_layout_2 <- merge(df_layout, df_2)
 
 df_merged_data <- generate_response_data(df_layout_2, 0)
-finalSE_matrix <- process_data_to_SE2(df_merged_data)
+finalSE_matrix <- process_data_to_SE(df_merged_data)
 
 # add and test calculation for combo matrix
 # TODO when the functions are cleaned up
@@ -351,7 +351,7 @@ colnames(df_2)[colnames(df_2) %in% c(colnames(Drugs),'Concentration')] <-
 df_layout_2 <- merge(df_layout, df_2)
 
 df_merged_data <- generate_response_data(df_layout_2)
-finalSE_matrix <- process_data_to_SE2(df_merged_data)
+finalSE_matrix <- process_data_to_SE(df_merged_data)
 
 # add and test calculation for combo matrix
 # TODO when the functions are cleaned up
@@ -397,7 +397,7 @@ colnames(df_3)[colnames(df_3) %in% c(colnames(Drugs),'Concentration')] <-
 df_layout_3 <- merge(merge(df_layout, df_2), df_3)
 
 df_merged_data <- generate_response_data(df_layout_3, 0)
-finalSE_matrix <- process_data_to_SE2(df_merged_data)
+finalSE_matrix <- process_data_to_SE(df_merged_data)
 
 # add and test calculation for combo matrix
 # TODO when the functions are cleaned up
@@ -440,7 +440,7 @@ df_layout_2[df_layout_2$Concentration_2 > 0 , c('Concentration', 'Concentration_
   df_layout_2[df_layout_2$Concentration_2 > 0 , c('Concentration', 'Concentration_2')] / 2
 
 df_merged_data <- generate_response_data(df_layout_2, 0)
-finalSE_codilution <- process_data_to_SE2(df_merged_data)
+finalSE_codilution <- process_data_to_SE(df_merged_data)
 
 # add and test calculation for combo matrix
 # TODO when the functions are cleaned up
@@ -461,7 +461,7 @@ df_layout_2[df_layout_2$Concentration_2 > 0 , c('Concentration', 'Concentration_
   df_layout_2[df_layout_2$Concentration_2 > 0 , c('Concentration', 'Concentration_2')] / 2
 
 df_merged_data <- generate_response_data(df_layout_2)
-finalSE_codilution <- process_data_to_SE2(df_merged_data)
+finalSE_codilution <- process_data_to_SE(df_merged_data)
 
 # add and test calculation for combo matrix
 # TODO when the functions are cleaned up

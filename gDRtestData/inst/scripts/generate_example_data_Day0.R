@@ -7,7 +7,7 @@ library(SummarizedExperiment)
 devtools::load_all('../../../../BumpyMatrix')
 devtools::load_all('../../../../gDRutils/gDRutils')
 devtools::load_all('../../../../gDRwrapper/gDRwrapper')
-devtools::load_all('../../../../gDRcore/gDR')
+devtools::load_all('../../../../gDRcore/gDRcore')
 library(reshape2)
 
 source('functions_generate_data.R')
@@ -22,11 +22,11 @@ df_layout <- add_concentration(df_layout)
 
 df_merged_data <- generate_response_data(df_layout, 0)
 
-finalSE_1_no_noise <- process_data_to_SE2(df_merged_data)
+finalSE_1_no_noise <- process_data_to_SE(df_merged_data)
 
 
 df_merged_data_day0 <- add_day0_data(df_merged_data, 0)
-finalSE_1_no_noise_day0 <- process_data_to_SE2(df_merged_data_day0)
+finalSE_1_no_noise_day0 <- process_data_to_SE(df_merged_data_day0)
 
 
 # testing
@@ -74,8 +74,8 @@ df_merged_data <- rbind(df_merged_data, df_merged_data2)
 df_merged_data_day0 <- add_day0_data(df_merged_data, 0)
 df_merged_data_day0 = df_merged_data_day0[df_merged_data_day0$Ligand == 0.1 | df_merged_data_day0$Duration>0,]
 
-finalSE_1_Ligand <- process_data_to_SE2(df_merged_data, override_untrt_controls = c(Ligand = 0.1))
-finalSE_1_Ligand_day0 <- process_data_to_SE2(df_merged_data_day0, override_untrt_controls = c(Ligand = 0.1))
+finalSE_1_Ligand <- process_data_to_SE(df_merged_data, override_untrt_controls = c(Ligand = 0.1))
+finalSE_1_Ligand_day0 <- process_data_to_SE(df_merged_data_day0, override_untrt_controls = c(Ligand = 0.1))
 
 dt_test <- test_accuracy(finalSE_1_Ligand_day0[rowData(finalSE_1_Ligand_day0)$Ligand > 0,], e_inf, ec50, hill_coef)
 print(dt_test)

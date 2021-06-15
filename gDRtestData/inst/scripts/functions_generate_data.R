@@ -173,12 +173,12 @@ add_day0_data <- function(df_merged_data, noise_level = .05) {
   df_merged_data = rbind(df_merged_data, df_Day0)
 }
 
-process_data_to_SE2 <- function(df_data, override_untrt_controls = NULL) {
-  se <- gDR::create_SE2(df_data, override_untrt_controls = override_untrt_controls)
-  normSE <- gDR::normalize_SE2(se)  
-  avgSE <- gDR::average_SE2(normSE)
-  metricsSE <- gDR::fit_SE2(avgSE)
-  finalSE <- gDR::add_codrug_group_SE(metricsSE)
+process_data_to_SE <- function(df_data, override_untrt_controls = NULL) {
+  se <- gDRcore::create_SE(df_data, override_untrt_controls = override_untrt_controls)
+  normSE <- gDRcore::normalize_SE(se)  
+  avgSE <- gDRcore::average_SE(normSE)
+  metricsSE <- gDRcore::fit_SE(avgSE)
+  finalSE <- gDRcore::add_codrug_group_SE(metricsSE)
 }
 
 # function to test accuracy of the fitted metrics based on the model
