@@ -22,7 +22,7 @@ add_data_replicates <- function(df_layout) {
 #' @export
 #'
 add_concentration <- function(df_layout, concentrations = 10 ^ (seq(-3, 1, .5))) {
-  df_layout <- merge(df_layout, data.frame(concentrations = c(0, 0, concentrations)), by = NULL)
+  df_layout <- merge(df_layout, data.frame(Concentration = c(0, 0, concentrations)), by = NULL)
   df_layout
 }
 
