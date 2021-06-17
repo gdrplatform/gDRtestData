@@ -38,11 +38,11 @@ add_concentration <- function(df_layout, concentrations = 10 ^ (seq(-3, 1, .5)))
 #' @export
 #'
 generate_response_data <- function(df_layout, noise_level = .1) {
-  set.seed(2)
   hill_coef <- generate_hill_coef(create_synthetic_drugs(), create_synthetic_cell_lines())
   ec50 <- generate_ec50(create_synthetic_drugs(), create_synthetic_cell_lines())
   e_inf <- generate_e_inf(create_synthetic_drugs(), create_synthetic_cell_lines())
 
+  set.seed(2)
   df_layout$ReadoutValue <- round(100 * pmax(
     apply(df_layout, 1, function(x)
       e_inf[x["Gnumber"], x["clid"]] + (1 - e_inf[x["Gnumber"], x["clid"]]) *
