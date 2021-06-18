@@ -7,7 +7,7 @@
 create_synthetic_drugs()
 }
 \value{
-
+data.frame with synthetic drugs
 }
 \description{
 Create data.frame with synthetic drugs

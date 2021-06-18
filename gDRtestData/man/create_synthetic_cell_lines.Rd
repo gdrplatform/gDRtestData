@@ -7,7 +7,7 @@
 create_synthetic_cell_lines()
 }
 \value{
-
+data.frame with synthetic cell lines
 }
 \description{
 Create data.frame with synthetic cell lines

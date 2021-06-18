@@ -1,7 +1,7 @@
 #' Create data.frame with synthetic cell lines
 #'
-#' @return
-#' @export data.frame with synthetic cell lines
+#' @return  data.frame with synthetic cell lines
+#' @export
 #'
 create_synthetic_cell_lines <- function() {
   cell_lines <- data.frame(
@@ -20,8 +20,8 @@ create_synthetic_cell_lines <- function() {
 
 #' Create data.frame with synthetic drugs
 #'
-#' @return
-#' @export data.frame with synthetic drugs
+#' @return data.frame with synthetic drugs
+#' @export
 #'
 create_synthetic_drugs <- function() {
   drugs <- data.frame(
