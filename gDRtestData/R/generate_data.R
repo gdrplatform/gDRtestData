@@ -12,6 +12,7 @@ add_data_replicates <- function(df_layout) {
   cbind(Barcode = barcode, df_layout_duplicates)
 }
 
+
 #' Add concentrations
 #'
 #' @param df_layout data.frame that should contains the cell line,
@@ -21,11 +22,10 @@ add_data_replicates <- function(df_layout) {
 #' @return data.frame with concentrations
 #' @export
 #'
-add_concentration <- function(df_layout, concentrations = 10 ^ (seq(-3, 1, .5))) {
+add_concentration <- function(df_layout, concentrations = 10 ^ (seq(-3, 1, 0.5))) {
   df_layout <- merge(df_layout, data.frame(Concentration = c(0, 0, concentrations)), by = NULL)
   df_layout
 }
-
 
 
 #' Generate response data
@@ -33,16 +33,17 @@ add_concentration <- function(df_layout, concentrations = 10 ^ (seq(-3, 1, .5)))
 #' @param df_layout data.frame that should contains the cell line,
 #' drug, concentration, and replicate columns along with the annotations that needs to be propagated
 #' @param noise_level numeric scalar with the level of noise added to the data
+#' @param seed Integer specifying the seed to set
 #'
 #' @return data.frame with response data
 #' @export
 #'
-generate_response_data <- function(df_layout, noise_level = .1) {
+generate_response_data <- function(df_layout, noise_level = 0.1, seed = 2) {
   hill_coef <- generate_hill_coef(create_synthetic_drugs(), create_synthetic_cell_lines())
   ec50 <- generate_ec50(create_synthetic_drugs(), create_synthetic_cell_lines())
   e_inf <- generate_e_inf(create_synthetic_drugs(), create_synthetic_cell_lines())
 
-  set.seed(2)
+  set.seed(seed)
   df_layout$ReadoutValue <- round(100 * pmax(
     apply(df_layout, 1, function(x)
       e_inf[x["Gnumber"], x["clid"]] + (1 - e_inf[x["Gnumber"], x["clid"]]) *
@@ -50,7 +51,7 @@ generate_response_data <- function(df_layout, noise_level = .1) {
            (as.numeric(x["Concentration"]) ^ hill_coef[x["Gnumber"], x["clid"]] +
               ec50[x["Gnumber"],x["clid"]] ^ hill_coef[x["Gnumber"], x["clid"]]))) +
       (noise_level * runif(nrow(df_layout)) - (noise_level / 2)),  # add some noise
-    0.01 * runif(nrow(df_layout)) + .005), # avoid hard 0 values
+    0.01 * runif(nrow(df_layout)) + 0.005), # avoid hard 0 values
     1)
   df_layout$BackgroundValue <- 0
   df_layout$Duration <- 72
@@ -109,13 +110,14 @@ generate_response_data <- function(df_layout, noise_level = .1) {
 #'
 #' @param df_merged_data data.frame with merged data
 #' @param noise_level numeric scalar with the level of noise added to the data
+#' @param seed Integer specifying the seed to set
 #'
 #' @return
 #' @export
 #'
-add_day0_data <- function(df_merged_data, noise_level = .05) {
-  set.seed(2)
-  df_Day0 = unique(df_merged_data[df_merged_data$Concentration == 0 &
+add_day0_data <- function(df_merged_data, noise_level = 0.05, seed = 2) {
+  set.seed(seed)
+  df_Day0 <- unique(df_merged_data[df_merged_data$Concentration == 0 &
                                     ifelse(array("Concentration_2", nrow(df_merged_data)) %in% colnames(df_merged_data),
                                            df_merged_data$Concentration_2 == 0, TRUE),])
 
