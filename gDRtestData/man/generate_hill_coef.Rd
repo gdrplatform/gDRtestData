@@ -4,12 +4,14 @@
 \alias{generate_hill_coef}
 \title{Generate hill coefficient}
 \usage{
-generate_hill_coef(drugs, cell_lines)
+generate_hill_coef(drugs, cell_lines, seed = 2)
 }
 \arguments{
 \item{drugs}{data.frame with drugs}
 
 \item{cell_lines}{data.frame with cell lines}
+
+\item{seed}{Integer specifying the seed to set}
 }
 \value{
 matrix with random hill coefficient
