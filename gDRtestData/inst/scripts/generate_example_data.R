@@ -26,6 +26,16 @@ library(gDRwrapper)
 library(gDRcore)
 library(reshape2)
 
+
+# Helper functions
+save_tsv <- function(object, filename) {
+  write.table(object, system.file("testdata", filename, package = "gDRtestData"), quote = FALSE, row.names = FALSE, sep = "\t")
+}
+
+save_rds <- function(object, filename) {
+  saveRDS(object, system.file("testdata", filename, package = "gDRtestData"), compress = FALSE)
+}
+
 cell_lines <- create_synthetic_cell_lines()
 drugs <- create_synthetic_drugs()
 e_inf <- generate_e_inf(drugs, cell_lines)
@@ -49,9 +59,9 @@ print(dt_test)
 # test:
 print(apply(abs(dt_test) < c(1e-3, 2.2e-3, 0.04, 0.015, 1e-4), 1, all))
 
-write.table(df_merged_data, "../testdata/synthdata_small_no_noise_rawdata.tsv", quote = FALSE, row.names = FALSE, sep = "\t")
-saveRDS(finalSE_1_no_noise, "../testdata/finalSE_small_no_noise.RDS", compress = FALSE)
 
+save_tsv(df_merged_data, "synthdata_small_no_noise_rawdata.tsv")
+save_rds(finalSE_1_no_noise, "finalSE_small_no_noise.RDS")
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the 1st test set with noise
@@ -68,8 +78,8 @@ print(dt_test)
 # test:
 print(apply(abs(dt_test) < c(0.5, 0.1, 1.5, 1.2, 0.05), 1, all))
 
-write.table(df_merged_data, "../testdata/synthdata_small_rawdata.tsv", quote = FALSE, row.names = FALSE, sep = "\t")
-saveRDS(finalSE_1, "../testdata/finalSE_small.RDS", compress = FALSE)
+save_tsv(df_merged_data, "synthdata_small_rawdata.tsv")
+save_rds(finalSE_1, "finalSE_small.RDS")
 
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -104,8 +114,8 @@ print(dt_test)
 # test:
 print(apply(dt_test[c("delta_einf", "1_r2"),] < c(-0.15, 1e-4), 1, all))
 
-write.table(df_merged_data, "../testdata/finalSE_wLigand_rawdata.tsv", quote = FALSE, row.names = FALSE, sep = "\t")
-saveRDS(finalSE_1_Ligand, "../testdata/finalSE_wLigand.RDS", compress = FALSE)
+save_tsv(df_merged_data, "finalSE_wLigand_rawdata.tsv")
+save_rds(finalSE_1_Ligand, "finalSE_wLigand.RDS")
 
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -123,8 +133,8 @@ print(dt_test)
 # test:
 print(apply(abs(dt_test) < c(0.5, 0.2, 2.5, 1.2, 0.3), 1, all))
 
-write.table(df_merged_data, "../testdata/synthdata_medium_rawdata.tsv", quote = FALSE, row.names = FALSE, sep = "\t")
-saveRDS(finalSE_2, "../testdata/finalSE_medium.RDS", compress = FALSE)
+save_tsv(df_merged_data, "synthdata_medium_rawdata.tsv")
+save_rds(finalSE_2, "finalSE_medium.RDS")
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the 3rd (many lines) test set with single agent
@@ -141,8 +151,8 @@ print(dt_test)
 # test:
 print(apply(abs(dt_test) < c(0.5, 0.2, 2.5, 1.2, 0.3), 1, all))
 
-write.table(df_merged_data, "../testdata/synthdata_many_lines_rawdata.tsv", quote = FALSE, row.names = FALSE, sep = "\t")
-saveRDS(finalSE_3, "../testdata/finalSE_many_lines.RDS", compress = FALSE)
+save_tsv(df_merged_data, "synthdata_many_lines_rawdata.tsv")
+save_rds(finalSE_3, "finalSE_many_lines.RDS")
 
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -160,8 +170,8 @@ print(dt_test)
 # test:
 print(apply(abs(dt_test) < c(0.5, 0.2, 2.5, 1.2, 0.3), 1, all))
 
-write.table(df_merged_data, "../testdata/synthdata_many_drugs_rawdata.tsv", quote = FALSE, row.names = FALSE, sep = "\t")
-saveRDS(finalSE_4, "../testdata/finalSE_many_drugs.RDS", compress = FALSE)
+save_tsv(df_merged_data, "synthdata_many_drugs_rawdata.tsv")
+save_rds(finalSE_4, "finalSE_many_drugs.RDS")
 
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -189,8 +199,8 @@ print(all(sapply(metadata(finalSE_combo)$drug_combinations,
     function(x) length(x$condition$Concentration_2) == (length(x$rows)-1))))
 print(all(sapply(metadata(finalSE_combo)$drug_combinations, "[[", "type") == "fixed"))
 
-write.table(df_merged_data, "../testdata/synthdata_combo_2dose_nonoise_rawdata.tsv", quote = FALSE, row.names = FALSE, sep = "\t")
-saveRDS(finalSE_combo, "../testdata/finalSE_combo_2dose_nonoise.RDS", compress = FALSE)
+save_tsv(df_merged_data, "synthdata_combo_2dose_nonoise_rawdata.tsv")
+save_rds(finalSE_combo, "finalSE_combo_2dose_nonoise.RDS")
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the test set with combo (two single dose)
@@ -226,9 +236,8 @@ delta <- merge(DT1[ , c("rId", "cId", "normalization_type", "x_0", "x_max")],
 # test:
 print(all(abs(quantile((delta$x_0.x - delta$x_0.y)[!grepl("vehicle", delta$rId)])) < .0005))
 
-write.table(df_merged_data, "../testdata/synthdata_combo_2dose_nonoise2_rawdata.tsv", quote = FALSE, row.names = FALSE, sep = "\t")
-saveRDS(finalSE_combo2, "../testdata/finalSE_combo_2dose_nonoise2.RDS", compress = FALSE)
-
+save_tsv(df_merged_data, "synthdata_combo_2dose_nonoise2_rawdata.tsv")
+save_rds(finalSE_combo2, "finalSE_combo_2dose_nonoise2.RDS")
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the 3rd test set with combo (two single dose)
@@ -264,9 +273,8 @@ sort(abs(delta$x_inf.x - delta$x_inf.y))
 print(sum(abs(delta$x_inf.x - delta$x_inf.y)>.00003)<5)
 print(sum(abs(delta$x_inf.x - delta$x_inf.y)>.008)<3)
 
-write.table(df_merged_data, "../testdata/synthdata_combo_2dose_nonoise3_rawdata.tsv", quote = FALSE, row.names = FALSE, sep = "\t")
-saveRDS(finalSE_combo3, "../testdata/finalSE_combo_2dose_nonoise3.RDS", compress = FALSE)
-
+save_tsv(df_merged_data, "synthdata_combo_2dose_nonoise3_rawdata.tsv")
+save_rds(finalSE_combo3, "finalSE_combo_2dose_nonoise3.RDS")
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the test set with combo (unique dose; many drug)
@@ -293,19 +301,19 @@ print(all(sapply(metadata(finalSE_combo)$drug_combinations,
     function(x) length(x$condition$Concentration_2) == (length(x$rows)-1))))
 print(all(sapply(metadata(finalSE_combo)$drug_combinations, "[[", "type") == "fixed"))
 
-write.table(df_merged_data, "../testdata/synthdata_combo_1dose_many_drugs_rawdata.tsv", quote = FALSE, row.names = FALSE, sep = "\t")
-saveRDS(finalSE_combo, "../testdata/finalSE_combo_1dose_many_drugs.RDS", compress = FALSE)
+save_tsv(df_merged_data, "synthdata_combo_1dose_many_drugs_rawdata.tsv")
+save_rds(finalSE_combo, "finalSE_combo_1dose_many_drugs.RDS")
 
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data with combo matrix (small, no noise)
 df_layout <- merge(cell_lines[7:8,], drugs[c(4:6),], by = NULL)
 df_layout <- add_data_replicates(df_layout)
-df_layout <- add_concentration(df_layout, Concentrations = 10^ (seq(-3,.5,.5)))
+df_layout <- add_concentration(df_layout, concentrations = 10^ (seq(-3,.5,.5)))
 
 df_2 <- merge(cell_lines[cell_lines$clid %in% df_layout$clid,], drugs[c(21,26),], by = NULL)
 df_2 <- add_data_replicates(df_2)
-df_2 <- add_concentration(df_2, Concentrations = 10^ (seq(-3,.5,.5)))
+df_2 <- add_concentration(df_2, concentrations = 10^ (seq(-3,.5,.5)))
 colnames(df_2)[colnames(df_2) %in% c(colnames(drugs),"Concentration")] <-
     paste0(colnames(df_2)[colnames(df_2) %in% c(colnames(drugs),"Concentration")], "_2")
 
@@ -334,8 +342,8 @@ print(all(sapply(metadata(finalSE_matrix)$drug_combinations,
     function(x) length(x$condition$Concentration_2) == (length(x$rows)-1))))
 print(all(sapply(metadata(finalSE_matrix)$drug_combinations, "[[", "type") == "matrix"))
 
-write.table(df_merged_data, "../testdata/synthdata_combo_matrix_small_rawdata.tsv", quote = FALSE, row.names = FALSE, sep = "\t")
-saveRDS(finalSE_matrix, "../testdata/finalSE_combo_matrix_small.RDS", compress = FALSE)
+save_tsv(df_merged_data, "synthdata_combo_matrix_small_rawdata.tsv")
+save_rds(finalSE_matrix, "finalSE_combo_matrix_small.RDS")
 
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -371,20 +379,18 @@ print(all(sapply(metadata(finalSE_matrix)$drug_combinations,
     function(x) length(x$condition$Concentration_2) == (length(x$rows)-1))))
 print(all(sapply(metadata(finalSE_matrix)$drug_combinations, "[[", "type") == "matrix"))
 
-write.table(df_merged_data, "../testdata/synthdata_combo_matrix_rawdata.tsv", quote = FALSE, row.names = FALSE, sep = "\t")
-saveRDS(finalSE_matrix, "../testdata/finalSE_combo_matrix.RDS", compress = FALSE)
-
-
+save_tsv(df_merged_data, "synthdata_combo_matrix_rawdata.tsv")
+save_rds(finalSE_matrix, "finalSE_combo_matrix.RDS")
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data with triple combo  (no noise)
 df_layout <- merge(cell_lines[7:8,], drugs[c(4:6),], by = NULL)
 df_layout <- add_data_replicates(df_layout)
-df_layout <- add_concentration(df_layout, Concentrations = 10^ (seq(-3,.5,.5)))
+df_layout <- add_concentration(df_layout, concentrations = 10^ (seq(-3,.5,.5)))
 
 df_2 <- merge(cell_lines[cell_lines$clid %in% df_layout$clid,], drugs[c(21,26),], by = NULL)
 df_2 <- add_data_replicates(df_2)
-df_2 <- add_concentration(df_2, Concentrations = c(0, 10^ (seq(-3,.5,.5))))
+df_2 <- add_concentration(df_2, concentrations = c(0, 10^ (seq(-3,.5,.5))))
 colnames(df_2)[colnames(df_2) %in% c(colnames(drugs),"Concentration")] <-
     paste0(colnames(df_2)[colnames(df_2) %in% c(colnames(drugs),"Concentration")], "_2")
 
@@ -392,7 +398,7 @@ df_layout_2 <- merge(df_layout, df_2)
 
 df_3 <- merge(cell_lines[cell_lines$clid %in% df_layout$clid,], drugs[10,], by = NULL)
 df_3 <- add_data_replicates(df_3)
-df_3 <- add_concentration(df_3, Concentrations = c(0, .1, 1))
+df_3 <- add_concentration(df_3, concentrations = c(0, .1, 1))
 colnames(df_3)[colnames(df_3) %in% c(colnames(drugs),"Concentration")] <-
     paste0(colnames(df_3)[colnames(df_3) %in% c(colnames(drugs),"Concentration")], "_3")
 
@@ -423,9 +429,8 @@ print(all(sapply(metadata(finalSE_matrix)$drug_combinations,
     function(x) length(x$condition$Concentration_2) == (length(x$rows)-1))))
 print(all(sapply(metadata(finalSE_matrix)$drug_combinations, "[[", "type") == "matrix"))
 
-write.table(df_merged_data, "../testdata/synthdata_combo_triple_rawdata.tsv", quote = FALSE, row.names = FALSE, sep = "\t")
-saveRDS(finalSE_matrix, "../testdata/finalSE_combo_triple.RDS", compress = FALSE)
-
+save_tsv(df_merged_data, "synthdata_combo_triple_rawdata.tsv")
+save_rds(finalSE_matrix, "finalSE_combo_triple.RDS")
 
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -447,8 +452,8 @@ finalSE_codilution <- gDRcore::runDrugResponseProcessingPipeline(df_merged_data)
 # add and test calculation for combo matrix
 # TODO when the functions are cleaned up
 
-write.table(df_merged_data, "../testdata/synthdata_combo_codilution_small_rawdata.tsv", quote = FALSE, row.names = FALSE, sep = "\t")
-saveRDS(finalSE_codilution, "../testdata/finalSE_combo_codilution_small.RDS", compress = FALSE)
+save_tsv(df_merged_data, "synthdata_combo_codilution_small_rawdata.tsv")
+save_rds(finalSE_codilution, "finalSE_combo_codilution_small.RDS")
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the test set with combo (co-dilution)
@@ -468,6 +473,5 @@ finalSE_codilution <- gDRcore::runDrugResponseProcessingPipeline(df_merged_data)
 # add and test calculation for combo matrix
 # TODO when the functions are cleaned up
 
-write.table(df_merged_data, "../testdata/synthdata_combo_codilution_rawdata.tsv", quote = FALSE, row.names = FALSE, sep = "\t")
-saveRDS(finalSE_codilution, "../testdata/finalSE_combo_codilution.RDS", compress = FALSE)
-
+save_tsv(df_merged_data, "synthdata_combo_codilution_rawdata.tsv")
+save_rds(finalSE_codilution, "finalSE_combo_codilution.RDS")
