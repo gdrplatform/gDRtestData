@@ -5,7 +5,7 @@ testthat::test_that("config exists", {
 })
 
 
-testthat::test_that("", {
+testthat::test_that("test dataset paths exist", {
   testthat::expect_type(get_test_dataset_paths(), "character")
   testthat::expect_gt(length(get_test_dataset_paths()), 0L)
 })
