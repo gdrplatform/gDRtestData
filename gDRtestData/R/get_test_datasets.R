@@ -41,7 +41,7 @@ get_test_dataset_paths <- function(datasets_dir = NULL, config_path = NULL) {
     checkmate::assert_file_exists(fpath)
     fpath
   }, FUN.VALUE = character(1))
-  names(out) <- sapply(config, function(x) x$name)
+  names(out) <- vapply(config, function(x) x$name, FUN.VALUE = character(1), USE.NAMES = FALSE)
   out
 }
 
