@@ -26,12 +26,14 @@ get_config_path <- function() {
 #'
 #' @rdname get_test_dataset_paths
 get_test_dataset_paths <- function(datasets_dir = NULL, config_path = NULL) {
-  if (is.null(datasets_dir))
+  if (is.null(datasets_dir)) {
     datasets_dir <- system.file("testdata", package = "gDRtestData", mustWork = TRUE)
+  }
   checkmate::assert_string(datasets_dir, min.chars = 1)
   checkmate::assert_directory_exists(datasets_dir)
-  if (is.null(config_path))
+  if (is.null(config_path)) {
     config_path <- get_config_path()
+  }
   checkmate::assert_string(config_path, min.chars = 1)
   checkmate::assert_file_exists(config_path)
   config <- yaml::read_yaml(config_path)
