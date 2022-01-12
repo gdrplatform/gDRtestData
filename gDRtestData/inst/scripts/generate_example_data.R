@@ -152,7 +152,7 @@ print(dt_test)
 print(apply(abs(dt_test) < c(0.5, 0.2, 2.5, 1.2, 0.3), 1, all))
 
 save_tsv(df_merged_data, "synthdata_many_lines_rawdata.tsv")
-save_rds(finalMAE_1_Ligand, "finalMAE_many_lines.RDS")
+save_rds(finalMAE_3, "finalMAE_many_lines.RDS")
 
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -226,8 +226,8 @@ print(dt_test)
 print(apply(abs(dt_test) < c(1e-3, 2e-3, 0.02, 0.015, 1e-4), 1, all))
 
 # compare to other way of processing the data
-DT1 <- convert_se_assay_to_dt(finalMAE_combo[[1]], "Metrics")
-DT2 <- convert_se_assay_to_dt(finalMAE_combo2[[1]],"Metrics")
+DT1 <- convert_mae_assay_to_dt(finalMAE_combo, "Metrics")
+DT2 <- convert_mae_assay_to_dt(finalMAE_combo2,"Metrics")
 DT1$rId <- gsub("_\\d\\d?$", "", DT1$rId)
 DT2$rId <- gsub("_\\d\\d?$", "", DT2$rId)
 # merge the two results
@@ -258,8 +258,8 @@ dt_test <- test_accuracy(finalMAE_combo3[[1]][rowData(finalMAE_combo3[[1]])$Conc
 print(apply(abs(dt_test) < c(1e-3, 2e-3, 0.02, 0.015, 1e-4), 1, all))
 
 # compare to the complete data
-DT1 = convert_se_assay_to_dt(finalMAE_combo[[1]],"Metrics")
-DT3 = convert_se_assay_to_dt(finalMAE_combo3[[1]],"Metrics")
+DT1 = convert_mae_assay_to_dt(finalMAE_combo,"Metrics")
+DT3 = convert_mae_assay_to_dt(finalMAE_combo3,"Metrics")
 DT1$rId = gsub("_\\d\\d?$", "", DT1$rId)
 DT3$rId = gsub("_\\d\\d?$", "", DT3$rId)
 delta = merge(DT1[ , c("rId", "cId", "normalization_type", "x_0", "x_inf", "r2")],
@@ -332,7 +332,7 @@ print(apply(abs(dt_test) < c(1e-3, 6e-3, 0.12, 0.015, 1e-4), 1, all))
 print(all(table(rowData(finalMAE_matrix[[1]])[,c("Gnumber","Gnumber_2")])[, drugs$Gnumber[c(21,26)]]==8))
 print(all(table(rowData(finalMAE_matrix[[1]])[rowData(finalMAE_matrix[[1]])$DrugName_2 != "vehicle","Concentration_2"])==6))
 
-dt = convert_se_assay_to_dt(finalMAE_matrix[[1]], "Averaged")
+dt = convert_mae_assay_to_dt(finalMAE_matrix, "Averaged")
 print(all(dim(table(dt[dt$DrugName_2 != "vehicle",c("Concentration", "Concentration_2")]))==8))
 print(all(table(dt[dt$DrugName_2 != "vehicle",c("Concentration", "Concentration_2")])==36))
 # test the assignment of drug_combinations
@@ -369,7 +369,7 @@ finalMAE_matrix <- gDRcore::runDrugResponseProcessingPipeline(df_merged_data)
 print(all(table(rowData(finalMAE_matrix[[1]])[,c("Gnumber","Gnumber_2")])[, drugs$Gnumber[c(21,26)]]==9))
 print(all(table(rowData(finalMAE_matrix[[1]])[rowData(finalMAE_matrix[[1]])$DrugName_2 != "vehicle","Concentration_2"])==18))
 
-dt = convert_se_assay_to_dt(finalMAE_matrix[[1]], "Averaged")
+dt = convert_mae_assay_to_dt(finalMAE_matrix, "Averaged")
 print(all(dim(table(dt[dt$DrugName_2 != "vehicle",c("Concentration", "Concentration_2")]))==9))
 print(all(table(dt[dt$DrugName_2 != "vehicle",c("Concentration", "Concentration_2")])==144))
 # test the assignment of drug_combinations
@@ -421,7 +421,7 @@ print(all(table(rowData(finalMAE_matrix[[1]])[,c("Gnumber","Gnumber_2")])[, drug
 print(all(table(rowData(finalMAE_matrix[[1]])[rowData(finalMAE_matrix[[1]])$DrugName_2 != "vehicle","Concentration_2"])==18))
 print(all(table(rowData(finalMAE_matrix[[1]])[,paste0("Concentration",c("_2", "_3"))]) == c(3,array(6,8))))
 
-dt = convert_se_assay_to_dt(finalMAE_matrix[[1]], "Averaged")
+dt = convert_mae_assay_to_dt(finalMAE_matrix, "Averaged")
 print(all(dim(table(dt[dt$DrugName_2 != "vehicle",paste0("Concentration",c("", "_2", "_3"))]))==c(8,8,3)))
 # test the assignment of drug_combinations
 print(length(metadata(finalMAE_matrix[[1]])$drug_combinations)==18)
