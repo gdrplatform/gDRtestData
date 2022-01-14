@@ -51,17 +51,17 @@ df_layout <- add_concentration(df_layout)
 
 df_merged_data <- generate_response_data(df_layout, 0)
 
-finalSE_1_no_noise <- gDRcore::runDrugResponseProcessingPipeline(df_merged_data)
+finalMAE_1_no_noise <- gDRcore::runDrugResponseProcessingPipeline(df_merged_data)
 
 # test accurarcy of the processing and fitting (no noise => low tolerance)
-dt_test <- test_accuracy(finalSE_1_no_noise, e_inf, ec50, hill_coef)
+dt_test <- test_accuracy(finalMAE_1_no_noise[[1]], e_inf, ec50, hill_coef)
 print(dt_test)
 # test:
 print(apply(abs(dt_test) < c(1e-3, 2.2e-3, 0.04, 0.015, 1e-4), 1, all))
 
 
 save_tsv(df_merged_data, "synthdata_small_no_noise_rawdata.tsv")
-save_rds(finalSE_1_no_noise, "finalSE_small_no_noise.RDS")
+save_rds(finalMAE_1_no_noise, "finalMAE_small_no_noise.RDS")
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the 1st test set with noise
@@ -70,17 +70,16 @@ df_layout <- add_data_replicates(df_layout)
 df_layout <- add_concentration(df_layout)
 
 df_merged_data <- generate_response_data(df_layout)
-finalSE_1 <- gDRcore::runDrugResponseProcessingPipeline(df_merged_data)
+finalMAE_1 <- gDRcore::runDrugResponseProcessingPipeline(df_merged_data)
 
 # test accurarcy of the processing and fitting (noise => medium tolerance)
-dt_test <- test_accuracy(finalSE_1, e_inf, ec50, hill_coef)
+dt_test <- test_accuracy(finalMAE_1[[1]], e_inf, ec50, hill_coef)
 print(dt_test)
 # test:
 print(apply(abs(dt_test) < c(0.5, 0.1, 1.5, 1.2, 0.05), 1, all))
 
 save_tsv(df_merged_data, "synthdata_small_rawdata.tsv")
-save_rds(finalSE_1, "finalSE_small.RDS")
-
+save_rds(finalMAE_1_no_noise, "finalMAE_small.RDS")
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the 1st test set with ligand as reference
@@ -101,21 +100,21 @@ df_merged_data2$ReadoutValue <- round(df_merged_data2$ReadoutValue,1)
 df_merged_data2$Barcode <- paste0(df_merged_data2$Barcode, "1")
 df_merged_data <- rbind(df_merged_data, df_merged_data2)
 
-finalSE_1_Ligand <- gDRcore::runDrugResponseProcessingPipeline(df_merged_data, override_untrt_controls = c(Ligand = 0.1))
+finalMAE_1_Ligand <- gDRcore::runDrugResponseProcessingPipeline(df_merged_data, override_untrt_controls = c(Ligand = 0.1))
 
 # test accurarcy of the processing and fitting for Ligand = 0.1 (noise => medium tolerance)
-dt_test <- test_accuracy(finalSE_1_Ligand[rowData(finalSE_1_Ligand)$Ligand > 0,], e_inf, ec50, hill_coef)
+dt_test <- test_accuracy(finalMAE_1_Ligand[[1]][rowData(finalMAE_1_Ligand[[1]])$Ligand > 0,], e_inf, ec50, hill_coef)
 print(dt_test)
 # test:
 print(apply(abs(dt_test) < c(1e-3, 3e-3, 0.031, 0.015, 1e-4), 1, all))
 # test fit quality for Ligand = 0 and that delta(e_inf) < 0
-dt_test <- test_accuracy(finalSE_1_Ligand[rowData(finalSE_1_Ligand)$Ligand == 0, ], e_inf, ec50, hill_coef)
+dt_test <- test_accuracy(finalMAE_1_Ligand[[1]][rowData(finalMAE_1_Ligand[[1]])$Ligand == 0, ], e_inf, ec50, hill_coef)
 print(dt_test)
 # test:
 print(apply(dt_test[c("delta_einf", "1_r2"),] < c(-0.15, 1e-4), 1, all))
 
 save_tsv(df_merged_data, "finalSE_wLigand_rawdata.tsv")
-save_rds(finalSE_1_Ligand, "finalSE_wLigand.RDS")
+save_rds(finalMAE_1_Ligand, "finalMAE_wLigand.RDS")
 
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -125,16 +124,17 @@ df_layout <- add_data_replicates(df_layout)
 df_layout <- add_concentration(df_layout)
 
 df_merged_data <- generate_response_data(df_layout)
-finalSE_2 <- gDRcore::runDrugResponseProcessingPipeline(df_merged_data)
+finalMAE_2 <- gDRcore::runDrugResponseProcessingPipeline(df_merged_data)
 
 # test accurarcy of the processing and fitting
-dt_test <- test_accuracy(finalSE_2, e_inf, ec50, hill_coef)
+dt_test <- test_accuracy(finalMAE_2[[1]], e_inf, ec50, hill_coef)
 print(dt_test)
 # test:
 print(apply(abs(dt_test) < c(0.5, 0.2, 2.5, 1.2, 0.3), 1, all))
 
 save_tsv(df_merged_data, "synthdata_medium_rawdata.tsv")
-save_rds(finalSE_2, "finalSE_medium.RDS")
+save_rds(finalMAE_2, "finalMAE_medium.RDS")
+
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the 3rd (many lines) test set with single agent
@@ -143,16 +143,16 @@ df_layout <- add_data_replicates(df_layout)
 df_layout <- add_concentration(df_layout)
 
 df_merged_data <- generate_response_data(df_layout)
-finalSE_3 <- gDRcore::runDrugResponseProcessingPipeline(df_merged_data)
+finalMAE_3 <- gDRcore::runDrugResponseProcessingPipeline(df_merged_data)
 
 # test accurarcy of the processing and fitting
-dt_test <- test_accuracy(finalSE_3, e_inf, ec50, hill_coef)
+dt_test <- test_accuracy(finalMAE_3[[1]], e_inf, ec50, hill_coef)
 print(dt_test)
 # test:
 print(apply(abs(dt_test) < c(0.5, 0.2, 2.5, 1.2, 0.3), 1, all))
 
 save_tsv(df_merged_data, "synthdata_many_lines_rawdata.tsv")
-save_rds(finalSE_3, "finalSE_many_lines.RDS")
+save_rds(finalMAE_3, "finalMAE_many_lines.RDS")
 
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -162,16 +162,16 @@ df_layout <- add_data_replicates(df_layout)
 df_layout <- add_concentration(df_layout)
 
 df_merged_data <- generate_response_data(df_layout)
-finalSE_4 <- gDRcore::runDrugResponseProcessingPipeline(df_merged_data)
+finalMAE_4 <- gDRcore::runDrugResponseProcessingPipeline(df_merged_data)
 
 # test accurarcy of the processing and fitting
-dt_test <- test_accuracy(finalSE_4, e_inf, ec50, hill_coef)
+dt_test <- test_accuracy(finalMAE_4[[1]], e_inf, ec50, hill_coef)
 print(dt_test)
 # test:
 print(apply(abs(dt_test) < c(0.5, 0.2, 2.5, 1.2, 0.3), 1, all))
 
 save_tsv(df_merged_data, "synthdata_many_drugs_rawdata.tsv")
-save_rds(finalSE_4, "finalSE_many_drugs.RDS")
+save_rds(finalMAE_4, "finalMAE_many_drugs.RDS")
 
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -186,21 +186,21 @@ colnames(df_2) <- paste0(colnames(df_2), "_2")
 df_layout_2 <- merge(df_layout, df_2, by = NULL)
 
 df_merged_data <- generate_response_data(df_layout_2, 0)
-finalSE_combo <- gDRcore::runDrugResponseProcessingPipeline(df_merged_data)
+finalMAE_combo <- gDRcore::runDrugResponseProcessingPipeline(df_merged_data)
 
 # test the single agent response
-dt_test <- test_accuracy(finalSE_combo[rowData(finalSE_combo)$Concentration_2 == 0, ], e_inf, ec50, hill_coef)
+dt_test <- test_accuracy(finalMAE_combo[[1]][rowData(finalMAE_combo[[1]])$Concentration_2 == 0, ], e_inf, ec50, hill_coef)
 print(dt_test)
 # test:
 print(apply(abs(dt_test) < c(1e-3, 2e-3, 0.02, 0.015, 1e-4), 1, all))
 # test the assignment of drug_combinations
-print(length(metadata(finalSE_combo)$drug_combinations)==3)
-print(all(sapply(metadata(finalSE_combo)$drug_combinations,
+print(length(metadata(finalMAE_combo[[1]])$drug_combinations)==3)
+print(all(sapply(metadata(finalMAE_combo[[1]])$drug_combinations,
     function(x) length(x$condition$Concentration_2) == (length(x$rows)-1))))
-print(all(sapply(metadata(finalSE_combo)$drug_combinations, "[[", "type") == "fixed"))
+print(all(sapply(metadata(finalSE_combo[[1]])$drug_combinations, "[[", "type") == "fixed"))
 
 save_tsv(df_merged_data, "synthdata_combo_2dose_nonoise_rawdata.tsv")
-save_rds(finalSE_combo, "finalSE_combo_2dose_nonoise.RDS")
+save_rds(finalMAE_combo, "finalMAE_combo_2dose_nonoise.RDS")
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the test set with combo (two single dose)
@@ -217,17 +217,17 @@ df_merged_data <- generate_response_data(df_layout_2, 0)
 df_merged_data <- df_merged_data[!(df_merged_data$Gnumber %in% c("vehicle", drugs$Gnumber[26]) &
         df_merged_data$Gnumber_2 == drugs$Gnumber[26]),]
 
-finalSE_combo2 <- gDRcore::runDrugResponseProcessingPipeline(df_merged_data)
+finalMAE_combo2 <- gDRcore::runDrugResponseProcessingPipeline(df_merged_data)
 
 # test accurarcy of the processing and fitting
-dt_test <- test_accuracy(finalSE_combo2[rowData(finalSE_combo2)$Concentration_2 == 0, ], e_inf, ec50, hill_coef)
+dt_test <- test_accuracy(finalMAE_combo2[[1]][rowData(finalMAE_combo2[[1]])$Concentration_2 == 0, ], e_inf, ec50, hill_coef)
 print(dt_test)
 # test:
 print(apply(abs(dt_test) < c(1e-3, 2e-3, 0.02, 0.015, 1e-4), 1, all))
 
 # compare to other way of processing the data
-DT1 <- convert_se_assay_to_dt(finalSE_combo, "Metrics")
-DT2 <- convert_se_assay_to_dt(finalSE_combo2,"Metrics")
+DT1 <- convert_mae_assay_to_dt(finalMAE_combo, "Metrics")
+DT2 <- convert_mae_assay_to_dt(finalMAE_combo2,"Metrics")
 DT1$rId <- gsub("_\\d\\d?$", "", DT1$rId)
 DT2$rId <- gsub("_\\d\\d?$", "", DT2$rId)
 # merge the two results
@@ -237,7 +237,7 @@ delta <- merge(DT1[ , c("rId", "cId", "normalization_type", "x_0", "x_max")],
 print(all(abs(quantile((delta$x_0.x - delta$x_0.y)[!grepl("vehicle", delta$rId)])) < .0005))
 
 save_tsv(df_merged_data, "synthdata_combo_2dose_nonoise2_rawdata.tsv")
-save_rds(finalSE_combo2, "finalSE_combo_2dose_nonoise2.RDS")
+save_rds(finalMAE_combo2, "finalMAE_combo_2dose_nonoise2.RDS")
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the 3rd test set with combo (two single dose)
@@ -252,14 +252,14 @@ df_layout_2 <- merge(df_layout, df_2, by = NULL)
 df_layout_2 = df_layout_2[!(df_layout_2$Concentration == 0 & df_layout_2$Concentration_2 > 0), ]
 
 df_merged_data <- generate_response_data(df_layout_2, 0)
-finalSE_combo3 <- gDRcore::runDrugResponseProcessingPipeline(df_merged_data)
+finalMAE_combo3 <- gDRcore::runDrugResponseProcessingPipeline(df_merged_data)
 
-dt_test <- test_accuracy(finalSE_combo3[rowData(finalSE_combo3)$Concentration_2 == 0, ], e_inf, ec50, hill_coef)
+dt_test <- test_accuracy(finalMAE_combo3[[1]][rowData(finalMAE_combo3[[1]])$Concentration_2 == 0, ], e_inf, ec50, hill_coef)
 print(apply(abs(dt_test) < c(1e-3, 2e-3, 0.02, 0.015, 1e-4), 1, all))
 
 # compare to the complete data
-DT1 = convert_se_assay_to_dt(finalSE_combo,"Metrics")
-DT3 = convert_se_assay_to_dt(finalSE_combo3,"Metrics")
+DT1 = convert_mae_assay_to_dt(finalMAE_combo,"Metrics")
+DT3 = convert_mae_assay_to_dt(finalMAE_combo3,"Metrics")
 DT1$rId = gsub("_\\d\\d?$", "", DT1$rId)
 DT3$rId = gsub("_\\d\\d?$", "", DT3$rId)
 delta = merge(DT1[ , c("rId", "cId", "normalization_type", "x_0", "x_inf", "r2")],
@@ -274,7 +274,7 @@ print(sum(abs(delta$x_inf.x - delta$x_inf.y)>.00003)<5)
 print(sum(abs(delta$x_inf.x - delta$x_inf.y)>.008)<3)
 
 save_tsv(df_merged_data, "synthdata_combo_2dose_nonoise3_rawdata.tsv")
-save_rds(finalSE_combo3, "finalSE_combo_2dose_nonoise3.RDS")
+save_rds(finalMAE_combo3, "finalMAE_combo_2dose_nonoise3.RDS")
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the test set with combo (unique dose; many drug)
@@ -287,23 +287,22 @@ colnames(df_2) <- paste0(colnames(df_2), "_2")
 df_layout_2 <- merge(df_layout, df_2, by = NULL)
 
 df_merged_data <- generate_response_data(df_layout_2)
-finalSE_combo <- gDRcore::runDrugResponseProcessingPipeline(df_merged_data)
+finalMAE_combo <- gDRcore::runDrugResponseProcessingPipeline(df_merged_data)
 
 # test accuracy of the processing and fitting for the single agent
-dt_test <- test_accuracy(finalSE_combo[rowData(finalSE_combo)$Concentration_2 == 0, ], e_inf, ec50, hill_coef)
+dt_test <- test_accuracy(finalMAE_combo[[1]][rowData(finalMAE_combo[[1]])$Concentration_2 == 0, ], e_inf, ec50, hill_coef)
 print(apply(abs(dt_test) < c(0.5, 0.2, 2.5, 1.2, 0.3), 1, all))
 # test the effect of the combination treatment
-dt_test <- test_accuracy(finalSE_combo[rowData(finalSE_combo)$Concentration_2 > 0, ], e_inf, ec50, hill_coef)
+dt_test <- test_accuracy(finalMAE_combo[[1]][rowData(finalMAE_combo[[1]])$Concentration_2 > 0, ], e_inf, ec50, hill_coef)
 print(apply(dt_test[c("delta_einf", "1_r2"),] < c(-.1, .01), 1, function(x) sum(x)==2))
 # test the assignment of drug_combinations
-print(length(metadata(finalSE_combo)$drug_combinations)==149)
-print(all(sapply(metadata(finalSE_combo)$drug_combinations,
+print(length(metadata(finalMAE_combo)$drug_combinations)==149)
+print(all(sapply(metadata(finalMAE_combo[[1]])$drug_combinations,
     function(x) length(x$condition$Concentration_2) == (length(x$rows)-1))))
-print(all(sapply(metadata(finalSE_combo)$drug_combinations, "[[", "type") == "fixed"))
+print(all(sapply(metadata(finalMAE_combo[[1]])$drug_combinations, "[[", "type") == "fixed"))
 
 save_tsv(df_merged_data, "synthdata_combo_1dose_many_drugs_rawdata.tsv")
-save_rds(finalSE_combo, "finalSE_combo_1dose_many_drugs.RDS")
-
+save_rds(finalMAE_combo, "finalMAE_combo_1dose_many_drugs.RDS")
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data with combo matrix (small, no noise)
@@ -320,30 +319,30 @@ colnames(df_2)[colnames(df_2) %in% c(colnames(drugs),"Concentration")] <-
 df_layout_2 <- merge(df_layout, df_2)
 
 df_merged_data <- generate_response_data(df_layout_2, 0)
-finalSE_matrix <- gDRcore::runDrugResponseProcessingPipeline(df_merged_data)
+finalMAE_matrix <- gDRcore::runDrugResponseProcessingPipeline(df_merged_data)
 
 # add and test calculation for combo matrix
 # TODO when the functions are cleaned up
 
 
 # test accuracy of the processing and fitting for the single agent
-dt_test <- test_accuracy(finalSE_matrix[rowData(finalSE_matrix)$Concentration_2 == 0, ], e_inf, ec50, hill_coef)
+dt_test <- test_accuracy(finalMAE_matrix[[1]][rowData(finalMAE_matrix[[1]])$Concentration_2 == 0, ], e_inf, ec50, hill_coef)
 print(apply(abs(dt_test) < c(1e-3, 6e-3, 0.12, 0.015, 1e-4), 1, all))
 # test proper processing of the combo metadata
-print(all(table(rowData(finalSE_matrix)[,c("Gnumber","Gnumber_2")])[, drugs$Gnumber[c(21,26)]]==8))
-print(all(table(rowData(finalSE_matrix)[rowData(finalSE_matrix)$DrugName_2 != "vehicle","Concentration_2"])==6))
+print(all(table(rowData(finalMAE_matrix[[1]])[,c("Gnumber","Gnumber_2")])[, drugs$Gnumber[c(21,26)]]==8))
+print(all(table(rowData(finalMAE_matrix[[1]])[rowData(finalMAE_matrix[[1]])$DrugName_2 != "vehicle","Concentration_2"])==6))
 
-dt = convert_se_assay_to_dt(finalSE_matrix, "Averaged")
+dt = convert_mae_assay_to_dt(finalMAE_matrix, "Averaged")
 print(all(dim(table(dt[dt$DrugName_2 != "vehicle",c("Concentration", "Concentration_2")]))==8))
 print(all(table(dt[dt$DrugName_2 != "vehicle",c("Concentration", "Concentration_2")])==36))
 # test the assignment of drug_combinations
-print(length(metadata(finalSE_matrix)$drug_combinations)==6)
-print(all(sapply(metadata(finalSE_matrix)$drug_combinations,
+print(length(metadata(finalMAE_matrix[[1]])$drug_combinations)==6)
+print(all(sapply(metadata(finalMAE_matrix[[1]])$drug_combinations,
     function(x) length(x$condition$Concentration_2) == (length(x$rows)-1))))
-print(all(sapply(metadata(finalSE_matrix)$drug_combinations, "[[", "type") == "matrix"))
+print(all(sapply(metadata(finalMAE_matrix[[1]])$drug_combinations, "[[", "type") == "matrix"))
 
 save_tsv(df_merged_data, "synthdata_combo_matrix_small_rawdata.tsv")
-save_rds(finalSE_matrix, "finalSE_combo_matrix_small.RDS")
+save_rds(finalMAE_matrix, "finalMAE_combo_matrix_small.RDS")
 
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -361,26 +360,27 @@ colnames(df_2)[colnames(df_2) %in% c(colnames(drugs),"Concentration")] <-
 df_layout_2 <- merge(df_layout, df_2)
 
 df_merged_data <- generate_response_data(df_layout_2)
-finalSE_matrix <- gDRcore::runDrugResponseProcessingPipeline(df_merged_data)
+finalMAE_matrix <- gDRcore::runDrugResponseProcessingPipeline(df_merged_data)
 
 # add and test calculation for combo matrix
 # TODO when the functions are cleaned up
 
 # test proper processing of the combo metadata
-print(all(table(rowData(finalSE_matrix)[,c("Gnumber","Gnumber_2")])[, drugs$Gnumber[c(21,26)]]==9))
-print(all(table(rowData(finalSE_matrix)[rowData(finalSE_matrix)$DrugName_2 != "vehicle","Concentration_2"])==18))
+print(all(table(rowData(finalMAE_matrix[[1]])[,c("Gnumber","Gnumber_2")])[, drugs$Gnumber[c(21,26)]]==9))
+print(all(table(rowData(finalMAE_matrix[[1]])[rowData(finalMAE_matrix[[1]])$DrugName_2 != "vehicle","Concentration_2"])==18))
 
-dt = convert_se_assay_to_dt(finalSE_matrix, "Averaged")
+dt = convert_mae_assay_to_dt(finalMAE_matrix, "Averaged")
 print(all(dim(table(dt[dt$DrugName_2 != "vehicle",c("Concentration", "Concentration_2")]))==9))
 print(all(table(dt[dt$DrugName_2 != "vehicle",c("Concentration", "Concentration_2")])==144))
 # test the assignment of drug_combinations
-print(length(metadata(finalSE_matrix)$drug_combinations)==18)
-print(all(sapply(metadata(finalSE_matrix)$drug_combinations,
+print(length(metadata(finalMAE_matrix[[1]])$drug_combinations)==18)
+print(all(sapply(metadata(finalMAE_matrix[[1]])$drug_combinations,
     function(x) length(x$condition$Concentration_2) == (length(x$rows)-1))))
-print(all(sapply(metadata(finalSE_matrix)$drug_combinations, "[[", "type") == "matrix"))
+print(all(sapply(metadata(finalMAE_matrix[[1]])$drug_combinations, "[[", "type") == "matrix"))
 
 save_tsv(df_merged_data, "synthdata_combo_matrix_rawdata.tsv")
-save_rds(finalSE_matrix, "finalSE_combo_matrix.RDS")
+save_rds(finalMAE_combo2, "finalMAE_combo_matrix.RDS")
+
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data with triple combo  (no noise)
@@ -405,7 +405,7 @@ colnames(df_3)[colnames(df_3) %in% c(colnames(drugs),"Concentration")] <-
 df_layout_3 <- merge(merge(df_layout, df_2), df_3)
 
 df_merged_data <- generate_response_data(df_layout_3, 0)
-finalSE_matrix <- gDRcore::runDrugResponseProcessingPipeline(df_merged_data)
+finalMAE_matrix <- gDRcore::runDrugResponseProcessingPipeline(df_merged_data)
 
 # add and test calculation for combo matrix
 # TODO when the functions are cleaned up
@@ -413,24 +413,24 @@ finalSE_matrix <- gDRcore::runDrugResponseProcessingPipeline(df_merged_data)
 
 
 # test accuracy of the processing and fitting for the single agent
-dt_test <- test_accuracy(finalSE_matrix[rowData(finalSE_matrix)$Concentration_2 == 0 &
-    rowData(finalSE_matrix)$Concentration_3 == 0, ], e_inf, ec50, hill_coef)
+dt_test <- test_accuracy(finalMAE_matrix[[1]][rowData(finalMAE_matrix[[1]])$Concentration_2 == 0 &
+    rowData(finalMAE_matrix[[1]])$Concentration_3 == 0, ], e_inf, ec50, hill_coef)
 print(apply(abs(dt_test) < c(1e-3, 6e-3, 0.12, 0.015, 1e-4), 1, all))
 # test proper processing of the combo metadata
-print(all(table(rowData(finalSE_matrix)[,c("Gnumber","Gnumber_2")])[, drugs$Gnumber[c(21,26)]]==24))
-print(all(table(rowData(finalSE_matrix)[rowData(finalSE_matrix)$DrugName_2 != "vehicle","Concentration_2"])==18))
-print(all(table(rowData(finalSE_matrix)[,paste0("Concentration",c("_2", "_3"))]) == c(3,array(6,8))))
+print(all(table(rowData(finalMAE_matrix[[1]])[,c("Gnumber","Gnumber_2")])[, drugs$Gnumber[c(21,26)]]==24))
+print(all(table(rowData(finalMAE_matrix[[1]])[rowData(finalMAE_matrix[[1]])$DrugName_2 != "vehicle","Concentration_2"])==18))
+print(all(table(rowData(finalMAE_matrix[[1]])[,paste0("Concentration",c("_2", "_3"))]) == c(3,array(6,8))))
 
-dt = convert_se_assay_to_dt(finalSE_matrix, "Averaged")
+dt = convert_mae_assay_to_dt(finalMAE_matrix, "Averaged")
 print(all(dim(table(dt[dt$DrugName_2 != "vehicle",paste0("Concentration",c("", "_2", "_3"))]))==c(8,8,3)))
 # test the assignment of drug_combinations
-print(length(metadata(finalSE_matrix)$drug_combinations)==18)
-print(all(sapply(metadata(finalSE_matrix)$drug_combinations,
+print(length(metadata(finalMAE_matrix[[1]])$drug_combinations)==18)
+print(all(sapply(metadata(finalMAE_matrix[[1]])$drug_combinations,
     function(x) length(x$condition$Concentration_2) == (length(x$rows)-1))))
-print(all(sapply(metadata(finalSE_matrix)$drug_combinations, "[[", "type") == "matrix"))
+print(all(sapply(metadata(finalMAE_matrix[[1]])$drug_combinations, "[[", "type") == "matrix"))
 
 save_tsv(df_merged_data, "synthdata_combo_triple_rawdata.tsv")
-save_rds(finalSE_matrix, "finalSE_combo_triple.RDS")
+save_rds(finalMAE_matrix, "finalMAE_combo_triple.RDS")
 
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -447,13 +447,13 @@ df_layout_2[df_layout_2$Concentration_2 > 0 , c("Concentration", "Concentration_
   df_layout_2[df_layout_2$Concentration_2 > 0 , c("Concentration", "Concentration_2")] / 2
 
 df_merged_data <- generate_response_data(df_layout_2, 0)
-finalSE_codilution <- gDRcore::runDrugResponseProcessingPipeline(df_merged_data)
+finalMAE_codilution <- gDRcore::runDrugResponseProcessingPipeline(df_merged_data)
 
 # add and test calculation for combo matrix
 # TODO when the functions are cleaned up
 
 save_tsv(df_merged_data, "synthdata_combo_codilution_small_rawdata.tsv")
-save_rds(finalSE_codilution, "finalSE_combo_codilution_small.RDS")
+save_rds(finalMAE_codilution, "finalMAE_combo_codilution_small.RDS")
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the test set with combo (co-dilution)
@@ -468,10 +468,10 @@ df_layout_2[df_layout_2$Concentration_2 > 0 , c("Concentration", "Concentration_
   df_layout_2[df_layout_2$Concentration_2 > 0 , c("Concentration", "Concentration_2")] / 2
 
 df_merged_data <- generate_response_data(df_layout_2)
-finalSE_codilution <- gDRcore::runDrugResponseProcessingPipeline(df_merged_data)
+finalMAE_codilution <- gDRcore::runDrugResponseProcessingPipeline(df_merged_data)
 
 # add and test calculation for combo matrix
 # TODO when the functions are cleaned up
 
 save_tsv(df_merged_data, "synthdata_combo_codilution_rawdata.tsv")
-save_rds(finalSE_codilution, "finalSE_combo_codilution.RDS")
+save_rds(finalMAE_codilution, "finalMAE_combo_codilution.RDS")
