@@ -4,6 +4,8 @@ Version: 1.0.8
 Maintainer: Bartosz Czech <bartosz.czech@contractors.roche.com>
 Description: R package with internal testing dose reponse data.
 Author: Aleksander Chlebowski, Bartosz Czech, Arkadiusz Gladki, Marc Hafner, Natalia Potocka, Dariusz Scigocki
+Imports:
+    gDRcore (>= 1.1.26)
 Suggests:
     testthat (>= 3.0.0),
     knitr,
@@ -12,5 +14,5 @@ VignetteBuilder: knitr
 License: file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Config/testthat/edition: 3
