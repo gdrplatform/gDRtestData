@@ -45,13 +45,8 @@ hill_coef <- generate_hill_coef(drugs, cell_lines)
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the 1st test set: no noise
 #   only for testing purpuses not displayed as example
-df_layout <- merge(cell_lines[2:11,], drugs[2:11,], by = NULL)
-df_layout <- add_data_replicates(df_layout)
-df_layout <- add_concentration(df_layout)
 
-df_merged_data <- generate_response_data(df_layout, 0)
-
-finalMAE_1_no_noise <- gDRcore::runDrugResponseProcessingPipeline(df_merged_data)
+finalMAE_1_no_noise <- generate_small_no_noise()
 
 # test accurarcy of the processing and fitting (no noise => low tolerance)
 dt_test <- test_accuracy(finalMAE_1_no_noise[[1]], e_inf, ec50, hill_coef)
