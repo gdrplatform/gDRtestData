@@ -4,14 +4,14 @@
 \alias{get_test_dataset_paths}
 \title{get_test_dataset_paths}
 \usage{
-get_test_dataset_paths(datasets_dir = NULL, config_path = NULL)
+get_test_dataset_paths(datasets_dir = NULL, pattern = "finalMAE_")
 }
 \arguments{
 \item{datasets_dir}{path to directory with datasets (default \code{NULL}).
 If \code{NULL}, then \code{inst/testdata} directory from \code{gDRtestData} will be used.}
 
-\item{config_path}{path to config i \code{yml} format (default \code{NULL}).
-If \code{NULL}, then config from \link{get_config_path} will be used.}
+\item{pattern}{used to: (1) filter to RDS files from the dataset_dir path
+and (2) prettify the labels of the files}
 }
 \value{
 named vector of absolute paths
