@@ -50,8 +50,8 @@ generate_response_data <- function(df_layout, noise_level = 0.1, seed = 2) {
         (ec50[x["Gnumber"], x["clid"]] ^ hill_coef[x["Gnumber"], x["clid"]] /
            (as.numeric(x["Concentration"]) ^ hill_coef[x["Gnumber"], x["clid"]] +
               ec50[x["Gnumber"],x["clid"]] ^ hill_coef[x["Gnumber"], x["clid"]]))) +
-      (noise_level * runif(nrow(df_layout)) - (noise_level / 2)),  # add some noise
-    0.01 * runif(nrow(df_layout)) + 0.005), # avoid hard 0 values
+      (noise_level * stats::runif(nrow(df_layout)) - (noise_level / 2)),  # add some noise
+    0.01 * stats::runif(nrow(df_layout)) + 0.005), # avoid hard 0 values
     1)
   df_layout$BackgroundValue <- 0
   df_layout$Duration <- 72
@@ -122,7 +122,7 @@ add_day0_data <- function(df_merged_data, noise_level = 0.05, seed = 2) {
                                            df_merged_data$Concentration_2 == 0, TRUE),])
 
   df_Day0$ReadoutValue <- df_Day0$ReadoutValue / 2 ^ (df_Day0$Duration / df_Day0$ReferenceDivisionTime)
-  df_Day0$ReadoutValue <- round(df_Day0$ReadoutValue * (1 - noise_level / 2 + noise_level * runif(nrow(df_Day0))), 1)
+  df_Day0$ReadoutValue <- round(df_Day0$ReadoutValue * (1 - noise_level / 2 + noise_level * stats::runif(nrow(df_Day0))), 1)
 
   df_Day0$Duration <- 0
   df_Day0$Barcode <- "plate_0"

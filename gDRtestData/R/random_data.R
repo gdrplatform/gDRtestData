@@ -48,7 +48,7 @@ create_synthetic_drugs <- function() {
 #'
 generate_hill_coef <- function(drugs, cell_lines, seed = 2) {
   set.seed(seed)
-  hill_coef <- matrix(1.8 + runif(nrow(drugs) * nrow(cell_lines)), nrow(drugs), nrow(cell_lines))
+  hill_coef <- matrix(1.8 + stats::runif(nrow(drugs) * nrow(cell_lines)), nrow(drugs), nrow(cell_lines))
   colnames(hill_coef) <- cell_lines$clid
   rownames(hill_coef) <- drugs$Gnumber
   hill_coef
@@ -65,20 +65,20 @@ generate_hill_coef <- function(drugs, cell_lines, seed = 2) {
 #'
 generate_ec50 <- function(drugs, cell_lines, seed = 2) {
   set.seed(seed)
-  ec50 <- matrix(runif(nrow(drugs) * nrow(cell_lines)) - 0.5, nrow(drugs), nrow(cell_lines)) +
+  ec50 <- matrix(stats::runif(nrow(drugs) * nrow(cell_lines)) - 0.5, nrow(drugs), nrow(cell_lines)) +
     matrix(sort(rep(seq(-1.2,0, 0.3), 8)), nrow(drugs), nrow(cell_lines)) +
     t(matrix(seq(-0.4,0, 0.1), nrow(cell_lines), nrow(drugs)))
 
   ec50[, cell_lines$Tissue == "tissue_x"] <- ec50[, cell_lines$Tissue == "tissue_x"] +
-    -0.5 -0.3 * runif(sum(cell_lines$Tissue == "tissue_x"))
+    -0.5 -0.3 * stats::runif(sum(cell_lines$Tissue == "tissue_x"))
   ec50[drugs$drug_moa %in% c("moa_A", "moa_B"), cell_lines$Tissue == "tissue_y"] <-
     ec50[drugs$drug_moa %in% c("moa_A", "moa_B"), cell_lines$Tissue == "tissue_y"] +
-    -0.4 * runif(sum(cell_lines$Tissue == "tissue_y")) -0.4
+    -0.4 * stats::runif(sum(cell_lines$Tissue == "tissue_y")) -0.4
   ec50[drugs$drug_moa %in% c("moa_C", "moa_D"), cell_lines$Tissue == "tissue_z"] <-
     ec50[drugs$drug_moa %in% c("moa_C", "moa_D"), cell_lines$Tissue == "tissue_z"] +
-    0.5 * runif(sum(cell_lines$Tissue == "tissue_z")) - 1
+    0.5 * stats::runif(sum(cell_lines$Tissue == "tissue_z")) - 1
   ec50[drugs$drug_moa %in% "moa_E",] <- ec50[drugs$drug_moa %in% "moa_E", ] + 0.6 + 0.5 *
-    runif(sum(drugs$drug_moa %in% "moa_E"))
+    stats::runif(sum(drugs$drug_moa %in% "moa_E"))
   ec50 <- 10 ^ ec50
 
   colnames(ec50) <- cell_lines$clid
@@ -98,24 +98,24 @@ generate_ec50 <- function(drugs, cell_lines, seed = 2) {
 #'
 generate_e_inf <- function(drugs, cell_lines, seed = 2) {
   set.seed(seed)
-  e_inf <- matrix(0.5 * runif(nrow(drugs) * nrow(cell_lines)), nrow(drugs), nrow(cell_lines))  +
+  e_inf <- matrix(0.5 * stats::runif(nrow(drugs) * nrow(cell_lines)), nrow(drugs), nrow(cell_lines))  +
     t(matrix(seq(0, 0.2, 0.05), nrow(cell_lines), nrow(drugs)))
 
   e_inf[, cell_lines$Tissue == "tissue_x"] <- e_inf[, cell_lines$Tissue == "tissue_x"] +
-    0.3 * runif(sum(cell_lines$Tissue == "tissue_x")) + 0.1
+    0.3 * stats::runif(sum(cell_lines$Tissue == "tissue_x")) + 0.1
   e_inf[drugs$drug_moa %in% c("moa_A", "moa_C"), cell_lines$Tissue == "tissue_y"] <-
     e_inf[drugs$drug_moa %in% c("moa_A", "moa_C"), cell_lines$Tissue == "tissue_y"] +
-    -0.2 * runif(sum(cell_lines$Tissue == "tissue_y")) -0.2
+    -0.2 * stats::runif(sum(cell_lines$Tissue == "tissue_y")) -0.2
   e_inf[drugs$drug_moa %in% c("moa_C", "moa_E"), cell_lines$Tissue == "tissue_z"] <-
     e_inf[drugs$drug_moa %in% c("moa_C", "moa_E"), cell_lines$Tissue == "tissue_z"] -
-    0.5 * runif(sum(cell_lines$Tissue == "tissue_z"))
+    0.5 * stats::runif(sum(cell_lines$Tissue == "tissue_z"))
   e_inf[drugs$drug_moa %in% c("moa_B", "moa_E"), cell_lines$Tissue == "tissue_x"] <-
     e_inf[drugs$drug_moa %in% c("moa_B", "moa_E"), cell_lines$Tissue == "tissue_x"] -
-    0.5 * runif(sum(cell_lines$Tissue == "tissue_x"))
+    0.5 * stats::runif(sum(cell_lines$Tissue == "tissue_x"))
   e_inf[drugs$drug_moa %in% "moa_F",] <- e_inf[drugs$drug_moa %in% "moa_F", ] + 0.3 + 0.2 *
-    runif(sum(drugs$drug_moa %in% "moa_F"))
+    stats::runif(sum(drugs$drug_moa %in% "moa_F"))
 
-  e_inf <- matrix( pmin(0.89, pmax(0.01, e_inf)) + runif(nrow(drugs) * nrow(cell_lines)) * 0.1, nrow(drugs), nrow(cell_lines))
+  e_inf <- matrix( pmin(0.89, pmax(0.01, e_inf)) + stats::runif(nrow(drugs) * nrow(cell_lines)) * 0.1, nrow(drugs), nrow(cell_lines))
   colnames(e_inf) <- cell_lines$clid
   rownames(e_inf) <- drugs$Gnumber
   e_inf
