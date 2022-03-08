@@ -15,7 +15,7 @@
 #' @rdname get_test_dataset_paths
    get_test_dataset_paths <-
      function(datasets_dir = NULL,
-              pattern = 'finalMAE_') {
+              pattern = "finalMAE_") {
        if (is.null(datasets_dir)) {
          datasets_dir <-
            system.file("testdata", package = "gDRtestData", mustWork = TRUE)
@@ -25,9 +25,8 @@
        
        checkmate::assert_string(pattern, min.chars = 1)
        
-       efiles <- grep(pattern, list.files(datasets_dir), value = TRUE)
-       enames <- gsub(pattern, "", gsub(".RDS", "", efiles))
-       epaths <- file.path(datasets_dir, efiles)
+       epaths <- list.files(datasets_dir, pattern = pattern, full.names = TRUE)
+       enames <- gsub(pattern, "", gsub(".RDS", "", basename(epaths)))
        structure(epaths, names = enames)
      }
    
