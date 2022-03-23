@@ -5,12 +5,12 @@ Maintainer: Bartosz Czech <bartosz.czech@contractors.roche.com>
 Description: R package with internal testing dose reponse data.
 Author: Aleksander Chlebowski, Bartosz Czech, Arkadiusz Gladki, Marc Hafner, Natalia Potocka, Dariusz Scigocki
 Imports:
-    checkmate,
-    gDRutils
+    checkmate
 Suggests:
-    testthat (>= 3.0.0),
+    gDRutils,
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat (>= 3.0.0)
 VignetteBuilder: knitr
 License: file LICENSE
 Encoding: UTF-8
