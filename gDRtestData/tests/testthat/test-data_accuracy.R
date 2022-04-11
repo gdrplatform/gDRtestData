@@ -13,8 +13,11 @@ hill_coef <- generate_hill_coef(drugs, cell_lines)
 
 evaluateData <- function(data, e_inf, ec50, hill_coef, vals, cols = NULL, FUN = all) {
   dt_test <- test_accuracy(data, e_inf, ec50, hill_coef)
-  
-  dt_test <- ifelse(is.null(cols), dt_test, dt_test[cols, ])
+  dt_test <- if (is.null(cols)) {
+    dt_test
+  } else {
+    dt_test[cols, ]
+  }
   
   apply(
     abs(dt_test) < vals, 1, 
@@ -23,7 +26,7 @@ evaluateData <- function(data, e_inf, ec50, hill_coef, vals, cols = NULL, FUN = 
 }
 
 evaluateMeta <- function(data, expectedLength, type = "fixed") {
-  combos <- metadata(data)$drug_combinations
+  combos <- S4Vectors::metadata(data)$drug_combinations
   testthat::expect_equal(length(combos), expectedLength)
   testthat::expect_true(
     all(sapply(
@@ -35,7 +38,7 @@ evaluateMeta <- function(data, expectedLength, type = "fixed") {
 }
 
 evaluateComboTable <- function(data, x1, x2, x3 = NULL) {
-  rows <- rowData(data[[1]])
+  rows <- SummarizedExperiment::rowData(data[[1]])
   testthat::expect_true(
     all(table(rows[, c("Gnumber", "Gnumber_2")])[, drugs$Gnumber[c(21, 26)]] == x1)
   )
@@ -50,15 +53,15 @@ evaluateComboTable <- function(data, x1, x2, x3 = NULL) {
 }
 
 evaluateComboDt <- function(data, x1, x2) {
-  dt <- convert_mae_assay_to_dt(data, "Averaged")
+  dt <- gDRutils::convert_mae_assay_to_dt(data, "Averaged")
   table <- table(dt[dt$DrugName_2 != "vehicle", c("Concentration", "Concentration_2")])
   testthat::expect_true(all(dim(table) == x1))
   testthat::expect_true(all(table == x2))
 }
 
 getDelta <- function(mae1, mae2, cols) {
-  DT1 <- convert_mae_assay_to_dt(mae1, "Metrics")
-  DT2 <- convert_mae_assay_to_dt(mae2, "Metrics")
+  DT1 <- gDRutils::convert_mae_assay_to_dt(mae1, "Metrics")
+  DT2 <- gDRutils::convert_mae_assay_to_dt(mae2, "Metrics")
   DT1$rId <- gsub("_\\d\\d?$", "", DT1$rId)
   DT2$rId <- gsub("_\\d\\d?$", "", DT2$rId)
   
@@ -69,14 +72,18 @@ getDelta <- function(mae1, mae2, cols) {
   )
 }
 
-testthat::context("Testing generated data accuracy")
-
 testthat::test_that(
   desc = "No noise raw data",
   code = {
     # test accurarcy of the processing and fitting (no noise => low tolerance)
     data <- generateNoNoiseRawData(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE)
-    evaluateData(data, e_inf, ec50, hill_coef, c(1e-3, 2.2e-3, 0.04, 0.015, 1e-4))
+    evaluateData(
+      data = data, 
+      e_inf = e_inf, 
+      ec50 = ec50, 
+      hill_coef = hill_coef, 
+      vals = c(1e-3, 2.2e-3, 0.04, 0.015, 1e-4)
+    )
   }
 )
 
@@ -85,7 +92,7 @@ testthat::test_that(
   code = {
     # test accurarcy of the processing and fitting (noise => medium tolerance)
     data <- generateNoiseRawData(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE)
-    evaluateData(data, e_inf, ec50, hill_coef, c(0.5, 0.1, 1.5, 1.2, 0.05))
+    evaluateData(data, e_inf, ec50, hill_coef, c(0.5, 0.1, 2.3, 1.2, 0.15))
   }
 )
 
@@ -97,18 +104,18 @@ testthat::test_that(
     rows <- SummarizedExperiment::rowData(data)
 
     evaluateData(
-      data[rows$Ligand > 0, ], 
-      e_inf, 
-      ec50, 
-      hill_coef, 
-      c(1e-3, 3e-3, 0.031, 0.015, 1e-4)
+      data = data[rows$Ligand > 0, ], 
+      e_inf = e_inf, 
+      ec50 = ec50, 
+      hill_coef = hill_coef, 
+      vals = c(1e-3, 3e-3, 0.031, 0.015, 1e-4)
     )
     # test fit quality for Ligand = 0 and that delta(e_inf) < 0
     evaluateData(
-      data[rows$Ligand == 0, ],
-      e_inf,
-      ec50,
-      hill_coef,
+      data = data[rows$Ligand == 0, ],
+      e_inf = e_inf,
+      ec50 = ec50,
+      hill_coef = hill_coef,
       vals = c(-0.15, 1e-4),
       cols = c("delta_einf", "1_r2")
     )
@@ -138,7 +145,7 @@ testthat::test_that(
   code = {
     # test accurarcy of the processing and fitting (noise => medium tolerance)
     data <- generateManyDrugsData(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE)
-    evaluateData(data, e_inf, ec50, hill_coef, c(0.5, 0.2, 2.5, 1.2, 0.3))
+    evaluateData(data, e_inf, ec50, hill_coef, c(0.5, 0.3, 2.5, 1.2, 0.4))
   }
 )
 
@@ -147,18 +154,14 @@ testthat::test_that(
   code = {
     ## 1st case
     data <- generateComboNoNoiseData(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE)
-    evaluateData(data[[1]], e_inf, ec50, hill_coef, c(1e-3, 2e-3, 0.02, 0.015, 1e-4))
+    dataZero <- getConcentrationZeroRows(data)
+    evaluateData(dataZero, e_inf, ec50, hill_coef, c(1e-3, 2e-3, 0.02, 0.015, 1e-4))
     evaluateMeta(data[[1]], 3)
     
     ## 2nd case
     data2 <- generateComboNoNoiseData2(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE)
-    evaluateData(
-      data2[[1]][rowData(data2[[1]])$Concentration_2 == 0, ], 
-      e_inf, 
-      ec50, 
-      hill_coef, 
-      c(1e-3, 2e-3, 0.02, 0.015, 1e-4)
-    )
+    dataZero2 <- getConcentrationZeroRows(data2)
+    evaluateData(dataZero2, e_inf, ec50, hill_coef, c(1e-3, 2e-3, 0.02, 0.015, 1e-4))
 
     # compare to other way of processing the data
     delta <- getDelta(data, data2, c("x_max"))
@@ -168,13 +171,8 @@ testthat::test_that(
     
     ## 3rd case
     data3 <- generateComboNoNoiseData3(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE)
-    evaluateData(
-      data3[[1]][rowData(data3[[1]])$Concentration_2 == 0, ], 
-      e_inf, 
-      ec50, 
-      hill_coef, 
-      c(1e-3, 2e-3, 0.02, 0.015, 1e-4)
-    )
+    dataZero3 <- getConcentrationZeroRows(data3)
+    evaluateData(dataZero3, e_inf, ec50, hill_coef, c(1e-3, 2e-3, 0.02, 0.015, 1e-4))
     
     # compare to the complete data
     delta2 <- getDelta(data, data3, c("x_inf", "r2"))
@@ -192,22 +190,24 @@ testthat::test_that(
   code = {
     # test accuracy of the processing and fitting for the single agent
     data <- generateComboManyDrugs(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE)
+    zeroData <- getConcentrationZeroRows(data)
     evaluateData(
-      data[[1]][rowData(mae[[1]])$Concentration_2 == 0, ], 
-      e_inf, 
-      ec50, 
-      hill_coef, 
+      data = zeroData, 
+      e_inf = e_inf, 
+      ec50 = ec50, 
+      hill_coef = hill_coef, 
       vals = c(0.5, 0.2, 2.5, 1.2, 0.3)
     )
     # test the effect of the combination treatment
     evalFun <- function(x) {
       sum(x) == 2
     }
+    posData <- getConcentrationPositiveRows(data)
     evaluateData(
-      data[[1]][rowData(mae[[1]])$Concentration_2 > 0, ], 
-      e_inf, 
-      ec50, 
-      hill_coef, 
+      data = posData, 
+      e_inf = e_inf, 
+      ec50 = ec50, 
+      hill_coef = hill_coef, 
       vals = c(-.1, .01),
       cols = c("delta_einf", "1_r2"),
       FUN = evalFun
@@ -222,13 +222,8 @@ testthat::test_that(
     ## Small matrix
     # test accuracy of the processing and fitting for the single agent
     data <- generateComboMatrixSmall(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE)
-    evaluateData(
-      data[[1]][rowData(data[[1]])$Concentration_2 == 0, ],
-      e_inf, 
-      ec50, 
-      hill_coef, 
-      c(1e-3, 6e-3, 0.12, 0.015, 1e-4)
-    )
+    data <- getConcentrationZeroRows(data)
+    evaluateData(data, e_inf, ec50, hill_coef, c(1e-3, 6e-3, 0.12, 0.015, 1e-4))
     evaluateComboTable(data, 8, 6)
     evaluateComboDt(data, 8, 36)
     evaluateMeta(data[[1]], 6, "matrix")
@@ -251,8 +246,7 @@ testthat::test_that(
     # test accuracy of the processing and fitting for the single agent
     data <- generateTripleComboMatrix(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE)
     
-    dt_test <- data[[1]][rowData(data[[1]])$Concentration_2 == 0 &
-      rowData(data[[1]])$Concentration_3 == 0, ]
+    dt_test <- getConcentrationZeroRows(data)
     evaluateData(dt_test, e_inf, ec50, hill_coef, c(1e-3, 6e-3, 0.12, 0.015, 1e-4))
     evaluateComboTable(data, 24, 18, c(3, array(6, 8)))
 

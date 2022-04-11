@@ -30,13 +30,14 @@ prepareMergedData <- function(cell_lines, drugs, noise = 0.1) {
 
 prepareComboMergedData <- function(cell_lines, 
                                    drugs, 
-                                   drugsIdx = c(26, 26, 26), 
+                                   drugsIdx1 = 2:4,
+                                   drugsIdx2 = c(26, 26, 26), 
                                    concentration = c(0, .2, 1), 
                                    noise = 0.1, 
                                    modifyDf2 = FALSE) {
-  df_layout <- prepareData(cell_lines, drugs)
+  df_layout <- prepareData(cell_lines, drugs[drugsIdx1, ])
   
-  df_2 <- cbind(drugs[drugsIdx, ], Concentration = concentration)
+  df_2 <- cbind(drugs[drugsIdx2, ], Concentration = concentration)
   colnames(df_2) <- paste0(colnames(df_2), "_2")
   df_layout_2 <- merge(df_layout, df_2, by = NULL)
   if (modifyDf2) {

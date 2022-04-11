@@ -105,7 +105,7 @@ generateManyDrugsData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, sav
 generateComboNoNoiseData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE) {
   # generate the data for the test set with combo (two single dose)
   #   co-treatment drug is only as DrugName_2
-  df_merged <- prepareComboMergedData(cell_lines[2:4, ], drugs[2:4, ], 0)
+  df_merged <- prepareComboMergedData(cell_lines[2:4, ], drugs, noise = 0)
   mae <- gDRcore::runDrugResponseProcessingPipeline(df_merged)
   
   if (save) {
@@ -120,7 +120,7 @@ generateComboNoNoiseData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, 
 generateComboNoNoiseData2 <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE) {
   # generate the data for the test set with combo (two single dose)
   #   co-treatment drug is also as single agent as DrugName
-  df_merged <- prepareComboMergedData(cell_lines[2:4,], drugs[c(2:4,26),], 0)
+  df_merged <- prepareComboMergedData(cell_lines[2:4, ], drugs, drugsIdx1 = c(2:4, 26), noise = 0)
   df_merged <- df_merged[!(df_merged$Gnumber %in% c("vehicle", drugs$Gnumber[26]) &
     df_merged$Gnumber_2 == drugs$Gnumber[26]), ]
   
@@ -138,7 +138,13 @@ generateComboNoNoiseData2 <- function(cell_lines, drugs, e_inf, ec50, hill_coef,
 generateComboNoNoiseData3 <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE) {
   # generate the data for the 3rd test set with combo (two single dose)
   #   co-treatment drug does NOT have single agent response
-  df_merged <- prepareComboMergedData(cell_lines[2:4, ], drugs[2:4, ], 0, TRUE)
+  df_merged <- prepareComboMergedData(
+    cell_lines = cell_lines[2:4, ], 
+    drugs = drugs, 
+    drugsIdx1 = 2:4, 
+    noise = 0, 
+    modifyDf2 = TRUE
+  )
   mae <- gDRcore::runDrugResponseProcessingPipeline(df_merged)
 
   if (save) {
@@ -154,8 +160,9 @@ generateComboManyDrugs <- function(cell_lines, drugs, e_inf, ec50, hill_coef, sa
   # generate the data for the test set with combo (unique dose; many drug)
   df_merged <- prepareComboMergedData(
     cell_lines = cell_lines[2:4, ], 
-    drugs = drugs[-1, ],
-    drugsIdx = c(1, 1),
+    drugs = drugs,
+    drugsIdx1 = -1,
+    drugsIdx2 = c(1, 1),
     concentration = c(0, 2)
   )
   mae <- gDRcore::runDrugResponseProcessingPipeline(df_merged)
@@ -172,8 +179,8 @@ generateComboManyDrugs <- function(cell_lines, drugs, e_inf, ec50, hill_coef, sa
 generateComboMatrixSmall <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE){
   # generate the data with combo matrix (small, no noise)
   concentration <- 10^ (seq(-3,.5,.5))
-  df_layout <- prepareData(cell_lines[7:8,], drugs[c(4:6),], concentration)
-  df_2 <- prepareData(cell_lines[cell_lines$clid %in% df_layout$clid,], drugs[c(21, 26),], concentration)
+  df_layout <- prepareData(cell_lines[7:8, ], drugs[c(4:6), ], concentration)
+  df_2 <- prepareData(cell_lines[cell_lines$clid %in% df_layout$clid, ], drugs[c(21, 26), ], concentration)
   df_2 <- changeColNames(df_2, drugs, "_2")
   df_layout_2 <- merge(df_layout, df_2)
   
@@ -211,7 +218,7 @@ generateComboMatrix <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save 
 generateTripleComboMatrix <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE){
   # generate the data with triple combo  (no noise)
   concentration <- 10^ (seq(-3,.5,.5))
-  df_layout <- prepareData(cell_lines[7:8,], drugs[c(4:6),], concentration)
+  df_layout <- prepareData(cell_lines[7:8, ], drugs[c(4:6), ], concentration)
   
   df_2 <- prepareData(
     cell_lines[cell_lines$clid %in% df_layout$clid,], 
@@ -245,7 +252,7 @@ generateCodilutionSmall <- function(cell_lines, drugs, e_inf, ec50, hill_coef, s
   # generate the data with combo co-dilution (small)
   df_layout <- prepareData(cell_lines[1:2,], drugs[1:4,])
 
-  df_2 <- cbind(drugs[1,, drop= FALSE], df_layout[, "Concentration", drop = FALSE])
+  df_2 <- cbind(drugs[1, , drop= FALSE], df_layout[ , "Concentration", drop = FALSE])
   df_layout_2 <- prepareCodilutionData(df_2, df_layout)
   
   df_merged <- generate_response_data(df_layout_2, 0)

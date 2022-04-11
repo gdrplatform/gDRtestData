@@ -14,7 +14,7 @@ test_accuracy <- function(se, e_inf, ec50, hill_coef) {
   dt <- gDRutils::flatten(dt, groups = c("normalization_type", "fit_source"),
                           wide_cols = gDRutils::get_header("response_metrics"))
   colnames(dt) <- gDRutils::prettify_flat_metrics(colnames(dt), FALSE)
-  rows <- SummarizedExperiment::rowData(se)$Gnumber
+  rows <- unique(SummarizedExperiment::rowData(se)$Gnumber)
   cols <- SummarizedExperiment::colData(se)$clid
   quart <- c(.05, .5, .95)
     
@@ -34,4 +34,22 @@ test_accuracy <- function(se, e_inf, ec50, hill_coef) {
 
 acastVar <- function(dt, var) {
   reshape2::acast(dt, Gnumber ~ clid, value.var = var)
+}
+
+getConcentrationZeroRows <- function(data) {
+  se <- data[[1]]
+  rData <- SummarizedExperiment::rowData(se)
+  
+  if ("Concentration_3" %in% names(rData)) {
+    se[rData$Concentration_2 == 0 & rData$Concentration_3 == 0, ]    
+  } else {
+    se[rData$Concentration_2 == 0, ]
+  }
+}
+
+getConcentrationPositiveRows <- function(data) {
+  se <- data[[1]]
+  rData <- SummarizedExperiment::rowData(se)
+  
+  se[rData$Concentration_2 > 0, ]
 }
