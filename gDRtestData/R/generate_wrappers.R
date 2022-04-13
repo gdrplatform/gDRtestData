@@ -11,7 +11,7 @@ generateNoNoiseRawData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, sa
     save_rds(mae, "finalMAE_small_no_noise.RDS")
   }
   
-  invisible(mae[[1]])
+  invisible(mae)
 }
 
 #' @export
@@ -25,7 +25,7 @@ generateNoiseRawData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save
     save_rds(mae, "finalMAE_small.RDS") 
   }
   
-  invisible(mae[[1]])
+  invisible(mae)
 }
 
 #' @export
@@ -56,7 +56,7 @@ generateLigandData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save =
     save_rds(mae, "finalMAE_wLigand.RDS")
   }
   
-  invisible(mae[[1]])
+  invisible(mae)
 }
 
 #' @export
@@ -70,7 +70,7 @@ generateMediumData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save =
     save_rds(mae, "finalMAE_medium.RDS")    
   }
 
-  invisible(mae[[1]])
+  invisible(mae)
 }
 
 #' @export
@@ -84,7 +84,7 @@ generateManyLinesData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, sav
     save_rds(mae, "finalMAE_many_lines.RDS")    
   }
   
-  invisible(mae[[1]])
+  invisible(mae)
 }
 
 #' @export
@@ -98,7 +98,7 @@ generateManyDrugsData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, sav
     save_rds(mae, "finalMAE_many_drugs.RDS")   
   }
   
-  invisible(mae[[1]])
+  invisible(mae)
 }
 
 #' @export

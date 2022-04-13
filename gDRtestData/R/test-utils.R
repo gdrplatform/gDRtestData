@@ -35,21 +35,3 @@ test_accuracy <- function(se, e_inf, ec50, hill_coef) {
 acastVar <- function(dt, var) {
   reshape2::acast(dt, Gnumber ~ clid, value.var = var)
 }
-
-getConcentrationZeroRows <- function(data) {
-  se <- data[[1]]
-  rData <- SummarizedExperiment::rowData(se)
-  
-  if ("Concentration_3" %in% names(rData)) {
-    se[rData$Concentration_2 == 0 & rData$Concentration_3 == 0, ]    
-  } else {
-    se[rData$Concentration_2 == 0, ]
-  }
-}
-
-getConcentrationPositiveRows <- function(data) {
-  se <- data[[1]]
-  rData <- SummarizedExperiment::rowData(se)
-  
-  se[rData$Concentration_2 > 0, ]
-}

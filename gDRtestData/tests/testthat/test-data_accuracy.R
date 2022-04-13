@@ -25,25 +25,13 @@ evaluateData <- function(data, e_inf, ec50, hill_coef, vals, cols = NULL, FUN = 
   )
 }
 
-evaluateMeta <- function(data, expectedLength, type = "fixed") {
-  combos <- S4Vectors::metadata(data)$drug_combinations
-  testthat::expect_equal(length(combos), expectedLength)
-  testthat::expect_true(
-    all(sapply(
-      combos, 
-      function(x) length(x$condition$Concentration_2) == (length(x$rows) - 1)
-    ))
-  )
-  testthat::expect_true(all(sapply(combos, "[[", "type") == type))
-}
-
 evaluateComboTable <- function(data, x1, x2, x3 = NULL) {
   rows <- SummarizedExperiment::rowData(data[[1]])
   testthat::expect_true(
     all(table(rows[, c("Gnumber", "Gnumber_2")])[, drugs$Gnumber[c(21, 26)]] == x1)
   )
   testthat::expect_true(
-    all(table(rows[rows$DrugName_2 != "vehicle","Concentration_2"]) == x2)
+    all(table(rows[rows$DrugName_2 != "vehicle", "Concentration_2"]) == x2)
   )
   if (!is.null(x3)) {
     testthat::expect_true(
@@ -78,7 +66,7 @@ testthat::test_that(
     # test accurarcy of the processing and fitting (no noise => low tolerance)
     data <- generateNoNoiseRawData(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE)
     evaluateData(
-      data = data, 
+      data = data[[1]], 
       e_inf = e_inf, 
       ec50 = ec50, 
       hill_coef = hill_coef, 
@@ -92,7 +80,7 @@ testthat::test_that(
   code = {
     # test accurarcy of the processing and fitting (noise => medium tolerance)
     data <- generateNoiseRawData(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE)
-    evaluateData(data, e_inf, ec50, hill_coef, c(0.5, 0.1, 2.3, 1.2, 0.15))
+    evaluateData(data[[1]], e_inf, ec50, hill_coef, c(0.5, 0.1, 2.3, 1.2, 0.15))
   }
 )
 
@@ -101,6 +89,7 @@ testthat::test_that(
   code = {
     # test accurarcy of the processing and fitting for Ligand = 0.1 (noise => medium tolerance)
     data <- generateLigandData(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE)
+    data <- data[[1]]
     rows <- SummarizedExperiment::rowData(data)
 
     evaluateData(
@@ -127,7 +116,7 @@ testthat::test_that(
   code = {
     # test accurarcy of the processing and fitting (noise => medium tolerance)
     data <- generateMediumData(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE)
-    evaluateData(data, e_inf, ec50, hill_coef, c(0.5, 0.2, 2.5, 1.2, 0.3))
+    evaluateData(data[[1]], e_inf, ec50, hill_coef, c(0.5, 0.2, 2.5, 1.2, 0.3))
   }
 )
 
@@ -136,7 +125,7 @@ testthat::test_that(
   code = {
     # test accurarcy of the processing and fitting (noise => medium tolerance)
     data <- generateManyLinesData(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE)
-    evaluateData(data, e_inf, ec50, hill_coef, c(0.5, 0.2, 2.5, 1.2, 0.3))
+    evaluateData(data[[1]], e_inf, ec50, hill_coef, c(0.5, 0.2, 2.5, 1.2, 0.3))
   }
 )
 
@@ -145,7 +134,7 @@ testthat::test_that(
   code = {
     # test accurarcy of the processing and fitting (noise => medium tolerance)
     data <- generateManyDrugsData(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE)
-    evaluateData(data, e_inf, ec50, hill_coef, c(0.5, 0.3, 2.5, 1.2, 0.4))
+    evaluateData(data[[1]], e_inf, ec50, hill_coef, c(0.5, 0.3, 2.5, 1.2, 0.4))
   }
 )
 
@@ -154,14 +143,11 @@ testthat::test_that(
   code = {
     ## 1st case
     data <- generateComboNoNoiseData(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE)
-    dataZero <- getConcentrationZeroRows(data)
-    evaluateData(dataZero, e_inf, ec50, hill_coef, c(1e-3, 2e-3, 0.02, 0.015, 1e-4))
-    evaluateMeta(data[[1]], 3)
-    
+    evaluateData(data[["single-agent"]], e_inf, ec50, hill_coef, c(1e-3, 2e-3, 0.02, 0.015, 1e-4))
+
     ## 2nd case
     data2 <- generateComboNoNoiseData2(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE)
-    dataZero2 <- getConcentrationZeroRows(data2)
-    evaluateData(dataZero2, e_inf, ec50, hill_coef, c(1e-3, 2e-3, 0.02, 0.015, 1e-4))
+    evaluateData(data2[["single-agent"]], e_inf, ec50, hill_coef, c(1e-3, 2e-3, 0.02, 0.015, 1e-4))
 
     # compare to other way of processing the data
     delta <- getDelta(data, data2, c("x_max"))
@@ -171,8 +157,7 @@ testthat::test_that(
     
     ## 3rd case
     data3 <- generateComboNoNoiseData3(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE)
-    dataZero3 <- getConcentrationZeroRows(data3)
-    evaluateData(dataZero3, e_inf, ec50, hill_coef, c(1e-3, 2e-3, 0.02, 0.015, 1e-4))
+    evaluateData(data3[["single-agent"]], e_inf, ec50, hill_coef, c(1e-3, 2e-3, 0.02, 0.015, 1e-4))
     
     # compare to the complete data
     delta2 <- getDelta(data, data3, c("x_inf", "r2"))
@@ -190,9 +175,8 @@ testthat::test_that(
   code = {
     # test accuracy of the processing and fitting for the single agent
     data <- generateComboManyDrugs(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE)
-    zeroData <- getConcentrationZeroRows(data)
     evaluateData(
-      data = zeroData, 
+      data = data[["single-agent"]], 
       e_inf = e_inf, 
       ec50 = ec50, 
       hill_coef = hill_coef, 
@@ -202,9 +186,8 @@ testthat::test_that(
     evalFun <- function(x) {
       sum(x) == 2
     }
-    posData <- getConcentrationPositiveRows(data)
     evaluateData(
-      data = posData, 
+      data = data[["cotreatment"]], 
       e_inf = e_inf, 
       ec50 = ec50, 
       hill_coef = hill_coef, 
@@ -212,7 +195,6 @@ testthat::test_that(
       cols = c("delta_einf", "1_r2"),
       FUN = evalFun
     )
-    evaluateMeta(data[[1]], 149)
   }
 )
 
@@ -222,11 +204,9 @@ testthat::test_that(
     ## Small matrix
     # test accuracy of the processing and fitting for the single agent
     data <- generateComboMatrixSmall(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE)
-    data <- getConcentrationZeroRows(data)
-    evaluateData(data, e_inf, ec50, hill_coef, c(1e-3, 6e-3, 0.12, 0.015, 1e-4))
+    evaluateData(data[["single-agent"]], e_inf, ec50, hill_coef, c(1e-3, 6e-3, 0.12, 0.015, 1e-4))
     evaluateComboTable(data, 8, 6)
     evaluateComboDt(data, 8, 36)
-    evaluateMeta(data[[1]], 6, "matrix")
     # add and test calculation for combo matrix
     # TODO when the functions are cleaned up
     
@@ -234,7 +214,6 @@ testthat::test_that(
     data2 <- generateComboMatrix(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE)
     evaluateComboTable(data2, 9, 18)
     evaluateComboDt(data2, 9, 144)
-    evaluateMeta(data2[[1]], 18, "matrix")
     # add and test calculation for combo matrix
     # TODO when the functions are cleaned up
   }
@@ -246,15 +225,12 @@ testthat::test_that(
     # test accuracy of the processing and fitting for the single agent
     data <- generateTripleComboMatrix(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE)
     
-    dt_test <- getConcentrationZeroRows(data)
-    evaluateData(dt_test, e_inf, ec50, hill_coef, c(1e-3, 6e-3, 0.12, 0.015, 1e-4))
+    evaluateData(data[["single-agent"]], e_inf, ec50, hill_coef, c(1e-3, 6e-3, 0.12, 0.015, 1e-4))
     evaluateComboTable(data, 24, 18, c(3, array(6, 8)))
 
     dt <- convert_mae_assay_to_dt(data, "Averaged")
     table <- table(dt[dt$DrugName_2 != "vehicle", paste0("Concentration",c("", "_2", "_3"))])
     testthat::expect_true(all(dim(table) == c(8, 8, 3)))
-    
-    evaluateMeta(data[[1]], 18, "matrix")
     # add and test calculation for combo matrix
     # TODO when the functions are cleaned up
   }
