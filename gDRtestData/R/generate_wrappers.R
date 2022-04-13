@@ -7,8 +7,12 @@ generateNoNoiseRawData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, sa
   mae <- gDRcore::runDrugResponseProcessingPipeline(df_merged)
   
   if (save) {
-    save_tsv(df_merged, "synthdata_small_no_noise_rawdata.tsv")
-    save_rds(mae, "finalMAE_small_no_noise.RDS")
+    saveArtifacts(
+      tsvObj = df_merged,
+      tsvName = "synthdata_small_no_noise_rawdata.tsv",
+      rdsObj = mae,
+      rdsName = "finalMAE_small_no_noise.RDS"
+    )
   }
   
   invisible(mae)
@@ -21,8 +25,12 @@ generateNoiseRawData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save
   mae <- gDRcore::runDrugResponseProcessingPipeline(df_merged)
   
   if (save) {
-    save_tsv(df_merged, "synthdata_small_rawdata.tsv")
-    save_rds(mae, "finalMAE_small.RDS") 
+    saveArtifacts(
+      tsvObj = df_merged,
+      tsvName = "synthdata_small_rawdata.tsv",
+      rdsObj = mae,
+      rdsName = "finalMAE_small.RDS"
+    )
   }
   
   invisible(mae)
@@ -52,8 +60,12 @@ generateLigandData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save =
   )
   
   if (save) {
-    save_tsv(df_merged, "finalSE_wLigand_rawdata.tsv")
-    save_rds(mae, "finalMAE_wLigand.RDS")
+    saveArtifacts(
+      tsvObj = df_merged,
+      tsvName = "finalSE_wLigand_rawdata.tsv",
+      rdsObj = mae,
+      rdsName = "finalMAE_wLigand.RDS"
+    )
   }
   
   invisible(mae)
@@ -66,8 +78,12 @@ generateMediumData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save =
   mae <- gDRcore::runDrugResponseProcessingPipeline(df_merged)
 
   if (save) {
-    save_tsv(df_merged, "synthdata_medium_rawdata.tsv")
-    save_rds(mae, "finalMAE_medium.RDS")    
+    saveArtifacts(
+      tsvObj = df_merged,
+      tsvName = "synthdata_medium_rawdata.tsv",
+      rdsObj = mae,
+      rdsName = "finalMAE_medium.RDS"
+    )
   }
 
   invisible(mae)
@@ -80,8 +96,12 @@ generateManyLinesData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, sav
   mae <- gDRcore::runDrugResponseProcessingPipeline(df_merged)
 
   if (save) {
-    save_tsv(df_merged, "synthdata_many_lines_rawdata.tsv")
-    save_rds(mae, "finalMAE_many_lines.RDS")    
+    saveArtifacts(
+      tsvObj = df_merged,
+      tsvName = "synthdata_many_lines_rawdata.tsv",
+      rdsObj = mae,
+      rdsName = "finalMAE_many_lines.RDS"
+    )
   }
   
   invisible(mae)
@@ -94,8 +114,12 @@ generateManyDrugsData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, sav
   mae <- gDRcore::runDrugResponseProcessingPipeline(df_merged)
   
   if (save) {
-    save_tsv(df_merged, "synthdata_many_drugs_rawdata.tsv")
-    save_rds(mae, "finalMAE_many_drugs.RDS")   
+    saveArtifacts(
+      tsvObj = df_merged,
+      tsvName = "synthdata_many_drugs_rawdata.tsv",
+      rdsObj = mae,
+      rdsName = "finalMAE_many_drugs.RDS"
+    )
   }
   
   invisible(mae)
@@ -109,8 +133,12 @@ generateComboNoNoiseData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, 
   mae <- gDRcore::runDrugResponseProcessingPipeline(df_merged)
   
   if (save) {
-    save_tsv(df_merged, "synthdata_combo_2dose_nonoise_rawdata.tsv")
-    save_rds(mae, "finalMAE_combo_2dose_nonoise.RDS")
+    saveArtifacts(
+      tsvObj = df_merged,
+      tsvName = "synthdata_combo_2dose_nonoise_rawdata.tsv",
+      rdsObj = mae,
+      rdsName = "finalMAE_combo_2dose_nonoise.RDS"
+    )
   }
   
   invisible(mae)
@@ -127,8 +155,12 @@ generateComboNoNoiseData2 <- function(cell_lines, drugs, e_inf, ec50, hill_coef,
   mae <- gDRcore::runDrugResponseProcessingPipeline(df_merged)
   
   if (save) {
-    save_tsv(df_merged, "synthdata_combo_2dose_nonoise2_rawdata.tsv")
-    save_rds(mae, "finalMAE_combo_2dose_nonoise2.RDS")
+    saveArtifacts(
+      tsvObj = df_merged,
+      tsvName = "synthdata_combo_2dose_nonoise2_rawdata.tsv",
+      rdsObj = mae,
+      rdsName = "finalMAE_combo_2dose_nonoise2.RDS"
+    )
   }
   
   invisible(mae)
@@ -148,8 +180,12 @@ generateComboNoNoiseData3 <- function(cell_lines, drugs, e_inf, ec50, hill_coef,
   mae <- gDRcore::runDrugResponseProcessingPipeline(df_merged)
 
   if (save) {
-    save_tsv(df_merged, "synthdata_combo_2dose_nonoise3_rawdata.tsv")
-    save_rds(mae, "finalMAE_combo_2dose_nonoise3.RDS")
+    saveArtifacts(
+      tsvObj = df_merged,
+      tsvName = "synthdata_combo_2dose_nonoise3_rawdata.tsv",
+      rdsObj = mae,
+      rdsName = "finalMAE_combo_2dose_nonoise3.RDS"
+    )
   }
   
   invisible(mae)
@@ -168,8 +204,12 @@ generateComboManyDrugs <- function(cell_lines, drugs, e_inf, ec50, hill_coef, sa
   mae <- gDRcore::runDrugResponseProcessingPipeline(df_merged)
 
   if (save) {
-    save_tsv(df_merged, "synthdata_combo_1dose_many_drugs_rawdata.tsv")
-    save_rds(mae, "finalMAE_combo_1dose_many_drugs.RDS")
+    saveArtifacts(
+      tsvObj = df_merged,
+      tsvName = "synthdata_combo_1dose_many_drugs_rawdata.tsv",
+      rdsObj = mae,
+      rdsName = "finalMAE_combo_1dose_many_drugs.RDS"
+    )
   }
   
   invisible(mae)
@@ -188,8 +228,12 @@ generateComboMatrixSmall <- function(cell_lines, drugs, e_inf, ec50, hill_coef, 
   mae <- gDRcore::runDrugResponseProcessingPipeline(df_merged)
   
   if (save) {
-    save_tsv(df_merged, "synthdata_combo_matrix_small_rawdata.tsv")
-    save_rds(mae, "finalMAE_combo_matrix_small.RDS")
+    saveArtifacts(
+      tsvObj = df_merged,
+      tsvName = "synthdata_combo_matrix_small_rawdata.tsv",
+      rdsObj = mae,
+      rdsName = "finalMAE_combo_matrix_small.RDS"
+    )
   }
   
   invisible(mae)
@@ -207,8 +251,12 @@ generateComboMatrix <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save 
   mae <- gDRcore::runDrugResponseProcessingPipeline(df_merged)
   
   if (save) {
-    save_tsv(df_merged, "synthdata_combo_matrix_rawdata.tsv")
-    save_rds(mae, "finalMAE_combo_matrix.RDS")
+    saveArtifacts(
+      tsvObj = df_merged,
+      tsvName = "synthdata_combo_matrix_rawdata.tsv",
+      rdsObj = mae,
+      rdsName = "finalMAE_combo_matrix.RDS"
+    )
   }
   
   invisible(mae)
@@ -240,8 +288,12 @@ generateTripleComboMatrix <- function(cell_lines, drugs, e_inf, ec50, hill_coef,
   mae <- gDRcore::runDrugResponseProcessingPipeline(df_merged)
   
   if (save) {
-    save_tsv(df_merged, "synthdata_combo_triple_rawdata.tsv")
-    save_rds(mae, "finalMAE_combo_triple.RDS")
+    saveArtifacts(
+      tsvObj = df_merged,
+      tsvName = "synthdata_combo_triple_rawdata.tsv",
+      rdsObj = mae,
+      rdsName = "finalMAE_combo_triple.RDS"
+    )
   }
   
   invisible(mae)
@@ -259,8 +311,12 @@ generateCodilutionSmall <- function(cell_lines, drugs, e_inf, ec50, hill_coef, s
   mae <- gDRcore::runDrugResponseProcessingPipeline(df_merged)
   
   if (save) {
-    save_tsv(df_merged, "synthdata_combo_codilution_small_rawdata.tsv")
-    save_rds(mae, "finalMAE_combo_codilution_small.RDS")
+    saveArtifacts(
+      tsvObj = df_merged,
+      tsvName = "synthdata_combo_codilution_small_rawdata.tsv",
+      rdsObj = mae,
+      rdsName = "finalMAE_combo_codilution_small.RDS"
+    )
   }
   
   invisible(mae)
@@ -278,8 +334,12 @@ generateCodilution <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save =
   mae <- gDRcore::runDrugResponseProcessingPipeline(df_merged)
   
   if (save) {
-    save_tsv(df_merged, "synthdata_combo_codilution_rawdata.tsv")
-    save_rds(mae, "finalMAE_combo_codilution.RDS")
+    saveArtifacts(
+      tsvObj = df_merged,
+      tsvName = "synthdata_combo_codilution_rawdata.tsv",
+      rdsObj = mae,
+      rdsName = "finalMAE_combo_codilution.RDS"
+    )
   }
   
   invisible(mae)

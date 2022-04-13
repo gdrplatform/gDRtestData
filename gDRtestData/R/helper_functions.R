@@ -64,3 +64,8 @@ changeColNames <- function(df, drugs, suffix) {
   
   df
 }
+
+saveArtifacts <- function(tsvObj, tsvName, rdsObj, rdsName) {
+  save_tsv(tsvObj, tsvName)
+  save_rds(rdsObj, rdsName) 
+}
