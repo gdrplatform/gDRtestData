@@ -7,10 +7,11 @@ Author: Aleksander Chlebowski, Bartosz Czech, Arkadiusz Gladki, Marc Hafner, Nat
 Imports:
     checkmate
 Suggests:
-    gDRutils,
+    gDRutils (>= 1.0.39),
+    gDRstyle (>= 0.0.8),
     knitr,
     rmarkdown,
-    testthat (>= 3.0.0)
+    testthat
 VignetteBuilder: knitr
 License: file LICENSE
 Encoding: UTF-8
