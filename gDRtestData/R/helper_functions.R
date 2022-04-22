@@ -11,7 +11,7 @@ save_tsv <- function(object, filename) {
 
 save_rds <- function(object, filename) {
   saveRDS(
-    object, 
+    object,
     system.file("testdata", filename, package = "gDRtestData"), 
     compress = FALSE
   )
@@ -41,7 +41,7 @@ prepareComboMergedData <- function(cell_lines,
   colnames(df_2) <- paste0(colnames(df_2), "_2")
   df_layout_2 <- merge(df_layout, df_2, by = NULL)
   if (modifyDf2) {
-    df_layout_2 = df_layout_2[!(df_layout_2$Concentration == 0 & df_layout_2$Concentration_2 > 0), ]
+    df_layout_2 <- df_layout_2[!(df_layout_2$Concentration == 0 & df_layout_2$Concentration_2 > 0), ]
   }
   
   generate_response_data(df_layout_2, noise)

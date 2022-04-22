@@ -3,7 +3,7 @@ generateNoNoiseRawData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, sa
   #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # generate the data for the 1st test set: no noise
   #   only for testing purpuses not displayed as example
-  df_merged <- prepareMergedData(cell_lines[2:11,], drugs[2:11,], 0)
+  df_merged <- prepareMergedData(cell_lines[2:11, ], drugs[2:11, ], 0)
   mae <- gDRcore::runDrugResponseProcessingPipeline(df_merged)
   
   if (save) {
@@ -21,7 +21,7 @@ generateNoNoiseRawData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, sa
 #' @export
 generateNoiseRawData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE) {
   # generate the data for the 1st test set with noise
-  df_merged <- prepareMergedData(cell_lines[2:11,], drugs[2:11,])
+  df_merged <- prepareMergedData(cell_lines[2:11, ], drugs[2:11, ])
   mae <- gDRcore::runDrugResponseProcessingPipeline(df_merged)
   
   if (save) {
@@ -39,7 +39,7 @@ generateNoiseRawData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save
 #' @export
 generateLigandData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE) {
   # generate the data for the 1st test set with ligand as reference
-  df_merged <- prepareMergedData(cell_lines[2:6,], drugs[2:5,], 0)
+  df_merged <- prepareMergedData(cell_lines[2:6, ], drugs[2:5, ], 0)
   df_merged$Ligand <- 0.1
   df_merged2 <- df_merged[df_merged$Gnumber %in% c("vehicle", "G00002", "G00003"), ]
   df_merged2$Ligand <- 0
@@ -74,7 +74,7 @@ generateLigandData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save =
 #' @export
 generateMediumData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE) {
   # generate the data for the 2nd (medium size) test set with single agent
-  df_merged <- prepareMergedData(cell_lines[1:15,], drugs[1:40,])
+  df_merged <- prepareMergedData(cell_lines[1:15, ], drugs[1:40, ])
   mae <- gDRcore::runDrugResponseProcessingPipeline(df_merged)
 
   if (save) {
@@ -92,7 +92,7 @@ generateMediumData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save =
 #' @export
 generateManyLinesData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE) {
   # generate the data for the 2nd (medium size) test set with single agent
-  df_merged <- prepareMergedData(cell_lines, drugs[1:40,])
+  df_merged <- prepareMergedData(cell_lines, drugs[1:40, ])
   mae <- gDRcore::runDrugResponseProcessingPipeline(df_merged)
 
   if (save) {
@@ -110,7 +110,7 @@ generateManyLinesData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, sav
 #' @export
 generateManyDrugsData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE) {
   # generate the data for the test set with single agent (many drugs)
-  df_merged <- prepareMergedData(cell_lines[1:10,], drugs[1:40,])
+  df_merged <- prepareMergedData(cell_lines[1:10, ], drugs[1:40, ])
   mae <- gDRcore::runDrugResponseProcessingPipeline(df_merged)
   
   if (save) {
@@ -216,9 +216,9 @@ generateComboManyDrugs <- function(cell_lines, drugs, e_inf, ec50, hill_coef, sa
 }
 
 #' @export
-generateComboMatrixSmall <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE){
+generateComboMatrixSmall <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE) {
   # generate the data with combo matrix (small, no noise)
-  concentration <- 10^ (seq(-3,.5,.5))
+  concentration <- 10^ (seq(-3, .5, .5))
   df_layout <- prepareData(cell_lines[7:8, ], drugs[c(4:6), ], concentration)
   df_2 <- prepareData(cell_lines[cell_lines$clid %in% df_layout$clid, ], drugs[c(21, 26), ], concentration)
   df_2 <- changeColNames(df_2, drugs, "_2")
@@ -240,10 +240,10 @@ generateComboMatrixSmall <- function(cell_lines, drugs, e_inf, ec50, hill_coef, 
 }
 
 #' @export
-generateComboMatrix <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE){
+generateComboMatrix <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE) {
   # generate the data with combo matrix (mid-size)
   df_layout <- prepareData(cell_lines[seq(1, 30, 4), ], drugs[c(1, 2, 11, 12, 16, 17), ])
-  df_2 <- prepareData(cell_lines[cell_lines$clid %in% df_layout$clid,], drugs[c(21, 26, 31), ])
+  df_2 <- prepareData(cell_lines[cell_lines$clid %in% df_layout$clid, ], drugs[c(21, 26, 31), ])
   df_2 <- changeColNames(df_2, drugs, "_2")
   df_layout_2 <- merge(df_layout, df_2)
   
@@ -263,13 +263,13 @@ generateComboMatrix <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save 
 }
 
 #' @export
-generateTripleComboMatrix <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE){
+generateTripleComboMatrix <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE) {
   # generate the data with triple combo  (no noise)
-  concentration <- 10^ (seq(-3,.5,.5))
+  concentration <- 10^ (seq(-3, .5, .5))
   df_layout <- prepareData(cell_lines[7:8, ], drugs[c(4:6), ], concentration)
   
   df_2 <- prepareData(
-    cell_lines[cell_lines$clid %in% df_layout$clid,], 
+    cell_lines[cell_lines$clid %in% df_layout$clid, ], 
     drugs[c(21, 26), ],
     c(0, concentration)
   )
@@ -277,7 +277,7 @@ generateTripleComboMatrix <- function(cell_lines, drugs, e_inf, ec50, hill_coef,
   df_layout_2 <- merge(df_layout, df_2)
   
   df_3 <- prepareData(
-    cell_lines[cell_lines$clid %in% df_layout$clid,], 
+    cell_lines[cell_lines$clid %in% df_layout$clid, ], 
     drugs[10, ],
     c(0, .1, 1)
   )
@@ -300,11 +300,11 @@ generateTripleComboMatrix <- function(cell_lines, drugs, e_inf, ec50, hill_coef,
 }
 
 #' @export
-generateCodilutionSmall <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE){
+generateCodilutionSmall <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE) {
   # generate the data with combo co-dilution (small)
-  df_layout <- prepareData(cell_lines[1:2,], drugs[1:4,])
+  df_layout <- prepareData(cell_lines[1:2, ], drugs[1:4, ])
 
-  df_2 <- cbind(drugs[1, , drop= FALSE], df_layout[ , "Concentration", drop = FALSE])
+  df_2 <- cbind(drugs[1, , drop = FALSE], df_layout[, "Concentration", drop = FALSE])
   df_layout_2 <- prepareCodilutionData(df_2, df_layout)
   
   df_merged <- generate_response_data(df_layout_2, 0)
@@ -323,7 +323,7 @@ generateCodilutionSmall <- function(cell_lines, drugs, e_inf, ec50, hill_coef, s
 }
 
 #' @export
-generateCodilution <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE){
+generateCodilution <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE) {
   # generate the data for the test set with combo (co-dilution)
   df_layout <- prepareData(cell_lines[seq(1, 15, 2), ], drugs[1:12, ])
   

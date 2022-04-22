@@ -48,8 +48,8 @@ getDelta <- function(mae1, mae2, cols) {
   DT2$rId <- gsub("_\\d\\d?$", "", DT2$rId)
   
   merge(
-    DT1[ , c("rId", "cId", "normalization_type", "x_0", cols)],
-    DT2[ , c("rId", "cId", "normalization_type", "x_0", cols)], 
+    DT1[, c("rId", "cId", "normalization_type", "x_0", cols)],
+    DT2[, c("rId", "cId", "normalization_type", "x_0", cols)], 
     by = c("rId", "cId", "normalization_type")
   )
 }
@@ -228,7 +228,7 @@ testthat::test_that(
     evaluateComboTable(data, 24, 18, c(3, array(6, 8)))
 
     dt <- convert_mae_assay_to_dt(data, "Averaged")
-    table <- table(dt[dt$DrugName_2 != "vehicle", paste0("Concentration",c("", "_2", "_3"))])
+    table <- table(dt[dt$DrugName_2 != "vehicle", paste0("Concentration", c("", "_2", "_3"))])
     testthat::expect_true(all(dim(table) == c(8, 8, 3)))
     # add and test calculation for combo matrix
     # TODO when the functions are cleaned up

@@ -25,7 +25,7 @@ test_accuracy <- function(se, e_inf, ec50, hill_coef) {
     stats::quantile((acastVar(dt, "h_RV") - hill_coef[rows, cols])[
       acastVar(dt, "EC50") < 3 & acastVar(dt, "E_inf") < .8], quart
     ),
-    1 - stats::quantile(acastVar(dt, "RV_r2") , quart)
+    1 - stats::quantile(acastVar(dt, "RV_r2"), quart)
   )
 
   rownames(df_QC) <- c("delta_einf", "delta_ec50", "delta_hill", "d_hill_fitted", "1_r2")
