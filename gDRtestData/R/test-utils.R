@@ -14,20 +14,24 @@ test_accuracy <- function(se, e_inf, ec50, hill_coef) {
   dt <- gDRutils::flatten(dt, groups = c("normalization_type", "fit_source"),
                           wide_cols = gDRutils::get_header("response_metrics"))
   colnames(dt) <- gDRutils::prettify_flat_metrics(colnames(dt), FALSE)
-  df_QC <- rbind(stats::quantile(acast(dt, Gnumber ~ clid, value.var = "E_inf") -
-                            e_inf[ rowData(se)$Gnumber, colData(se)$clid ], c(.05, .5, .95)),
-                 stats::quantile(log10(acast(dt, Gnumber ~ clid, value.var = "EC50")) -
-                            log10(ec50[rowData(se)$Gnumber, colData(se)$clid]), c(.05, .5, .95)),
-                 stats::quantile(acast(dt, Gnumber ~ clid, value.var = "h_RV") -
-                            hill_coef[ rowData(se)$Gnumber, colData(se)$clid ], c(.05, .5, .95)),
-                 stats::quantile( (acast(dt, Gnumber ~ clid, value.var = "h_RV") -
-                              hill_coef[ rowData(se)$Gnumber, colData(se)$clid ])[
-                                acast(dt, Gnumber ~ clid, value.var = "EC50") < 3 &
-                                  acast(dt, Gnumber ~ clid, value.var = "E_inf") < .8
-                                ], c(.05, .5, .95)),
-                 1 - stats::quantile(acast(dt, Gnumber ~ clid, value.var = "RV_r2") , c(.05, .5, .95))
+  rows <- unique(SummarizedExperiment::rowData(se)$Gnumber)
+  cols <- SummarizedExperiment::colData(se)$clid
+  quart <- c(.05, .5, .95)
+    
+  df_QC <- rbind(
+    stats::quantile(acastVar(dt, "E_inf") - e_inf[rows, cols], quart),
+    stats::quantile(log10(acastVar(dt, "EC50")) - log10(ec50[rows, cols]), quart),
+    stats::quantile(acastVar(dt, "h_RV") - hill_coef[rows, cols], quart),
+    stats::quantile((acastVar(dt, "h_RV") - hill_coef[rows, cols])[
+      acastVar(dt, "EC50") < 3 & acastVar(dt, "E_inf") < .8], quart
+    ),
+    1 - stats::quantile(acastVar(dt, "RV_r2"), quart)
   )
 
   rownames(df_QC) <- c("delta_einf", "delta_ec50", "delta_hill", "d_hill_fitted", "1_r2")
   df_QC
+}
+
+acastVar <- function(dt, var) {
+  reshape2::acast(dt, Gnumber ~ clid, value.var = var)
 }

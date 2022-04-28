@@ -10,8 +10,7 @@ echo "Working directory contains: `ls | tr '\n' ' '`"
 set -e
 
 echo ">>>>>>>> Running linter"
-# TODO: enable this after the refactor of gDRtestData
-#Rscript -e "gDRstyle::lintPkgDirs('/mnt/vol/gDRtestData')"
+Rscript -e "gDRstyle::lintPkgDirs('/mnt/vol/gDRtestData')"
 
 echo ">>>>> RUNNING UNIT TESTS"
 Rscript -e "testthat::test_local(path = '$repo_path', stop_on_failure = TRUE)"
