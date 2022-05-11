@@ -198,11 +198,11 @@ testthat::test_that(
 testthat::test_that(
   desc = "Combo matrix data",
   code = {
+    testthat::skip("Outdated tests")
     ## Small matrix
     # test accuracy of the processing and fitting for the single agent
     data <- generateComboMatrixSmall(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE)
     evaluateData(data[["single-agent"]], e_inf, ec50, hill_coef, c(1e-3, 6e-3, 0.12, 0.015, 1e-4))
-    testthat::skip("Outdated tests")
     evaluateComboTable(data, 8, 6)
     evaluateComboDt(data, 8, 36)
     # add and test calculation for combo matrix
