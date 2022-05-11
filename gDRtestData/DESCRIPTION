@@ -9,6 +9,7 @@ Imports:
 Suggests:
     gDRutils (>= 1.0.39),
     gDRstyle (>= 0.0.8),
+    gDRcore (>= 1.1.29),
     knitr,
     rmarkdown,
     testthat
