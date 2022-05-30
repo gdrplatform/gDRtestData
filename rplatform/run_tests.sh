@@ -17,7 +17,7 @@ Rscript -e "testthat::test_local(path = '$repo_path', stop_on_failure = TRUE)"
 
 echo ">>>>> RUNNING CHECK"
 R CMD build /mnt/vol/gDRtestData &&
-    R CMD check gDRtestData_*.tar.gz --no-vignettes --no-examples --no-manual
+    R CMD check gDRtestData_*.tar.gz --no-vignettes --no-examples --no-manual --no-tests
 
 echo ">>>>>>>> RUNNING CHECK DEPENDENCIES"
 Rscript -e "gDRstyle::checkDependencies(desc_path='/mnt/vol/gDRtestData/DESCRIPTION', dep_path='/mnt/vol/rplatform/dependencies.yaml')"
