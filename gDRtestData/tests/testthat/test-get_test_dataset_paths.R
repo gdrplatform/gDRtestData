@@ -4,7 +4,7 @@ testthat::test_that("test dataset paths exist", {
   dir.create(tmp_dir <- tempfile())
   on.exit(unlink(tmp_dir, TRUE, TRUE), add = TRUE)
   testthat::expect_error(get_test_dataset_paths(datasets_dir = ""),
-                         "Assertion on 'datasets_dir' failed: Must have at least 1 characters.")
+                         "Assertion on 'datasets_dir' failed.+ at least 1 characters")
   testthat::expect_error(get_test_dataset_paths(datasets_dir = character(0)),
                          "Assertion on 'datasets_dir' failed: Must have length 1.")
   testthat::expect_error(get_test_dataset_paths(datasets_dir = tmp_dir, pattern = 2),
