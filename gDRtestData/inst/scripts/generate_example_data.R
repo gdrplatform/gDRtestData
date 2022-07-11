@@ -99,3 +99,4 @@ generateCodilutionSmall(cell_lines, drugs, e_inf, ec50, hill_coef)
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the test set with combo (co-dilution)
 generateCodilution(cell_lines, drugs, e_inf, ec50, hill_coef)
+
