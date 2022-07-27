@@ -1,0 +1,20 @@
+pkgs:
+  gDRutils:
+    ver: '>=1.0.39'
+    url: gdrplatform/gDRutils
+    ref: master
+    subdir: gDRutils
+    source: GITHUB
+  gDRstyle:
+    ver: '>=0.0.8'
+    url: gdrplatform/gDRstyle
+    ref: main
+    subdir: ~
+    source: GITHUB
+  gDRcore:
+    ver: '>=1.1.29'
+    url: gdrplatform/gDRcore
+    ref: master
+    subdir: gDRcore
+    host: 'api.github.com'
+    source: GITHUB
