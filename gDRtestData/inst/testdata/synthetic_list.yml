@@ -1,0 +1,29 @@
+# List of synthethic datasets
+
+- name: finalSE_combo_1dose_many_drugs
+  file: finalSE_combo_1dose_many_drugs.RDS
+  description: 
+- name: finalSE_combo_2dose_nonoise
+  file: finalSE_combo_2dose_nonoise.RDS
+  description: 
+- name: finalSE_many_drugs
+  file: finalSE_many_drugs.RDS
+  description:
+- name: finalSE_many_lines
+  file: finalSE_many_lines.RDS
+  description: 
+- name: finalSE_medium
+  file: finalSE_medium.RDS
+  description: test desc
+- name: finalSE_small_no_noise
+  file: finalSE_small_no_noise.RDS
+  description:
+- name: finalSE_small
+  file: finalSE_small.RDS
+  description:
+- name: finalSE_invalid_small
+  file: finalSE_invalid_small.RDS
+  description:
+- name: finalSE_combo_with_metrics
+  file: finalSE_combo_with_metrics.RDS
+  description:
