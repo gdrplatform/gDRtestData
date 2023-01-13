@@ -1,6 +1,6 @@
 Package: gDRtestData
 Title: gDRtestData - R data package with testing dose reponse data
-Version: 1.3.2
+Version: 1.3.3
 Maintainer: gDR team <gdr-support-d@gene.com>
 Description: R package with internal testing dose reponse data.
 Author: Aleksander Chlebowski, Bartosz Czech, Arkadiusz Gladki, Marc Hafner, Natalia Potocka, Dariusz Scigocki
