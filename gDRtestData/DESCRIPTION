@@ -11,7 +11,9 @@ Suggests:
     gDRstyle (>= 0.0.8),
     gDRcore (>= 1.3.9),
     knitr,
+    reshape2,
     rmarkdown,
+    SummarizedExperiment,
     testthat
 VignetteBuilder: knitr
 License: file LICENSE

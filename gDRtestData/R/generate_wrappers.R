@@ -135,7 +135,7 @@ generateComboNoNoiseData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, 
   if (save) {
     saveArtifacts(
       tsvObj = df_merged,
-      tsvName = "synthdata_combo_2dose_nonoise_rawdata.tsv",
+      tsvName = "combo_2dose_nonoise_rawdata.tsv",
       rdsObj = mae,
       rdsName = "finalMAE_combo_2dose_nonoise.RDS"
     )
@@ -230,7 +230,7 @@ generateComboMatrixSmall <- function(cell_lines, drugs, e_inf, ec50, hill_coef, 
   if (save) {
     saveArtifacts(
       tsvObj = df_merged,
-      tsvName = "synthdata_combo_matrix_small_rawdata.tsv",
+      tsvName = "combo_matrix_small_rawdata.tsv",
       rdsObj = mae,
       rdsName = "finalMAE_combo_matrix_small.RDS"
     )
