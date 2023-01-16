@@ -99,11 +99,10 @@ introduceGNum <- function(df, e_inf, ec50, hill_coef, suffix) {
 
 #' Add data with day 0
 #'
-#' @param df_merged_data data.frame with merged data
+#' @param df_merged data.frame with merged data
 #' @param noise_level numeric scalar with the level of noise added to the data
 #' @param seed Integer specifying the seed to set
 #'
-#' @return
 #' @export
 #'
 add_day0_data <- function(df_merged, noise_level = 0.05, seed = 2) {
