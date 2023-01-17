@@ -1,4 +1,6 @@
 library(gDRtestData)
+#TODO fixme: remove suppressWarnings in GDR-1791
+
 cell_lines <- create_synthetic_cell_lines()
 drugs <- create_synthetic_drugs()
 e_inf <- generate_e_inf(drugs, cell_lines)
@@ -58,7 +60,8 @@ testthat::test_that(
   desc = "No noise raw data",
   code = {
     # test accurarcy of the processing and fitting (no noise => low tolerance)
-    data <- generateNoNoiseRawData(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE)
+    #TODO fixme: remove suppressWarnings in GDR-1791
+    data <- suppressWarnings(generateNoNoiseRawData(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE))
     evaluateData(
       data = data[[1]], 
       e_inf = e_inf, 
@@ -73,7 +76,8 @@ testthat::test_that(
   desc = "Noise raw data",
   code = {
     # test accurarcy of the processing and fitting (noise => medium tolerance)
-    data <- generateNoiseRawData(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE)
+    #TODO fixme: remove suppressWarnings in GDR-1791
+    data <- suppressWarnings(generateNoiseRawData(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE))
     evaluateData(data[[1]], e_inf, ec50, hill_coef, c(0.5, 0.1, 2.3, 1.2, 0.15))
   }
 )
@@ -82,15 +86,16 @@ testthat::test_that(
   desc = "Ligand data",
   code = {
     # test accurarcy of the processing and fitting for Ligand = 0.1 (noise => medium tolerance)
-    data <- generateLigandData(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE)
+    #TODO fixme: remove suppressWarnings in GDR-1791
+    data <- suppressWarnings(generateLigandData(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE))
     data <- data[[1]]
     rows <- SummarizedExperiment::rowData(data)
 
     evaluateData(
-      data = data[rows$Ligand > 0, ], 
-      e_inf = e_inf, 
-      ec50 = ec50, 
-      hill_coef = hill_coef, 
+      data = data[rows$Ligand > 0, ],
+      e_inf = e_inf,
+      ec50 = ec50,
+      hill_coef = hill_coef,
       vals = c(1e-3, 3e-3, 0.031, 0.015, 1e-4)
     )
     testthat::skip("Outdated tests")
@@ -110,7 +115,8 @@ testthat::test_that(
   desc = "Medium data",
   code = {
     # test accurarcy of the processing and fitting (noise => medium tolerance)
-    data <- generateMediumData(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE)
+    #TODO fixme: remove suppressWarnings in GDR-1791
+    data <- suppressWarnings(generateMediumData(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE))
     evaluateData(data[[1]], e_inf, ec50, hill_coef, c(0.5, 0.2, 2.5, 1.2, 0.3))
   }
 )
@@ -119,7 +125,8 @@ testthat::test_that(
   desc = "Many lines data",
   code = {
     # test accurarcy of the processing and fitting (noise => medium tolerance)
-    data <- generateManyLinesData(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE)
+    #TODO fixme: remove suppressWarnings in GDR-1791
+    data <- suppressWarnings(generateManyLinesData(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE))
     evaluateData(data[[1]], e_inf, ec50, hill_coef, c(0.5, 0.2, 2.5, 1.2, 0.3))
   }
 )
@@ -128,7 +135,8 @@ testthat::test_that(
   desc = "Many drugs data",
   code = {
     # test accurarcy of the processing and fitting (noise => medium tolerance)
-    data <- generateManyDrugsData(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE)
+    #TODO fixme: remove suppressWarnings in GDR-1791
+    data <- suppressWarnings(generateManyDrugsData(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE))
     evaluateData(data[[1]], e_inf, ec50, hill_coef, c(0.5, 0.3, 2.5, 1.2, 0.4))
   }
 )
@@ -150,11 +158,11 @@ testthat::test_that(
     testthat::expect_true(
       all(abs(quantile((delta$x_0.x - delta$x_0.y)[!grepl("vehicle", delta$rId)])) < .0005)
     )
-    
+
     ## 3rd case
     data3 <- generateComboNoNoiseData3(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE)
     evaluateData(data3[["single-agent"]], e_inf, ec50, hill_coef, c(1e-3, 2e-3, 0.02, 0.015, 1e-4))
-    
+
     # compare to the complete data
     delta2 <- getDelta(data, data3, c("x_inf", "r2"))
     # checking the x_0 value was properly fitted for most cases (there are a few failures but it is ok)
@@ -173,10 +181,10 @@ testthat::test_that(
     # test accuracy of the processing and fitting for the single agent
     data <- generateComboManyDrugs(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE)
     evaluateData(
-      data = data[["single-agent"]], 
-      e_inf = e_inf, 
-      ec50 = ec50, 
-      hill_coef = hill_coef, 
+      data = data[["single-agent"]],
+      e_inf = e_inf,
+      ec50 = ec50,
+      hill_coef = hill_coef,
       vals = c(0.5, 0.2, 2.5, 1.2, 0.3)
     )
     # test the effect of the combination treatment
@@ -184,10 +192,10 @@ testthat::test_that(
       sum(x) == 2
     }
     evaluateData(
-      data = data[["cotreatment"]], 
-      e_inf = e_inf, 
-      ec50 = ec50, 
-      hill_coef = hill_coef, 
+      data = data[["cotreatment"]],
+      e_inf = e_inf,
+      ec50 = ec50,
+      hill_coef = hill_coef,
       vals = c(-.1, .01),
       cols = c("delta_einf", "1_r2"),
       FUN = evalFun
@@ -207,7 +215,7 @@ testthat::test_that(
     evaluateComboDt(data, 8, 36)
     # add and test calculation for combo matrix
     # TODO when the functions are cleaned up
-    
+
     ## Mid-size matrix
     data2 <- generateComboMatrix(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE)
     evaluateComboTable(data2, 9, 18)
@@ -223,7 +231,7 @@ testthat::test_that(
     testthat::skip("Outdated tests")
     # test accuracy of the processing and fitting for the single agent
     data <- generateTripleComboMatrix(cell_lines, drugs, e_inf, ec50, hill_coef, FALSE)
-    
+
     evaluateData(data[["single-agent"]], e_inf, ec50, hill_coef, c(1e-3, 6e-3, 0.12, 0.015, 1e-4))
     evaluateComboTable(data, 24, 18, c(3, array(6, 8)))
 
