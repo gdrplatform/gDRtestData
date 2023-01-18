@@ -7,7 +7,10 @@ generateNoNoiseRawData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, sa
   # generate the data for the 1st test set: no noise
   #   only for testing purpuses not displayed as example
   df_merged <- prepareMergedData(cell_lines[2:11, ], drugs[2:11, ], 0)
-  mae <- gDRcore::runDrugResponseProcessingPipeline(df_merged)
+  mae <- gDRcore::runDrugResponseProcessingPipeline(
+    df_merged,
+    nested_confounders = gDRutils::get_env_identifiers("barcode")[1]
+  )
   
   if (save) {
     saveArtifacts(
@@ -28,7 +31,10 @@ generateNoNoiseRawData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, sa
 generateNoiseRawData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE) {
   # generate the data for the 1st test set with noise
   df_merged <- prepareMergedData(cell_lines[2:11, ], drugs[2:11, ])
-  mae <- gDRcore::runDrugResponseProcessingPipeline(df_merged)
+  mae <- gDRcore::runDrugResponseProcessingPipeline(
+    df_merged,
+    nested_confounders = gDRutils::get_env_identifiers("barcode")[1]
+  )
   
   if (save) {
     saveArtifacts(
@@ -65,7 +71,8 @@ generateLigandData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save =
   
   mae <- gDRcore::runDrugResponseProcessingPipeline(
     df_merged, 
-    override_untrt_controls = c(Ligand = 0.1)
+    override_untrt_controls = c(Ligand = 0.1),
+    nested_confounders = gDRutils::get_env_identifiers("barcode")[1]
   )
   
   if (save) {
@@ -87,7 +94,10 @@ generateLigandData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save =
 generateMediumData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE) {
   # generate the data for the 2nd (medium size) test set with single agent
   df_merged <- prepareMergedData(cell_lines[1:15, ], drugs[1:40, ])
-  mae <- gDRcore::runDrugResponseProcessingPipeline(df_merged)
+  mae <- gDRcore::runDrugResponseProcessingPipeline(
+    df_merged,
+    nested_confounders = gDRutils::get_env_identifiers("barcode")[1]
+  )
 
   if (save) {
     saveArtifacts(
@@ -108,7 +118,10 @@ generateMediumData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save =
 generateManyLinesData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE) {
   # generate the data for the 2nd (medium size) test set with single agent
   df_merged <- prepareMergedData(cell_lines, drugs[1:40, ])
-  mae <- gDRcore::runDrugResponseProcessingPipeline(df_merged)
+  mae <- gDRcore::runDrugResponseProcessingPipeline(
+    df_merged,
+    nested_confounders = gDRutils::get_env_identifiers("barcode")[1]
+  )
 
   if (save) {
     saveArtifacts(
@@ -129,7 +142,10 @@ generateManyLinesData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, sav
 generateManyDrugsData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE) {
   # generate the data for the test set with single agent (many drugs)
   df_merged <- prepareMergedData(cell_lines[1:10, ], drugs[1:40, ])
-  mae <- gDRcore::runDrugResponseProcessingPipeline(df_merged)
+  mae <- gDRcore::runDrugResponseProcessingPipeline(
+    df_merged,
+    nested_confounders = gDRutils::get_env_identifiers("barcode")[1]
+  )
   
   if (save) {
     saveArtifacts(
@@ -151,7 +167,10 @@ generateComboNoNoiseData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, 
   # generate the data for the test set with combo (two single dose)
   #   co-treatment drug is only as DrugName_2
   df_merged <- prepareComboMergedData(cell_lines[2:4, ], drugs, noise = 0)
-  mae <- gDRcore::runDrugResponseProcessingPipeline(df_merged)
+  mae <- gDRcore::runDrugResponseProcessingPipeline(
+    df_merged,
+    nested_confounders = gDRutils::get_env_identifiers("barcode")[1]
+  )
   
   if (save) {
     saveArtifacts(
@@ -176,7 +195,10 @@ generateComboNoNoiseData2 <- function(cell_lines, drugs, e_inf, ec50, hill_coef,
   df_merged <- df_merged[!(df_merged$Gnumber %in% c("vehicle", drugs$Gnumber[26]) &
     df_merged$Gnumber_2 == drugs$Gnumber[26]), ]
   
-  mae <- gDRcore::runDrugResponseProcessingPipeline(df_merged)
+  mae <- gDRcore::runDrugResponseProcessingPipeline(
+    df_merged,
+    nested_confounders = gDRutils::get_env_identifiers("barcode")[1]
+  )
   
   if (save) {
     saveArtifacts(
@@ -204,7 +226,10 @@ generateComboNoNoiseData3 <- function(cell_lines, drugs, e_inf, ec50, hill_coef,
     noise = 0, 
     modifyDf2 = TRUE
   )
-  mae <- gDRcore::runDrugResponseProcessingPipeline(df_merged)
+  mae <- gDRcore::runDrugResponseProcessingPipeline(
+    df_merged,
+    nested_confounders = gDRutils::get_env_identifiers("barcode")[1]
+  )
 
   if (save) {
     saveArtifacts(
@@ -231,7 +256,10 @@ generateComboManyDrugs <- function(cell_lines, drugs, e_inf, ec50, hill_coef, sa
     drugsIdx2 = c(1, 1),
     concentration = c(0, 2)
   )
-  mae <- gDRcore::runDrugResponseProcessingPipeline(df_merged)
+  mae <- gDRcore::runDrugResponseProcessingPipeline(
+    df_merged,
+    nested_confounders = gDRutils::get_env_identifiers("barcode")[1]
+  )
 
   if (save) {
     saveArtifacts(
@@ -258,7 +286,10 @@ generateComboMatrixSmall <- function(cell_lines, drugs, e_inf, ec50, hill_coef, 
   df_layout_2 <- merge(df_layout, df_2)
   
   df_merged <- generate_response_data(df_layout_2, 0)
-  mae <- gDRcore::runDrugResponseProcessingPipeline(df_merged)
+  mae <- gDRcore::runDrugResponseProcessingPipeline(
+    df_merged,
+    nested_confounders = gDRutils::get_env_identifiers("barcode")[1]
+  )
   
   if (save) {
     saveArtifacts(
@@ -284,7 +315,10 @@ generateComboMatrix <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save 
   df_layout_2 <- merge(df_layout, df_2)
   
   df_merged <- generate_response_data(df_layout_2)
-  mae <- gDRcore::runDrugResponseProcessingPipeline(df_merged)
+  mae <- gDRcore::runDrugResponseProcessingPipeline(
+    df_merged,
+    nested_confounders = gDRutils::get_env_identifiers("barcode")[1]
+  )
   
   if (save) {
     saveArtifacts(
@@ -324,7 +358,10 @@ generateTripleComboMatrix <- function(cell_lines, drugs, e_inf, ec50, hill_coef,
   df_layout_3 <- merge(merge(df_layout, df_2), df_3)
   
   df_merged <- generate_response_data(df_layout_3, 0)
-  mae <- gDRcore::runDrugResponseProcessingPipeline(df_merged)
+  mae <- gDRcore::runDrugResponseProcessingPipeline(
+    df_merged,
+    nested_confounders = gDRutils::get_env_identifiers("barcode")[1]
+  )
   
   if (save) {
     saveArtifacts(
@@ -350,7 +387,10 @@ generateCodilutionSmall <- function(cell_lines, drugs, e_inf, ec50, hill_coef, s
   df_layout_2 <- prepareCodilutionData(df_2, df_layout)
   
   df_merged <- generate_response_data(df_layout_2, 0)
-  mae <- gDRcore::runDrugResponseProcessingPipeline(df_merged)
+  mae <- gDRcore::runDrugResponseProcessingPipeline(
+    df_merged,
+    nested_confounders = gDRutils::get_env_identifiers("barcode")[1]
+  )
   
   if (save) {
     saveArtifacts(
@@ -376,7 +416,10 @@ generateCodilution <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save =
   df_layout_2 <- prepareCodilutionData(df_2, df_layout)
 
   df_merged <- generate_response_data(df_layout_2)
-  mae <- gDRcore::runDrugResponseProcessingPipeline(df_merged)
+  mae <- gDRcore::runDrugResponseProcessingPipeline(
+    df_merged,
+    nested_confounders = gDRutils::get_env_identifiers("barcode")[1]
+  )
   
   if (save) {
     saveArtifacts(
