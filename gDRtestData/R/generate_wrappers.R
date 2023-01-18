@@ -1,3 +1,6 @@
+#' generateNoNoiseRawData
+#' 
+#' @keywords internal
 #' @export
 generateNoNoiseRawData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE) {
   #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -21,6 +24,9 @@ generateNoNoiseRawData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, sa
   invisible(mae)
 }
 
+#' generateNoiseRawData
+#' 
+#' @keywords internal
 #' @export
 generateNoiseRawData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE) {
   # generate the data for the 1st test set with noise
@@ -42,6 +48,9 @@ generateNoiseRawData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save
   invisible(mae)
 }
 
+#' generateLigandData
+#' 
+#' @keywords internal
 #' @export
 generateLigandData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE) {
   # generate the data for the 1st test set with ligand as reference
@@ -78,6 +87,9 @@ generateLigandData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save =
   invisible(mae)
 }
 
+#' generateMediumData
+#' 
+#' @keywords internal
 #' @export
 generateMediumData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE) {
   # generate the data for the 2nd (medium size) test set with single agent
@@ -99,6 +111,9 @@ generateMediumData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save =
   invisible(mae)
 }
 
+#' generateManyLinesData
+#' 
+#' @keywords internal
 #' @export
 generateManyLinesData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE) {
   # generate the data for the 2nd (medium size) test set with single agent
@@ -120,6 +135,9 @@ generateManyLinesData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, sav
   invisible(mae)
 }
 
+#' generateManyDrugsData
+#' 
+#' @keywords internal
 #' @export
 generateManyDrugsData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE) {
   # generate the data for the test set with single agent (many drugs)
@@ -141,6 +159,9 @@ generateManyDrugsData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, sav
   invisible(mae)
 }
 
+#' generateComboNoNoiseData
+#' 
+#' @keywords internal
 #' @export
 generateComboNoNoiseData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE) {
   # generate the data for the test set with combo (two single dose)
@@ -154,7 +175,7 @@ generateComboNoNoiseData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, 
   if (save) {
     saveArtifacts(
       tsvObj = df_merged,
-      tsvName = "synthdata_combo_2dose_nonoise_rawdata.tsv",
+      tsvName = "combo_2dose_nonoise_rawdata.tsv",
       rdsObj = mae,
       rdsName = "finalMAE_combo_2dose_nonoise.RDS"
     )
@@ -163,6 +184,9 @@ generateComboNoNoiseData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, 
   invisible(mae)
 }
 
+#' generateComboNoNoiseData2
+#' 
+#' @keywords internal
 #' @export
 generateComboNoNoiseData2 <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE) {
   # generate the data for the test set with combo (two single dose)
@@ -188,6 +212,9 @@ generateComboNoNoiseData2 <- function(cell_lines, drugs, e_inf, ec50, hill_coef,
   invisible(mae)
 }
 
+#' generateComboNoNoiseData3
+#' 
+#' @keywords internal
 #' @export
 generateComboNoNoiseData3 <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE) {
   # generate the data for the 3rd test set with combo (two single dose)
@@ -216,6 +243,9 @@ generateComboNoNoiseData3 <- function(cell_lines, drugs, e_inf, ec50, hill_coef,
   invisible(mae)
 }
 
+#' generateComboManyDrugs
+#' 
+#' @keywords internal
 #' @export
 generateComboManyDrugs <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE) {
   # generate the data for the test set with combo (unique dose; many drug)
@@ -243,6 +273,9 @@ generateComboManyDrugs <- function(cell_lines, drugs, e_inf, ec50, hill_coef, sa
   invisible(mae)
 }
 
+#' generateComboMatrixSmall
+#' 
+#' @keywords internal
 #' @export
 generateComboMatrixSmall <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE) {
   # generate the data with combo matrix (small, no noise)
@@ -261,7 +294,7 @@ generateComboMatrixSmall <- function(cell_lines, drugs, e_inf, ec50, hill_coef, 
   if (save) {
     saveArtifacts(
       tsvObj = df_merged,
-      tsvName = "synthdata_combo_matrix_small_rawdata.tsv",
+      tsvName = "combo_matrix_small_rawdata.tsv",
       rdsObj = mae,
       rdsName = "finalMAE_combo_matrix_small.RDS"
     )
@@ -270,6 +303,9 @@ generateComboMatrixSmall <- function(cell_lines, drugs, e_inf, ec50, hill_coef, 
   invisible(mae)
 }
 
+#' generateComboMatrix
+#' 
+#' @keywords internal
 #' @export
 generateComboMatrix <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE) {
   # generate the data with combo matrix (mid-size)
@@ -296,6 +332,9 @@ generateComboMatrix <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save 
   invisible(mae)
 }
 
+#' generateTripleComboMatrix
+#' 
+#' @keywords internal
 #' @export
 generateTripleComboMatrix <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE) {
   # generate the data with triple combo  (no noise)
@@ -336,6 +375,9 @@ generateTripleComboMatrix <- function(cell_lines, drugs, e_inf, ec50, hill_coef,
   invisible(mae)
 }
 
+#' generateCodilutionSmall
+#' 
+#' @keywords internal
 #' @export
 generateCodilutionSmall <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE) {
   # generate the data with combo co-dilution (small)
@@ -362,6 +404,9 @@ generateCodilutionSmall <- function(cell_lines, drugs, e_inf, ec50, hill_coef, s
   invisible(mae)
 }
 
+#' generateCodilution
+#' 
+#' @keywords internal
 #' @export
 generateCodilution <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save = TRUE) {
   # generate the data for the test set with combo (co-dilution)
