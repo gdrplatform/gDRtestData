@@ -1,7 +1,4 @@
 pkgs:
-  BiocParallel:
-    source: BIOC
-    NonDescription: TRUE
   gDRutils:
     ver: '>=1.0.39'
     url: gdrplatform/gDRutils
