@@ -9,7 +9,8 @@ Started on 2020-07-20.
 
 ```
 gDRtestData		→ subdirectory with R teest data package
-	inst/data/					→ R datasets provided in the package
+	inst/testdata/					→ R datasets provided in the package
+	inst/annotation_data/					→ annotation data provided in the package
 	man/					→ R package man dir
 	DESCRIPTION					→ R package DESCRIPTION file
 	LICENSE					→ R package license file
