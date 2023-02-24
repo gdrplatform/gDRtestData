@@ -38,3 +38,5 @@ vignettes/*.pdf
 *.utf8.md
 *.knit.md
 
+# Settings files
+/*.DS_Store
