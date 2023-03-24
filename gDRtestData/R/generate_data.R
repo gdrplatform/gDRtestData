@@ -33,19 +33,17 @@ add_concentration <- function(df_layout, concentrations = 10 ^ (seq(-3, 1, 0.5))
 #' @param df_layout data.frame that should contains the cell line,
 #' drug, concentration, and replicate columns along with the annotations that needs to be propagated
 #' @param noise_level numeric scalar with the level of noise added to the data
-#' @param seed Integer specifying the seed to set
 #'
 #' @return data.frame with response data
 #' @export
 #'
-generate_response_data <- function(df_layout, noise_level = 0.1, seed = 2) {
+generate_response_data <- function(df_layout, noise_level = 0.1) {
   drugs <- create_synthetic_drugs()
   cell_lines <- create_synthetic_cell_lines()
   hill_coef <- generate_hill_coef(drugs, cell_lines)
   ec50 <- generate_ec50(drugs, cell_lines)
   e_inf <- generate_e_inf(drugs, cell_lines)
 
-  set.seed(seed)
   df_layout$ReadoutValue <- round(100 * pmax(
     getReadoutCoef(df_layout, e_inf, ec50, hill_coef) +
       (noise_level * stats::runif(nrow(df_layout)) - (noise_level / 2)),  # add some noise
@@ -101,12 +99,10 @@ introduceGNum <- function(df, e_inf, ec50, hill_coef, suffix) {
 #'
 #' @param df_merged data.frame with merged data
 #' @param noise_level numeric scalar with the level of noise added to the data
-#' @param seed Integer specifying the seed to set
 #'
 #' @export
 #'
-add_day0_data <- function(df_merged, noise_level = 0.05, seed = 2) {
-  set.seed(seed)
+add_day0_data <- function(df_merged, noise_level = 0.05) {
   cond <- ifelse(
     array("Concentration_2", nrow(df_merged)) %in% colnames(df_merged),
     df_merged$Concentration_2 == 0, 

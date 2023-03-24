@@ -13,21 +13,21 @@
 #' @author Kamil Foltyński \email{kamil.foltynski@@contractors.roche.com}
 #'
 #' @rdname get_test_dataset_paths
-   get_test_dataset_paths <-
-     function(datasets_dir = NULL,
-              pattern = "finalMAE_") {
-       if (is.null(datasets_dir)) {
-         datasets_dir <-
-           system.file("testdata", package = "gDRtestData", mustWork = TRUE)
-       }
-       checkmate::assert_string(datasets_dir, min.chars = 1)
-       checkmate::assert_directory_exists(datasets_dir)
-       
-       checkmate::assert_string(pattern, min.chars = 1)
-       
-       epaths <- list.files(datasets_dir, pattern = pattern, full.names = TRUE)
-       enames <- gsub(pattern, "", gsub(".RDS", "", basename(epaths)))
-       structure(epaths, names = enames)
-     }
+get_test_dataset_paths <-
+  function(datasets_dir = NULL,
+           pattern = "finalMAE_") {
+   if (is.null(datasets_dir)) {
+     datasets_dir <-
+       system.file("testdata", package = "gDRtestData", mustWork = TRUE)
+   }
+   checkmate::assert_string(datasets_dir, min.chars = 1)
+   checkmate::assert_directory_exists(datasets_dir)
+   
+   checkmate::assert_string(pattern, min.chars = 1)
+   
+   epaths <- list.files(datasets_dir, pattern = pattern, full.names = TRUE)
+   enames <- gsub(pattern, "", gsub(".RDS", "", basename(epaths)))
+   structure(epaths, names = enames)
+ }
    
 

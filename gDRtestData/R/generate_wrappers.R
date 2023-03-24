@@ -13,9 +13,7 @@ generateNoNoiseRawData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, sa
   )
   
   if (save) {
-    saveArtifacts(
-      tsvObj = df_merged,
-      tsvName = "synthdata_small_no_noise_rawdata.tsv",
+    save_rds(
       rdsObj = mae,
       rdsName = "finalMAE_small_no_noise.RDS"
     )
@@ -37,9 +35,7 @@ generateNoiseRawData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save
   )
   
   if (save) {
-    saveArtifacts(
-      tsvObj = df_merged,
-      tsvName = "synthdata_small_rawdata.tsv",
+    save_rds(
       rdsObj = mae,
       rdsName = "finalMAE_small.RDS"
     )
@@ -76,9 +72,7 @@ generateLigandData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save =
   )
   
   if (save) {
-    saveArtifacts(
-      tsvObj = df_merged,
-      tsvName = "finalSE_wLigand_rawdata.tsv",
+    save_rds(
       rdsObj = mae,
       rdsName = "finalMAE_wLigand.RDS"
     )
@@ -100,9 +94,7 @@ generateMediumData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save =
   )
 
   if (save) {
-    saveArtifacts(
-      tsvObj = df_merged,
-      tsvName = "synthdata_medium_rawdata.tsv",
+    save_rds(
       rdsObj = mae,
       rdsName = "finalMAE_medium.RDS"
     )
@@ -124,9 +116,7 @@ generateManyLinesData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, sav
   )
 
   if (save) {
-    saveArtifacts(
-      tsvObj = df_merged,
-      tsvName = "synthdata_many_lines_rawdata.tsv",
+    save_rds(
       rdsObj = mae,
       rdsName = "finalMAE_many_lines.RDS"
     )
@@ -148,9 +138,7 @@ generateManyDrugsData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, sav
   )
   
   if (save) {
-    saveArtifacts(
-      tsvObj = df_merged,
-      tsvName = "synthdata_many_drugs_rawdata.tsv",
+    save_rds(
       rdsObj = mae,
       rdsName = "finalMAE_many_drugs.RDS"
     )
@@ -173,9 +161,7 @@ generateComboNoNoiseData <- function(cell_lines, drugs, e_inf, ec50, hill_coef, 
   )
   
   if (save) {
-    saveArtifacts(
-      tsvObj = df_merged,
-      tsvName = "combo_2dose_nonoise_rawdata.tsv",
+    save_rds(
       rdsObj = mae,
       rdsName = "finalMAE_combo_2dose_nonoise.RDS"
     )
@@ -201,9 +187,7 @@ generateComboNoNoiseData2 <- function(cell_lines, drugs, e_inf, ec50, hill_coef,
   )
   
   if (save) {
-    saveArtifacts(
-      tsvObj = df_merged,
-      tsvName = "synthdata_combo_2dose_nonoise2_rawdata.tsv",
+    save_rds(
       rdsObj = mae,
       rdsName = "finalMAE_combo_2dose_nonoise2.RDS"
     )
@@ -232,9 +216,7 @@ generateComboNoNoiseData3 <- function(cell_lines, drugs, e_inf, ec50, hill_coef,
   )
 
   if (save) {
-    saveArtifacts(
-      tsvObj = df_merged,
-      tsvName = "synthdata_combo_2dose_nonoise3_rawdata.tsv",
+    save_rds(
       rdsObj = mae,
       rdsName = "finalMAE_combo_2dose_nonoise3.RDS"
     )
@@ -262,9 +244,7 @@ generateComboManyDrugs <- function(cell_lines, drugs, e_inf, ec50, hill_coef, sa
   )
 
   if (save) {
-    saveArtifacts(
-      tsvObj = df_merged,
-      tsvName = "synthdata_combo_1dose_many_drugs_rawdata.tsv",
+    save_rds(
       rdsObj = mae,
       rdsName = "finalMAE_combo_1dose_many_drugs.RDS"
     )
@@ -292,9 +272,7 @@ generateComboMatrixSmall <- function(cell_lines, drugs, e_inf, ec50, hill_coef, 
   )
   
   if (save) {
-    saveArtifacts(
-      tsvObj = df_merged,
-      tsvName = "combo_matrix_small_rawdata.tsv",
+    save_rds(
       rdsObj = mae,
       rdsName = "finalMAE_combo_matrix_small.RDS"
     )
@@ -321,9 +299,7 @@ generateComboMatrix <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save 
   )
   
   if (save) {
-    saveArtifacts(
-      tsvObj = df_merged,
-      tsvName = "synthdata_combo_matrix_rawdata.tsv",
+    save_rds(
       rdsObj = mae,
       rdsName = "finalMAE_combo_matrix.RDS"
     )
@@ -364,9 +340,7 @@ generateTripleComboMatrix <- function(cell_lines, drugs, e_inf, ec50, hill_coef,
   )
   
   if (save) {
-    saveArtifacts(
-      tsvObj = df_merged,
-      tsvName = "synthdata_combo_triple_rawdata.tsv",
+    save_rds(
       rdsObj = mae,
       rdsName = "finalMAE_combo_triple.RDS"
     )
@@ -393,9 +367,7 @@ generateCodilutionSmall <- function(cell_lines, drugs, e_inf, ec50, hill_coef, s
   )
   
   if (save) {
-    saveArtifacts(
-      tsvObj = df_merged,
-      tsvName = "synthdata_combo_codilution_small_rawdata.tsv",
+    save_rds(
       rdsObj = mae,
       rdsName = "finalMAE_combo_codilution_small.RDS"
     )
@@ -422,9 +394,7 @@ generateCodilution <- function(cell_lines, drugs, e_inf, ec50, hill_coef, save =
   )
   
   if (save) {
-    saveArtifacts(
-      tsvObj = df_merged,
-      tsvName = "synthdata_combo_codilution_rawdata.tsv",
+    save_rds(
       rdsObj = mae,
       rdsName = "finalMAE_combo_codilution.RDS"
     )

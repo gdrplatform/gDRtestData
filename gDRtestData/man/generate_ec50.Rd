@@ -4,14 +4,12 @@
 \alias{generate_ec50}
 \title{Calculate EC50 metric}
 \usage{
-generate_ec50(drugs, cell_lines, seed = 2)
+generate_ec50(drugs, cell_lines)
 }
 \arguments{
 \item{drugs}{data.frame with drugs}
 
 \item{cell_lines}{data.frame with cell lines}
-
-\item{seed}{Integer specifying the seed to set}
 }
 \value{
 matrix with random EC50

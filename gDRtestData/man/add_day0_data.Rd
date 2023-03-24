@@ -4,14 +4,12 @@
 \alias{add_day0_data}
 \title{Add data with day 0}
 \usage{
-add_day0_data(df_merged, noise_level = 0.05, seed = 2)
+add_day0_data(df_merged, noise_level = 0.05)
 }
 \arguments{
 \item{df_merged}{data.frame with merged data}
 
 \item{noise_level}{numeric scalar with the level of noise added to the data}
-
-\item{seed}{Integer specifying the seed to set}
 }
 \description{
 Add data with day 0

@@ -4,14 +4,12 @@
 \alias{generate_e_inf}
 \title{Calculate E inf metric}
 \usage{
-generate_e_inf(drugs, cell_lines, seed = 2)
+generate_e_inf(drugs, cell_lines)
 }
 \arguments{
 \item{drugs}{data.frame with drugs}
 
 \item{cell_lines}{data.frame with cell lines}
-
-\item{seed}{Integer specifying the seed to set}
 }
 \value{
 matrix with random E inf
