@@ -2,7 +2,7 @@
 save_rds <- function(rdsObj, rdsName) {
   saveRDS(
     rdsObj,
-    system.file("testdata", rdsName, package = "gDRtestData"), 
+    file.path(system.file("testdata", package = "gDRtestData"), rdsName), 
     compress = "gzip"
   )
 }
