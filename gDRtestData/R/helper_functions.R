@@ -1,19 +1,9 @@
 # Helper functions
-save_tsv <- function(object, filename) {
-  write.table(
-    object, 
-    system.file("testdata", filename, package = "gDRtestData"), 
-    quote = FALSE, 
-    row.names = FALSE, 
-    sep = "\t"
-  )
-}
-
-save_rds <- function(object, filename) {
+save_rds <- function(rdsObj, rdsName) {
   saveRDS(
-    object,
-    system.file("testdata", filename, package = "gDRtestData"), 
-    compress = FALSE
+    rdsObj,
+    system.file("testdata", rdsName, package = "gDRtestData"), 
+    compress = "gzip"
   )
 }
 
@@ -63,9 +53,4 @@ changeColNames <- function(df, drugs, suffix) {
   colnames(df)[cols] <- paste0(colnames(df)[cols], suffix)
   
   df
-}
-
-saveArtifacts <- function(tsvObj, tsvName, rdsObj, rdsName) {
-  save_tsv(tsvObj, tsvName)
-  save_rds(rdsObj, rdsName) 
 }

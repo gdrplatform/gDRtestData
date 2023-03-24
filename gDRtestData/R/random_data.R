@@ -41,13 +41,11 @@ create_synthetic_drugs <- function() {
 #'
 #' @param drugs data.frame with drugs
 #' @param cell_lines data.frame with cell lines
-#' @param seed Integer specifying the seed to set
 #'
 #' @return matrix with random hill coefficient
 #' @export
 #'
-generate_hill_coef <- function(drugs, cell_lines, seed = 2) {
-  set.seed(seed)
+generate_hill_coef <- function(drugs, cell_lines) {
   hill_coef <- matrix(1.8 + stats::runif(nrow(drugs) * nrow(cell_lines)), nrow(drugs), nrow(cell_lines))
   colnames(hill_coef) <- cell_lines$clid
   rownames(hill_coef) <- drugs$Gnumber
@@ -58,13 +56,11 @@ generate_hill_coef <- function(drugs, cell_lines, seed = 2) {
 #'
 #' @param drugs data.frame with drugs
 #' @param cell_lines data.frame with cell lines
-#' @param seed Integer specifying the seed to set
 #'
 #' @return matrix with random EC50
 #' @export
 #'
-generate_ec50 <- function(drugs, cell_lines, seed = 2) {
-  set.seed(seed)
+generate_ec50 <- function(drugs, cell_lines) {
   nDrugs <- nrow(drugs)
   nCells <- nrow(cell_lines)
   ec50 <- matrix(stats::runif(nDrugs * nCells) - 0.5, nDrugs, nCells) +
@@ -93,13 +89,11 @@ generate_ec50 <- function(drugs, cell_lines, seed = 2) {
 #'
 #' @param drugs data.frame with drugs
 #' @param cell_lines data.frame with cell lines
-#' @param seed Integer specifying the seed to set
 #'
 #' @return matrix with random E inf
 #' @export
 #'
-generate_e_inf <- function(drugs, cell_lines, seed = 2) {
-  set.seed(seed)
+generate_e_inf <- function(drugs, cell_lines) {
   nDrugs <- nrow(drugs)
   nCells <- nrow(cell_lines)
   
