@@ -30,6 +30,8 @@ library(gDRwrapper)
 library(gDRcore)
 library(reshape2)
 
+set.seed(2)
+
 cell_lines <- create_synthetic_cell_lines()
 drugs <- create_synthetic_drugs()
 e_inf <- generate_e_inf(drugs, cell_lines)
