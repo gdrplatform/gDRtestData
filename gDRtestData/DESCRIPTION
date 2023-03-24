@@ -1,9 +1,17 @@
 Package: gDRtestData
 Title: gDRtestData - R data package with testing dose reponse data
-Version: 1.3.8
-Maintainer: gDR team <gdr-support-d@gene.com>
+Version: 1.3.9
 Description: R package with internal testing dose reponse data.
-Author: Aleksander Chlebowski, Bartosz Czech, Arkadiusz Gladki, Marc Hafner, Natalia Potocka, Dariusz Scigocki
+Authors@R: c(person("Aleksander", "Chlebowski", role=c("aut")),
+             person("Bartosz", "Czech", role=c("aut")),
+             person("Arkadiusz", "Gladki", role=c("aut")),
+             person("Marc", "Hafner", role=c("aut")),
+             person("Marcin", "Kamianowski", role=c("aut")),
+             person("Sergiu", "Mocanu", role=c("aut")),
+             person("Natalia", "Potocka", role=c("aut")),
+             person("Dariusz", "Scigocki", role=c("aut")),
+             person("Allison", "Voung", role=c("aut"))
+Maintainer: gDR team <gdr-support-d@gene.com>
 Imports:
     checkmate
 Suggests:
