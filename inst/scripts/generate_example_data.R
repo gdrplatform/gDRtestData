@@ -40,7 +40,7 @@ hill_coef <- generate_hill_coef(drugs, cell_lines)
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the 1st test set: no noise
 #   only for testing purpuses not displayed as example
-generateNoNoiseRawData(cell_lines, drugs, e_inf, ec50, hill_coef)
+generateNoNoiseRawData(cell_lines, drugs)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the 1st test set with noise
