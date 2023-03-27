@@ -10,7 +10,7 @@ Authors@R: c(person("Aleksander", "Chlebowski", role=c("aut")),
              person("Sergiu", "Mocanu", role=c("aut")),
              person("Natalia", "Potocka", role=c("aut")),
              person("Dariusz", "Scigocki", role=c("aut")),
-             person("Allison", "Voung", role=c("aut"))
+             person("Allison", "Voung", role=c("aut")))
 Maintainer: gDR team <gdr-support-d@gene.com>
 Imports:
     checkmate
