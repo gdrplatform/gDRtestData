@@ -1,4 +1,4 @@
-Patckage: gDRtestData
+Package: gDRtestData
 Title: gDRtestData - R data package with testing dose reponse data
 Version: 1.3.9
 Description: R package with internal testing dose reponse data.
