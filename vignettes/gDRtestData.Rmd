@@ -5,9 +5,6 @@ author:
   email: gdr-support-d@gene.com
 package: gDRtestData
 date: 
-output:
-  BiocStyle::html_document:
-    toc_float: yes
 vignette: >
   %\VignetteIndexEntry{gDRtestData}
   %\VignetteEngine{knitr::rmarkdown}
@@ -15,7 +12,6 @@ vignette: >
 ---
 
 ```{r, echo=FALSE}
-library(BiocStyle)
 library(gDRtestData)
 ```
 
