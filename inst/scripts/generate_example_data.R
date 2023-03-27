@@ -33,9 +33,6 @@ set.seed(2)
 
 cell_lines <- create_synthetic_cell_lines()
 drugs <- create_synthetic_drugs()
-e_inf <- generate_e_inf(drugs, cell_lines)
-ec50 <- generate_ec50(drugs, cell_lines)
-hill_coef <- generate_hill_coef(drugs, cell_lines)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the 1st test set: no noise
@@ -44,60 +41,60 @@ generateNoNoiseRawData(cell_lines, drugs)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the 1st test set with noise
-generateNoiseRawData(cell_lines, drugs, e_inf, ec50, hill_coef)
+generateNoiseRawData(cell_lines, drugs)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the 1st test set with ligand as reference
-generateLigandData(cell_lines, drugs, e_inf, ec50, hill_coef)
+generateLigandData(cell_lines, drugs)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the 2nd (medium size) test set with single agent
-generateMediumData(cell_lines, drugs, e_inf, ec50, hill_coef)
+generateMediumData(cell_lines, drugs)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the 3rd (many lines) test set with single agent
-generateManyLinesData(cell_lines, drugs, e_inf, ec50, hill_coef)
+generateManyLinesData(cell_lines, drugs)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the test set with single agent (many drugs)
-generateManyDrugsData(cell_lines, drugs, e_inf, ec50, hill_coef)
+generateManyDrugsData(cell_lines, drugs)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the test set with combo (two single dose)
 #   co-treatment drug is only as DrugName_2
-generateComboNoNoiseData(cell_lines, drugs, e_inf, ec50, hill_coef)
+generateComboNoNoiseData(cell_lines, drugs)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the test set with combo (two single dose)
 #   co-treatment drug is also as single agent as DrugName
-generateComboNoNoiseData2(cell_lines, drugs, e_inf, ec50, hill_coef)
+generateComboNoNoiseData2(cell_lines, drugs)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the 3rd test set with combo (two single dose)
 #   co-treatment drug does NOT have single agent response
-generateComboNoNoiseData3(cell_lines, drugs, e_inf, ec50, hill_coef)
+generateComboNoNoiseData3(cell_lines, drugs)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the test set with combo (unique dose; many drug)
-generateComboManyDrugs(cell_lines, drugs, e_inf, ec50, hill_coef)
+generateComboManyDrugs(cell_lines, drugs)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data with combo matrix (small, no noise)
-generateComboMatrixSmall(cell_lines, drugs, e_inf, ec50, hill_coef)
+generateComboMatrixSmall(cell_lines, drugs)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data with combo matrix (mid-size)
-generateComboMatrix(cell_lines, drugs, e_inf, ec50, hill_coef)
+generateComboMatrix(cell_lines, drugs)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data with triple combo  (no noise)
-generateTripleComboMatrix(cell_lines, drugs, e_inf, ec50, hill_coef)
+generateTripleComboMatrix(cell_lines, drugs)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data with combo co-dilution (small)
-generateCodilutionSmall(cell_lines, drugs, e_inf, ec50, hill_coef)
+generateCodilutionSmall(cell_lines, drugs)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the test set with combo (co-dilution)
-generateCodilution(cell_lines, drugs, e_inf, ec50, hill_coef)
+generateCodilution(cell_lines, drugs)
 
