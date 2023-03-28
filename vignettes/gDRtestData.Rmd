@@ -1,0 +1,35 @@
+---
+title: Using gDRtestData
+author:
+- name: Bartosz Czech
+  email: gdr-support-d@gene.com
+package: gDRtestData
+date: 
+vignette: >
+  %\VignetteIndexEntry{gDRtestData}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, echo=FALSE}
+library(gDRtestData)
+```
+
+# Overview
+
+The `gDRtestData` package is intended to store and generate example data that can be use through gDR.
+
+# Use Cases
+
+## Data generation
+All key function can be found in `R/generate_wrappers.R` function. In `inst/scripts` you can find a script `generate_example_data.R` showing how to generate and process testing data.
+
+
+## Package installation
+The function `installAllDeps` assists in installing package dependencies.  
+
+# SessionInfo {-}
+
+```{r sessionInfo}
+sessionInfo()
+```
