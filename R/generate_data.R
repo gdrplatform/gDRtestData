@@ -51,7 +51,7 @@ add_concentration <- function(df_layout, concentrations = 10 ^ (seq(-3, 1, 0.5))
 #' 
 #' cell_lines <- create_synthetic_cell_lines()
 #' drugs <- create_synthetic_drugs()
-#' prepareData(cell_lines[seq_len(2), ], drugs[seq_len(4), ])
+#' gDRtestData:::prepareData(cell_lines[seq_len(2), ], drugs[seq_len(4), ])
 #' 
 #'
 #' @return data.frame with response data
@@ -124,7 +124,7 @@ introduceGNum <- function(df, e_inf, ec50, hill_coef, suffix) {
 #' 
 #' cell_lines <- create_synthetic_cell_lines()
 #' drugs <- create_synthetic_drugs()
-#' data <- prepareData(cell_lines[seq_len(2), ], drugs[seq_len(4), ])
+#' data <- gDRtestData:::prepareData(cell_lines[seq_len(2), ], drugs[seq_len(4), ])
 #' data$Duration <- 72
 #' data$ReadoutValue <- 0
 #' add_day0_data(data)
