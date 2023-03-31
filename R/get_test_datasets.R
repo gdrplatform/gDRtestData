@@ -11,7 +11,7 @@
 #' 
 #' @examples
 #' 
-#' get_test_dataset_paths("inst/testdata")
+#' get_test_dataset_paths("gDRtestData/testdata")
 #' 
 #' @export
 #'
