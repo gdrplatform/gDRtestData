@@ -21,7 +21,7 @@ Returns named vector of absolute paths to test datasets.
 }
 \examples{
 
-get_test_dataset_paths("inst/testdata")
+get_test_dataset_paths("gDRtestData/testdata")
 
 }
 \author{
