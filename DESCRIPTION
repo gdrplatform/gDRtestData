@@ -6,7 +6,7 @@ Description: R package with internal dose-response test data. Package provides f
   with MAE data processed by gDR.
 Authors@R: c(person("Aleksander", "Chlebowski", role=c("aut")),
              person("Bartosz", "Czech", role=c("aut")),
-             person("Arkadiusz", "Gladki", role=c("cre", "ctb"), email="gladki.arkadiusz@gmail.com"),
+             person("Arkadiusz", "Gladki", role=c("cre", "aut"), email="gladki.arkadiusz@gmail.com"),
              person("Marc", "Hafner", role=c("aut")),
              person("Marcin", "Kamianowski", role=c("aut")),
              person("Sergiu", "Mocanu", role=c("aut")),
