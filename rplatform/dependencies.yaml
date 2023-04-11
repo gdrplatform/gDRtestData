@@ -6,7 +6,7 @@ pkgs:
     subdir: gDRutils
     source: GITHUB
   gDRstyle:
-    ver: '>=0.99.0'
+    ver: '>=0.99.7'
     url: gdrplatform/gDRstyle
     ref: main
     subdir: ~
