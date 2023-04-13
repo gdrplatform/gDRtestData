@@ -14,9 +14,6 @@ NULL
 #' @return data.frame
 NULL
 
-#' gDRtestData - R data package with testing dose reponse data
-#' @name gDRtestData
+
 #' @importFrom utils write.table
-#' @return \code{NULL}
-#' 
 NULL
