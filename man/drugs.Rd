@@ -4,6 +4,9 @@
 \name{drugs}
 \alias{drugs}
 \title{Drugs}
+\value{
+data.frame
+}
 \description{
 Drugs
 }

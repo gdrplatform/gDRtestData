@@ -3,6 +3,9 @@
 \name{gDRtestData}
 \alias{gDRtestData}
 \title{gDRtestData - R data package with testing dose reponse data}
+\value{
+\code{NULL}
+}
 \description{
 gDRtestData - R data package with testing dose reponse data
 }
