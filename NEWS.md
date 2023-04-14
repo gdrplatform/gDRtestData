@@ -1,5 +1,8 @@
+# 0.99.3
+  - Update testdata
+
 # 0.99.2
-  - Update test data
+  - Improve documentation (Bioc compatibility)
 
 # 0.99.1
   - Update maintainer
