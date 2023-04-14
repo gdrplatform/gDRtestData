@@ -37,64 +37,79 @@ drugs <- create_synthetic_drugs()
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the 1st test set: no noise
 #   only for testing purpuses not displayed as example
+set.seed(2)
 generateNoNoiseRawData(cell_lines, drugs)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the 1st test set with noise
+set.seed(2)
 generateNoiseRawData(cell_lines, drugs)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the 1st test set with ligand as reference
+set.seed(2)
 generateLigandData(cell_lines, drugs)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the 2nd (medium size) test set with single agent
+set.seed(2)
 generateMediumData(cell_lines, drugs)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the 3rd (many lines) test set with single agent
+set.seed(2)
 generateManyLinesData(cell_lines, drugs)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the test set with single agent (many drugs)
+set.seed(2)
 generateManyDrugsData(cell_lines, drugs)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the test set with combo (two single dose)
 #   co-treatment drug is only as DrugName_2
+set.seed(2)
 generateComboNoNoiseData(cell_lines, drugs)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the test set with combo (two single dose)
 #   co-treatment drug is also as single agent as DrugName
+set.seed(2)
 generateComboNoNoiseData2(cell_lines, drugs)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the 3rd test set with combo (two single dose)
 #   co-treatment drug does NOT have single agent response
+set.seed(2)
 generateComboNoNoiseData3(cell_lines, drugs)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the test set with combo (unique dose; many drug)
+set.seed(2)
 generateComboManyDrugs(cell_lines, drugs)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data with combo matrix (small, no noise)
+set.seed(2)
 generateComboMatrixSmall(cell_lines, drugs)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data with combo matrix (mid-size)
+set.seed(2)
 generateComboMatrix(cell_lines, drugs)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data with triple combo  (no noise)
+set.seed(2)
 generateTripleComboMatrix(cell_lines, drugs)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data with combo co-dilution (small)
+set.seed(2)
 generateCodilutionSmall(cell_lines, drugs)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the test set with combo (co-dilution)
+set.seed(2)
 generateCodilution(cell_lines, drugs)
 
