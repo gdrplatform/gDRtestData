@@ -4,6 +4,9 @@
 \name{cell_lines}
 \alias{cell_lines}
 \title{Cell lines}
+\value{
+data.frame
+}
 \description{
 Cell lines
 }
