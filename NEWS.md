@@ -1,3 +1,6 @@
+# 0.99.3
+  - Update testdata
+
 # 0.99.2
   - Improve documentation (Bioc compatibility)
 
