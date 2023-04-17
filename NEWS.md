@@ -1,3 +1,6 @@
+# 0.99.4
+  - Add R 4.2 as a dependency
+
 # 0.99.3
   - Update testdata
 
