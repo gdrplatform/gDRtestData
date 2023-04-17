@@ -1,4 +1,7 @@
 # 0.99.2
+  - Changed data.frame to data.table.
+  
+# 0.99.2
   - Improve documentation (Bioc compatibility)
 
 # 0.99.1
