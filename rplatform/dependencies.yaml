@@ -1,20 +1,7 @@
 pkgs:
-  gDRutils:
-    ver: '>=0.99.0'
-    url: gdrplatform/gDRutils
-    ref: master
-    subdir: gDRutils
-    source: GITHUB
   gDRstyle:
     ver: '>=0.99.7'
     url: gdrplatform/gDRstyle
     ref: main
     subdir: ~
-    source: GITHUB
-  gDRcore:
-    ver: '>=0.99.0'
-    url: gdrplatform/gDRcore
-    ref: master
-    subdir: gDRcore
-    host: 'api.github.com'
     source: GITHUB
