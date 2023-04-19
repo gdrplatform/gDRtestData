@@ -1,5 +1,11 @@
-# 0.99.5
+# 0.99.7
   - Update testdata
+  
+# 0.99.6
+  - Moved wrappers to gDRcore
+  
+# 0.99.5
+  - Update packages version
 
 # 0.99.4
   - Add R 4.2 as a dependency
