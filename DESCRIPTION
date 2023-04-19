@@ -20,7 +20,7 @@ Imports:
     checkmate,
     utils
 Suggests:
-    gDRstyle (>= 0.99.10),
+    gDRstyle (>= 0.99.11),
     knitr,
     reshape2,
     rmarkdown,
