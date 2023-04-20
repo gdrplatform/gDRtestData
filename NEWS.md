@@ -1,3 +1,6 @@
+# 0.99.9
+- fix warning in Bioc check
+
 # 0.99.8
 - switch to OSI license
 
