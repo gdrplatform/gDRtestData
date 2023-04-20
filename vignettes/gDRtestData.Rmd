@@ -22,7 +22,7 @@ The `gDRtestData` package is intended to store and generate example data that ca
 # Use Cases
 
 ## Data generation
-All key function can be found in `R/generate_wrappers.R` function. In `inst/scripts` you can find a script `generate_example_data.R` showing how to generate and process testing data.
+All key functions can be found in `gDRcore/R/generate_wrappers.R`. In `inst/scripts` you can find a script `generate_example_data.R` showing how to generate and process testing data.
 
 
 ## Package installation
