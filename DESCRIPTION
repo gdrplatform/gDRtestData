@@ -20,6 +20,7 @@ Imports:
     checkmate,
     utils
 Suggests:
+    data.table,
     gDRstyle (>= 0.99.11),
     knitr,
     reshape2,
