@@ -56,16 +56,6 @@ set.seed(2)
 generateMediumData(cell_lines, drugs)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# generate the data for the 3rd (many lines) test set with single agent
-set.seed(2)
-generateManyLinesData(cell_lines, drugs)
-
-#### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# generate the data for the test set with single agent (many drugs)
-set.seed(2)
-generateManyDrugsData(cell_lines, drugs)
-
-#### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data for the test set with combo (two single dose)
 #   co-treatment drug is only as DrugName_2
 set.seed(2)
@@ -82,11 +72,6 @@ generateComboNoNoiseData2(cell_lines, drugs)
 #   co-treatment drug does NOT have single agent response
 set.seed(2)
 generateComboNoNoiseData3(cell_lines, drugs)
-
-#### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# generate the data for the test set with combo (unique dose; many drug)
-set.seed(2)
-generateComboManyDrugs(cell_lines, drugs)
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate the data with combo matrix (small, no noise)
