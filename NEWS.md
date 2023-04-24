@@ -1,3 +1,6 @@
+# 0.99.10
+- removing redundant files
+
 # 0.99.9
 - fix warning in Bioc check
 
