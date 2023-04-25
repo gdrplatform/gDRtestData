@@ -1,6 +1,15 @@
-# 0.99.8
-  - Changed data.frame to data.table.
+# 0.99.11
+- Changed data.frame to data.table.
   
+# 0.99.10
+- removing redundant files
+
+# 0.99.9
+- fix warning in Bioc check
+
+# 0.99.8
+- switch to OSI license
+
 # 0.99.7
   - Update testdata
   
