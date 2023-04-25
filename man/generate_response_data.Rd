@@ -7,13 +7,13 @@
 generate_response_data(df_layout, noise_level = 0.1)
 }
 \arguments{
-\item{df_layout}{data.frame that should contains the cell line,
+\item{df_layout}{data.table that should contains the cell line,
 drug, concentration, and replicate columns along with the annotations that needs to be propagated}
 
 \item{noise_level}{numeric scalar with the level of noise added to the data}
 }
 \value{
-data.frame with response data
+data.table with response data
 }
 \description{
 Generate response data
