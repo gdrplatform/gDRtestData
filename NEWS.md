@@ -1,3 +1,6 @@
+# 0.99.11
+- Changed data.frame to data.table.
+  
 # 0.99.10
 - removing redundant files
 

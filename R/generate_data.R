@@ -1,6 +1,6 @@
 #' Add data replicates
 #'
-#' @param df_layout data.frame that should contains the cell line,
+#' @param df_layout data.table that should contains the cell line,
 #' drug, concentration, and replicate columns along with the annotations that needs to be propagated
 #'
 #'
@@ -10,7 +10,7 @@
 #' cell_lines <- create_synthetic_cell_lines()
 #' add_data_replicates(cell_lines)
 #' 
-#' @return data.frame with replicates
+#' @return data.table with replicates
 #' @export
 #'
 add_data_replicates <- function(df_layout) {
@@ -22,7 +22,7 @@ add_data_replicates <- function(df_layout) {
 
 #' Add concentrations
 #'
-#' @param df_layout data.frame that should contains the cell line,
+#' @param df_layout data.table that should contains the cell line,
 #' drug, concentration, and replicate columns along with the annotations that needs to be propagated
 #' @param concentrations vector of numeric concentrations that will be added to df_layout
 #'
@@ -31,18 +31,20 @@ add_data_replicates <- function(df_layout) {
 #' cell_lines <- create_synthetic_cell_lines()
 #' add_concentration(cell_lines)
 #' 
-#' @return data.frame with concentrations
+#' @return data.table with concentrations
 #' @export
 #'
 add_concentration <- function(df_layout, concentrations = 10 ^ (seq(-3, 1, 0.5))) {
-  df_layout <- merge(df_layout, data.frame(Concentration = c(0, 0, concentrations)), by = NULL)
+  df_layout <- data.table::setDT(merge(as.data.frame(df_layout),
+                     data.table::data.table(Concentration = c(0, 0, concentrations)),
+                     by = NULL))
   df_layout
 }
 
 
 #' Generate response data
 #'
-#' @param df_layout data.frame that should contains the cell line,
+#' @param df_layout data.table that should contains the cell line,
 #' drug, concentration, and replicate columns along with the annotations that needs to be propagated
 #' @param noise_level numeric scalar with the level of noise added to the data
 #'
@@ -54,10 +56,11 @@ add_concentration <- function(df_layout, concentrations = 10 ^ (seq(-3, 1, 0.5))
 #' gDRtestData:::prepareData(cell_lines[seq_len(2), ], drugs[seq_len(4), ])
 #' 
 #'
-#' @return data.frame with response data
+#' @return data.table with response data
 #' @export
 #'
 generate_response_data <- function(df_layout, noise_level = 0.1) {
+  
   drugs <- create_synthetic_drugs()
   cell_lines <- create_synthetic_cell_lines()
   hill_coef <- generate_hill_coef(drugs, cell_lines)
@@ -117,7 +120,7 @@ introduceGNum <- function(df, e_inf, ec50, hill_coef, suffix) {
 
 #' Add data with day 0
 #'
-#' @param df_merged data.frame with merged data
+#' @param df_merged data.table with merged data
 #' @param noise_level numeric scalar with the level of noise added to the data
 #'
 #' @examples
@@ -129,7 +132,7 @@ introduceGNum <- function(df, e_inf, ec50, hill_coef, suffix) {
 #' data$ReadoutValue <- 0
 #' add_day0_data(data)
 #'
-#' @return data.frame with day0 data
+#' @return data.table with day0 data
 #' @export
 #'
 add_day0_data <- function(df_merged, noise_level = 0.05) {
