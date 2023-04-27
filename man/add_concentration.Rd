@@ -7,13 +7,13 @@
 add_concentration(df_layout, concentrations = 10^(seq(-3, 1, 0.5)))
 }
 \arguments{
-\item{df_layout}{data.frame that should contains the cell line,
+\item{df_layout}{data.table that should contains the cell line,
 drug, concentration, and replicate columns along with the annotations that needs to be propagated}
 
 \item{concentrations}{vector of numeric concentrations that will be added to df_layout}
 }
 \value{
-data.frame with concentrations
+data.table with concentrations
 }
 \description{
 Add concentrations

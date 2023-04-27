@@ -7,11 +7,11 @@
 add_data_replicates(df_layout)
 }
 \arguments{
-\item{df_layout}{data.frame that should contains the cell line,
+\item{df_layout}{data.table that should contains the cell line,
 drug, concentration, and replicate columns along with the annotations that needs to be propagated}
 }
 \value{
-data.frame with replicates
+data.table with replicates
 }
 \description{
 Add data replicates

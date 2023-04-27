@@ -7,7 +7,7 @@
 #' 
 #' @export
 create_synthetic_cell_lines <- function() {
-  cell_lines <- data.frame(
+  cell_lines <- data.table::data.table(
     clid = paste0("CL000", 11:25),
     CellLineName = paste0("cellline_", LETTERS[seq_len(15)]),
     Tissue = sort(paste0("tissue_", array(letters[c(24, 24:26, 26)], 15))),
@@ -29,7 +29,7 @@ create_synthetic_cell_lines <- function() {
 #' 
 #' @export
 create_synthetic_drugs <- function() {
-  drugs <- data.frame(
+  drugs <- data.table::data.table(
     Gnumber = paste0("G00", 11:50),
     DrugName = paste0("drug_", 11:50),
     drug_moa = sort(paste0("moa_", array(LETTERS[c(1, seq_len(6), 6)], 40)))

@@ -7,12 +7,12 @@
 add_day0_data(df_merged, noise_level = 0.05)
 }
 \arguments{
-\item{df_merged}{data.frame with merged data}
+\item{df_merged}{data.table with merged data}
 
 \item{noise_level}{numeric scalar with the level of noise added to the data}
 }
 \value{
-data.frame with day0 data
+data.table with day0 data
 }
 \description{
 Add data with day 0
