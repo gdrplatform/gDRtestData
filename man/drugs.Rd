@@ -5,10 +5,15 @@
 \alias{drugs}
 \title{Drugs}
 \value{
-data.frame
+data.table
 }
 \description{
 Drugs
+}
+\examples{
+path <- system.file("annotation_data", "drugs.csv", package = "gDRtestData")
+data.table::fread(file = path)
+
 }
 \keyword{data}
 \keyword{internal}
