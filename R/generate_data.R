@@ -35,7 +35,8 @@ add_data_replicates <- function(df_layout) {
 #' @export
 #'
 add_concentration <- function(df_layout, concentrations = 10 ^ (seq(-3, 1, 0.5))) {
-  df_layout <- data.table::setDT(merge(as.data.frame(df_layout),
+  df_layout <- data.table::setDT(
+    merge.data.frame(df_layout,
                      data.table::data.table(Concentration = c(0, 0, concentrations)),
                      by = NULL))
   df_layout
@@ -66,7 +67,7 @@ generate_response_data <- function(df_layout, noise_level = 0.1) {
   hill_coef <- generate_hill_coef(drugs, cell_lines)
   ec50 <- generate_ec50(drugs, cell_lines)
   e_inf <- generate_e_inf(drugs, cell_lines)
-
+  
   df_layout$ReadoutValue <- round(100 * pmax(
     getReadoutCoef(df_layout, e_inf, ec50, hill_coef) +
       (noise_level * stats::runif(nrow(df_layout)) - (noise_level / 2)),  # add some noise
@@ -75,15 +76,15 @@ generate_response_data <- function(df_layout, noise_level = 0.1) {
   df_layout$BackgroundValue <- 0
   df_layout$Duration <- 72
   df_layout <- introduceVehicle(df_layout)
-
+  
   if ("Gnumber_2" %in% colnames(df_layout)) { # combo data
     df_layout <- introduceGNum(df_layout, e_inf, ec50, hill_coef, "_2")
   }
-
+  
   if ("Gnumber_3" %in% colnames(df_layout)) { # combo data
     df_layout <- introduceGNum(df_layout, e_inf, ec50, hill_coef, "_3")
   }
-
+  
   df_layout
 }
 

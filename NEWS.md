@@ -1,26 +1,29 @@
+# 0.99.12
+  - fix related with data.table
+
 # 0.99.11
-- Changed data.frame to data.table.
+  - changed data.frame to data.table
   
 # 0.99.10
-- removing redundant files
+  - removing redundant files
 
 # 0.99.9
-- fix warning in Bioc check
+  - fix warning in Bioc check
 
 # 0.99.8
-- switch to OSI license
+  - switch to OSI license
 
 # 0.99.7
-  - Update testdata
+  - update testdata
   
 # 0.99.6
-  - Moved wrappers to gDRcore
+  - moved wrappers to gDRcore
   
 # 0.99.5
-  - Update packages version
+  - update packages version
 
 # 0.99.4
-  - Add R 4.2 as a dependency
+  - add R 4.2 as a dependency
 
 # 0.99.3
   - Update testdata

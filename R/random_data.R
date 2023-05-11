@@ -1,6 +1,6 @@
-#' Create data.frame with synthetic cell lines
+#' Create data.table with synthetic cell lines
 #'
-#' @return data.frame with synthetic cell lines
+#' @return data.table with synthetic cell lines
 #'
 #' @examples
 #' create_synthetic_cell_lines()
@@ -21,9 +21,9 @@ create_synthetic_cell_lines <- function() {
   cell_lines
 }
 
-#' Create data.frame with synthetic drugs
+#' Create data.table with synthetic drugs
 #'
-#' @return data.frame with synthetic drugs
+#' @return data.table with synthetic drugs
 #' @examples
 #' create_synthetic_drugs()
 #' 
@@ -44,12 +44,12 @@ create_synthetic_drugs <- function() {
 
 #' Generate hill coefficient
 #'
-#' @param drugs data.frame with drugs
-#' @param cell_lines data.frame with cell lines
+#' @param drugs data.table with drugs
+#' @param cell_lines data.table with cell lines
 #'
 #' @return matrix with random hill coefficient
 #' @examples
-#' generate_hill_coef(create_synthetic_drugs(), create_synthetic_cell_lines())
+#' generate_hill_coef(create_synthetic_drugs(), create_synthetic_cell_lines()) 
 #' 
 #' @export
 generate_hill_coef <- function(drugs, cell_lines) {
@@ -61,8 +61,8 @@ generate_hill_coef <- function(drugs, cell_lines) {
 
 #' Calculate EC50 metric
 #'
-#' @param drugs data.frame with drugs
-#' @param cell_lines data.frame with cell lines
+#' @param drugs data.table with drugs
+#' @param cell_lines data.table with cell lines
 #'
 #' @return matrix with random EC50
 #' @examples
@@ -70,6 +70,9 @@ generate_hill_coef <- function(drugs, cell_lines) {
 #' 
 #' @export
 generate_ec50 <- function(drugs, cell_lines) {
+  checkmate::assert_data_table(drugs)
+  checkmate::assert_data_table(cell_lines)
+  
   nDrugs <- nrow(drugs)
   nCells <- nrow(cell_lines)
   ec50 <- matrix(stats::runif(nDrugs * nCells) - 0.5, nDrugs, nCells) +
@@ -96,8 +99,8 @@ generate_ec50 <- function(drugs, cell_lines) {
 
 #' Calculate E inf metric
 #'
-#' @param drugs data.frame with drugs
-#' @param cell_lines data.frame with cell lines
+#' @param drugs data.table with drugs
+#' @param cell_lines data.table with cell lines
 #'
 #' @return matrix with random E inf
 #' @examples
@@ -105,6 +108,9 @@ generate_ec50 <- function(drugs, cell_lines) {
 #' 
 #' @export
 generate_e_inf <- function(drugs, cell_lines) {
+  checkmate::assert_data_table(drugs)
+  checkmate::assert_data_table(cell_lines)
+  
   nDrugs <- nrow(drugs)
   nCells <- nrow(cell_lines)
   
