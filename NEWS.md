@@ -1,3 +1,6 @@
+# 0.99.12
+- Update testdata as per new data model
+
 # 0.99.11
 - Changed data.frame to data.table.
   
