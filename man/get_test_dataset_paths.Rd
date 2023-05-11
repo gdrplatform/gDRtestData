@@ -21,7 +21,9 @@ Returns named vector of absolute paths to test datasets.
 }
 \examples{
 
-get_test_dataset_paths("gDRtestData/testdata")
+get_test_dataset_paths()
+path <- system.file("testdata", package = "gDRtestData", mustWork = TRUE)
+get_test_dataset_paths(path)
 
 }
 \author{

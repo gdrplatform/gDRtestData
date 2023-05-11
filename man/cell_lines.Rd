@@ -5,10 +5,15 @@
 \alias{cell_lines}
 \title{Cell lines}
 \value{
-data.frame
+data.table
 }
 \description{
 Cell lines
+}
+\examples{
+path <- system.file("annotation_data", "cell_lines.csv", package = "gDRtestData")
+data.table::fread(file = path)
+
 }
 \keyword{data}
 \keyword{internal}

@@ -2,15 +2,15 @@
 % Please edit documentation in R/random_data.R
 \name{create_synthetic_cell_lines}
 \alias{create_synthetic_cell_lines}
-\title{Create data.frame with synthetic cell lines}
+\title{Create data.table with synthetic cell lines}
 \usage{
 create_synthetic_cell_lines()
 }
 \value{
-data.frame with synthetic cell lines
+data.table with synthetic cell lines
 }
 \description{
-Create data.frame with synthetic cell lines
+Create data.table with synthetic cell lines
 }
 \examples{
 create_synthetic_cell_lines()
