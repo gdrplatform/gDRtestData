@@ -1,3 +1,6 @@
+# 0.99.13
+- Update testdata as per changes in excess assays
+
 # 0.99.12
 - Update testdata as per new data model
 
