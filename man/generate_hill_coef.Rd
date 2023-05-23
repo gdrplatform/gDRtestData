@@ -7,9 +7,9 @@
 generate_hill_coef(drugs, cell_lines)
 }
 \arguments{
-\item{drugs}{data.frame with drugs}
+\item{drugs}{data.table with drugs}
 
-\item{cell_lines}{data.frame with cell lines}
+\item{cell_lines}{data.table with cell lines}
 }
 \value{
 matrix with random hill coefficient
@@ -18,6 +18,6 @@ matrix with random hill coefficient
 Generate hill coefficient
 }
 \examples{
-generate_hill_coef(create_synthetic_drugs(), create_synthetic_cell_lines())
+generate_hill_coef(create_synthetic_drugs(), create_synthetic_cell_lines()) 
 
 }

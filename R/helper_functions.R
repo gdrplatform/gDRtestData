@@ -8,7 +8,7 @@ save_rds <- function(rdsObj, rdsName) {
 }
 
 prepareData <- function(cell_lines, drugs, conc = 10 ^ (seq(-3, 1, 0.5))) {
-  df_layout <- data.table::setDT(merge(as.data.frame(cell_lines), as.data.frame(drugs), by = NULL))
+  df_layout <- data.table::setDT(merge.data.frame(cell_lines, drugs, by = NULL))
   df_layout <- add_data_replicates(df_layout)
   add_concentration(df_layout, conc)
 }

@@ -7,9 +7,9 @@
 generate_ec50(drugs, cell_lines)
 }
 \arguments{
-\item{drugs}{data.frame with drugs}
+\item{drugs}{data.table with drugs}
 
-\item{cell_lines}{data.frame with cell lines}
+\item{cell_lines}{data.table with cell lines}
 }
 \value{
 matrix with random EC50

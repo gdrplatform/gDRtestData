@@ -2,15 +2,15 @@
 % Please edit documentation in R/random_data.R
 \name{create_synthetic_drugs}
 \alias{create_synthetic_drugs}
-\title{Create data.frame with synthetic drugs}
+\title{Create data.table with synthetic drugs}
 \usage{
 create_synthetic_drugs()
 }
 \value{
-data.frame with synthetic drugs
+data.table with synthetic drugs
 }
 \description{
-Create data.frame with synthetic drugs
+Create data.table with synthetic drugs
 }
 \examples{
 create_synthetic_drugs()
