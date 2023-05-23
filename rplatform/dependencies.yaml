@@ -1,6 +1,6 @@
 pkgs:
   gDRstyle:
-    ver: '>=0.99.11'
+    ver: '>=0.99.16'
     url: gdrplatform/gDRstyle
     ref: main
     subdir: ~

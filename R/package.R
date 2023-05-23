@@ -3,7 +3,11 @@
 #' @name cell_lines
 #' @docType data
 #' @keywords data internal
-#' @return data.frame
+#' @examples
+#' path <- system.file("annotation_data", "cell_lines.csv", package = "gDRtestData")
+#' data.table::fread(file = path)
+#' 
+#' @return data.table
 NULL
 
 #' Drugs
@@ -11,9 +15,9 @@ NULL
 #' @name drugs
 #' @docType data
 #' @keywords data internal
-#' @return data.frame
-NULL
-
-
-#' @importFrom utils write.table
+#' @examples 
+#' path <- system.file("annotation_data", "drugs.csv", package = "gDRtestData")
+#' data.table::fread(file = path)
+#' 
+#' @return data.table
 NULL
