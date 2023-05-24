@@ -1,10 +1,7 @@
 ---
-title: Using gDRtestData
-author:
-- name: Bartosz Czech
-  email: gdr-support-d@gene.com
-package: gDRtestData
-date: 
+title: "gDRtestData"
+author: "gDR team"
+output: BiocStyle::html_document
 vignette: >
   %\VignetteIndexEntry{gDRtestData}
   %\VignetteEngine{knitr::rmarkdown}
@@ -17,7 +14,7 @@ library(gDRtestData)
 
 # Overview
 
-The `gDRtestData` package is intended to store and generate example data that can be use through gDR.
+The `gDRtestData` package is intended to store and generate example data that can be used through gDR.
 
 # Use Cases
 
