@@ -1,3 +1,6 @@
+# 0.99.15
+  - format the vignette with BiocStyle
+
 # 0.99.14
   - fix related with data.table
 
