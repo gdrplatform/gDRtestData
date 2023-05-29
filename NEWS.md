@@ -1,3 +1,6 @@
+# 0.99.16
+  - update datasets
+
 # 0.99.15
   - format the vignette with BiocStyle
 
