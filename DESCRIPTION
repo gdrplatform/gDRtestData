@@ -22,6 +22,7 @@ Suggests:
     data.table,
     gDRstyle (>= 0.99.16),
     knitr,
+    qs,
     reshape2,
     rmarkdown,
     SummarizedExperiment,
