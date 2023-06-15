@@ -1,3 +1,6 @@
+# 0.99.17
+  - replaced rds files with qs
+
 # 0.99.16
   - update datasets
 
