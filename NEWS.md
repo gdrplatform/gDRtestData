@@ -1,3 +1,6 @@
+# 0.99.17
+  - switch from merge to [[
+
 # 0.99.16
   - update datasets
 
