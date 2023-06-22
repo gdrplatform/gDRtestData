@@ -1,3 +1,6 @@
+# 0.99.18
+  - replaced rds files with qs
+
 # 0.99.17
   - switch from merge to [[
 

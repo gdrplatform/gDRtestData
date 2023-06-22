@@ -4,7 +4,7 @@
 #'
 #' @param datasets_dir path to directory with datasets (default \code{NULL}).
 #' If \code{NULL}, then \code{inst/testdata} directory from \code{gDRtestData} will be used.
-#' @param pattern used to: (1) filter to RDS files from the dataset_dir path
+#' @param pattern used to: (1) filter to qs files from the dataset_dir path
 #'        and (2) prettify the labels of the files
 #'
 #' @return named vector of absolute paths
@@ -33,7 +33,7 @@ get_test_dataset_paths <-
    checkmate::assert_string(pattern, min.chars = 1)
    
    epaths <- list.files(datasets_dir, pattern = pattern, full.names = TRUE)
-   enames <- gsub(pattern, "", gsub(".RDS", "", basename(epaths)))
+   enames <- gsub(pattern, "", gsub(".qs", "", basename(epaths)))
    structure(epaths, names = enames)
  }
    
