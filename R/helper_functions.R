@@ -1,8 +1,8 @@
 # Helper functions
-save_rds <- function(rdsObj, rdsName) {
-  saveRDS(
-    rdsObj,
-    file.path(system.file("testdata", package = "gDRtestData"), rdsName), 
+save_qs <- function(qsObj, qsName) {
+  qs::qsave(
+    qsObj,
+    file.path(system.file("testdata", package = "gDRtestData"), qsName), 
     compress = "gzip"
   )
 }
