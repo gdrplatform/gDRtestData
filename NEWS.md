@@ -1,3 +1,6 @@
+# 0.99.19
+  - BiocStyle added to dependency
+
 # 0.99.18
   - replaced rds files with qs
 
