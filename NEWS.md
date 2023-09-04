@@ -1,3 +1,6 @@
+# 0.99.20
+  - update testdata
+
 # 0.99.19
   - BiocStyle added to dependency
 
