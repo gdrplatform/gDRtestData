@@ -15,7 +15,7 @@
 #' 
 #' @export
 prepareData <- function(cell_lines, drugs, conc = 10 ^ (seq(-3, 1, 0.5))) {
-  df_layout <- drugs[, as.list(cell_lines), names(drugs)]
+  df_layout <- data.table::as.data.table(merge.data.frame(cell_lines, drugs, by = NULL))
   df_layout <- add_data_replicates(df_layout)
   add_concentration(df_layout, conc)
 }
