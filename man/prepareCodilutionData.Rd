@@ -7,20 +7,9 @@
 prepareCodilutionData(df, df_layout)
 }
 \arguments{
-\item{cell_lines}{data.table with cell line info}
+\item{df}{data.table object with experiment data}
 
-\item{drugs}{data.table with drug info}
-
-\item{drugsIdx1}{numeric vector of ids for primary drug}
-
-\item{drugsIdx2}{numeric vector of ids for secondary drug}
-
-\item{concentration}{numeric vector of doses}
-
-\item{noise}{number indicating level of noise}
-
-\item{modifyDf2}{Boolean indicating if the table should me modified to keep reverse
-single agent data}
+\item{df_layout}{data.table object with experiment design containg drugs and cell line data}
 }
 \value{
 data.table with input data for testing

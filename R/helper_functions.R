@@ -84,15 +84,8 @@ prepareComboMergedData <- function(cell_lines,
 #' 
 #' Create data.table with input codilution data containg noise for testing purpses 
 #'
-#' @param cell_lines data.table with cell line info
-#' @param drugs data.table with drug info
-#' @param drugsIdx1 numeric vector of ids for primary drug
-#' @param drugsIdx2 numeric vector of ids for secondary drug
-#' @param concentration numeric vector of doses
-#' @param noise number indicating level of noise
-#' @param modifyDf2 Boolean indicating if the table should me modified to keep reverse
-#' single agent data
-#'
+#' @param df data.table object with experiment data
+#' @param df_layout data.table object with experiment design containg drugs and cell line data
 #' @return data.table with input data for testing
 #' 
 #' @examples
