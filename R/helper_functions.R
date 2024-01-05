@@ -1,18 +1,65 @@
 # Helper functions
-#' @keywords internal
+#' prepareData
+#' 
+#' Create data.table with input data for testing purpses
+#'
+#' @param cell_lines data.table with cell line info
+#' @param drugs data.table with drug info
+#' @param conc vector of doses
+#'
+#' @return data.table with input data for testing
+#' 
+#' @examples
+#' 
+#' prepareData(create_synthetic_cell_lines(), create_synthetic_drugs())
+#' 
+#' @export
 prepareData <- function(cell_lines, drugs, conc = 10 ^ (seq(-3, 1, 0.5))) {
   df_layout <- drugs[, as.list(cell_lines), names(drugs)]
   df_layout <- add_data_replicates(df_layout)
   add_concentration(df_layout, conc)
 }
 
-#' @keywords internal
+#' prepareMergedData
+#' 
+#' Create data.table with input data containg noise for testing purpses 
+#'
+#' @param cell_lines data.table with cell line info
+#' @param drugs data.table with drug info
+#' @param noise number indicating level of noise
+#'
+#' @return data.table with input data for testing
+#' 
+#' @examples
+#' 
+#' prepareMergedData(create_synthetic_cell_lines(), create_synthetic_drugs())
+#' 
+#' @export
 prepareMergedData <- function(cell_lines, drugs, noise = 0.1) {
   df <- prepareData(cell_lines, drugs)
   generate_response_data(df, noise)
 }
 
-#' @keywords internal
+#' prepareComboMergedData
+#' 
+#' Create data.table with input commbination data containg noise for testing purpses 
+#'
+#' @param cell_lines data.table with cell line info
+#' @param drugs data.table with drug info
+#' @param drugsIdx1 numeric vector of ids for primary drug
+#' @param drugsIdx2 numeric vector of ids for secondary drug
+#' @param concentration numeric vector of doses
+#' @param noise number indicating level of noise
+#' @param modifyDf2 Boolean indicating if the table should me modified to keep reverse
+#' single agent data
+#'
+#' @return data.table with input data for testing
+#' 
+#' @examples
+#' 
+#' prepareComboMergedData(create_synthetic_cell_lines(), create_synthetic_drugs())
+#' 
+#' @export
 prepareComboMergedData <- function(cell_lines, 
                                    drugs, 
                                    drugsIdx1 = 2:4,
@@ -33,7 +80,30 @@ prepareComboMergedData <- function(cell_lines,
   generate_response_data(df_layout_2, noise)
 }
 
-#' @keywords internal
+#' prepareCodilutionData
+#' 
+#' Create data.table with input codilution data containg noise for testing purpses 
+#'
+#' @param cell_lines data.table with cell line info
+#' @param drugs data.table with drug info
+#' @param drugsIdx1 numeric vector of ids for primary drug
+#' @param drugsIdx2 numeric vector of ids for secondary drug
+#' @param concentration numeric vector of doses
+#' @param noise number indicating level of noise
+#' @param modifyDf2 Boolean indicating if the table should me modified to keep reverse
+#' single agent data
+#'
+#' @return data.table with input data for testing
+#' 
+#' @examples
+#' 
+#' df_layout <- prepareData(create_synthetic_cell_lines()[seq_len(2), ],
+#' create_synthetic_drugs()[seq_len(4), ])
+#' df <- cbind(create_synthetic_cell_lines()[1, , drop = FALSE],
+#' df_layout[, "Concentration", drop = FALSE])
+#' prepareCodilutionData(df, df_layout)
+#' 
+#' @export
 prepareCodilutionData <- function(df, df_layout) {
   colnames(df) <- paste0(colnames(df), "_2")
   df_2 <- cbind(df_layout, df)
