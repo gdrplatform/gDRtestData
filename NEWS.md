@@ -1,3 +1,6 @@
+## 1.1.2 (2024-01-04)
+- update duplicated functions
+
 ## 1.1.1 (2023-11-22)
 - sync master with devel branch
 

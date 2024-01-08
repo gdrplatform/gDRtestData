@@ -26,6 +26,7 @@ Authors:
   \item Sergiu Mocanu
   \item Natalia Potocka
   \item Dariusz Scigocki
+  \item Smola Janina
   \item Allison Voung
 }
 
