@@ -18,10 +18,10 @@ Authors@R: c(person("Aleksander", "Chlebowski", role=c("aut")),
 Depends:
     R (>= 4.2)
 Imports:
-    checkmate
+    checkmate,
+    data.table
 Suggests:
     BiocStyle,
-    data.table,
     gDRstyle (>= 0.99.16),
     knitr,
     qs,
