@@ -103,7 +103,7 @@ getReadoutCoef <- function(df, e_inf, ec50, hill_coef, suffix = "") {
 }
 
 introduceVehicle <- function(df, suffix = "") {
-  zeroIdx <- df[, paste0("Concentration", suffix)] == 0
+  zeroIdx <- df[[paste0("Concentration", suffix)]] == 0
   
   df[zeroIdx, paste0("Gnumber", suffix)] <- "vehicle"
   df[zeroIdx, paste0("DrugName", suffix)] <- "vehicle"
