@@ -1,3 +1,6 @@
+## 1.1.3 (2024-01-09)
+- update test data as per new combo model
+
 ## 1.1.2 (2024-01-04)
 - update duplicated functions
 
