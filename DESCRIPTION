@@ -30,6 +30,8 @@ Suggests:
     SummarizedExperiment,
     testthat
 Enhanced:
+URL: https://github.com/gdrplatform/gDRtestData
+BugReports: https://github.com/gdrplatform/gDRtestData/issues
 biocViews: ExperimentData, TechnologyData
 VignetteBuilder: knitr
 License: Artistic-2.0
