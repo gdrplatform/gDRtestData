@@ -1,18 +1,12 @@
 # gDRtestData
 
-PROJECT DESCRIPTION:
-gDRtestData - R data package with testing dose reponse data
+gDRtestData - R data package with testing dose response data to be used by all gDR packages and in gDR application.
 
-Started on 2020-07-20.
 
-## Directory structure
+# Avialable data
 
-```
-gDRtestData			→ subdirectory with R teest data package
-	inst/testdata/			→ R datasets provided in the package
-	inst/annotation_data/		→ annotation data provided in the package
-	man/				→ R package man dir
-	DESCRIPTION			→ R package DESCRIPTION file
-	LICENSE				→ R package license file
-```
+- `inst/testdata/` folder with R datasets provided in the package in qs format
 
+- `inst/annotation_data/`	annotation data provided in the package
+
+- `inst/scripts/`	scripts to build example dataset
