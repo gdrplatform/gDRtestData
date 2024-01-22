@@ -9,10 +9,18 @@
 package help page
 }
 \description{
-R package with internal dose-response test data. Package provides functions to generate input testing data that can be used as the input for gDR pipeline. It also contains RDS files with MAE data processed by gDR.
+R package with internal dose-response test data. Package provides functions to generate input testing data that can be used as the input for gDR pipeline. It also contains qs files with MAE data processed by gDR.
 }
 \note{
 To learn more about functions start with \code{help(package = "gDRtestData")}
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/gdrplatform/gDRtestData}
+  \item Report bugs at \url{https://github.com/gdrplatform/gDRtestData/issues}
+}
+
 }
 \author{
 \strong{Maintainer}: Arkadiusz Gladki \email{gladki.arkadiusz@gmail.com}
