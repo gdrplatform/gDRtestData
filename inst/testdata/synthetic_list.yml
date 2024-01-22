@@ -3,7 +3,7 @@ combo_2dose_nonoise:
   file: finalMAE_combo_2dose_nonoise.qs
   script: generateComboNoNoiseData
   imported_as_example: TRUE
-  description: "3 drugs x 2 co-treatment (1 drug at 2 doses) by 3 cell lines; co-treatment drug is only as DrugName_2"
+  description: "3 drugs x 2 co-treatment (1 drug at 2 doses) by 3 cell lines; co-treatment drug occurs also as a primary drug"
 combo_2dose_nonoise2:
   name: finalMAE_combo_2dose_nonoise2
   file: finalMAE_combo_2dose_nonoise2.qs
