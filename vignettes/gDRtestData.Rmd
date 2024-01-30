@@ -41,6 +41,7 @@ In further step user may generate set of synthetic results:
 1. Hill coefficient
 ```{r}
 hill <- generate_hill_coef(cell_lines, drugs) 
+head(hill)
 ```
 
 2. EC50 metric
@@ -50,14 +51,13 @@ ec50_met <- generate_ec50(cell_lines, drugs)
 
 3. E inf metric
 ```{r}
-einf_met <- generate_e_inf(cell_lines, drugs) 
+einf_met <- generate_e_inf(cell_lines, drugs)
 ```
 
 The user can create synthetic raw data
 
 ```{r}
 raw_data <- prepareData(create_synthetic_cell_lines(), create_synthetic_drugs())
-head(raw_data)
 ```
 
 
@@ -65,7 +65,7 @@ head(raw_data)
 
 The gDR data model is built on the MultiAssayExperiments (MAE) structure. Detailed description of gDR data model may be found in gDRcore package vignette. 
 
-In `inst/testdata` user may find a set of `qs` file that are example of gDR data model for different data type. In file `synthetic_list.yml` maye be found list of these dataset.
+In `inst/testdata` user may find a set of `qs` file that are example of gDR data model for different data type. In file `synthetic_list.yml` maybe be found list of these dataset.
 
 In `inst/scripts` you can find a script `generate_example_data.R` showing how to generate and process above mentioned data sets.
 All key functions in this script can be found in `gDRcore/R/generate_wrappers.R`. 
