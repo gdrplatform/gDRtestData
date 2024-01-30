@@ -17,7 +17,7 @@ prepareMergedData(cell_lines, drugs, noise = 0.1)
 data.table with input data for testing
 }
 \description{
-Create data.table with input data containg noise for testing purpses
+Create data.table with input data containing noise for testing purposes
 }
 \examples{
 
