@@ -1,5 +1,11 @@
-## 1.1.3 (2024-01-09)
+## 1.1.5 (2024-01-30)
 - update test data as per new combo model
+
+## 1.1.4 (2024-01-22)
+- update testdata
+
+## 1.1.3 (2024-01-22)
+- add new description fields
 
 ## 1.1.2 (2024-01-04)
 - update duplicated functions
