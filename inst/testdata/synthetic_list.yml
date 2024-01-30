@@ -1,26 +1,72 @@
-# List of synthethic datasets
-
-- name: finalSE_combo_1dose_many_drugs
-  file: finalSE_combo_1dose_many_drugs.RDS
-  description: 
-- name: finalSE_combo_2dose_nonoise
-  file: finalSE_combo_2dose_nonoise.RDS
-  description: 
-- name: finalSE_many_lines
-  file: finalSE_many_lines.RDS
-  description: 
-- name: finalSE_medium
-  file: finalSE_medium.RDS
-  description: test desc
-- name: finalSE_small_no_noise
-  file: finalSE_small_no_noise.RDS
-  description:
-- name: finalSE_small
-  file: finalSE_small.RDS
-  description:
-- name: finalSE_invalid_small
-  file: finalSE_invalid_small.RDS
-  description:
-- name: finalSE_combo_with_metrics
-  file: finalSE_combo_with_metrics.RDS
-  description:
+combo_2dose_nonoise:
+  name: finalMAE_combo_2dose_nonoise
+  file: finalMAE_combo_2dose_nonoise.qs
+  script: generateComboNoNoiseData
+  imported_as_example: TRUE
+  description: "3 drugs x 2 co-treatment (1 drug at 2 doses) by 3 cell lines; co-treatment drug occurs also as a primary drug"
+combo_2dose_nonoise2:
+  name: finalMAE_combo_2dose_nonoise2
+  file: finalMAE_combo_2dose_nonoise2.qs
+  script: generateComboNoNoiseData2
+  imported_as_example: FALSE
+  description: "3 drugs x 2 co-treatment (1 drug at 2 doses) by 3 cell lines; co-treatment drug occurs also as a primary drug"
+combo_2dose_nonoise3:
+  name: finalMAE_combo_2dose_nonoise3
+  file: finalMAE_combo_2dose_nonoise3.qs
+  script: generateComboNoNoiseData3
+  imported_as_example: FALSE
+  description: "3 drugs x 2 co-treatment (1 drug at 2 doses) by 3 lines; co-treatment drug does NOT have single agent response"
+combo_codilution_small:
+  name: finalMAE_combo_codilution_small
+  file: finalMAE_combo_codilution_small.qs
+  script: generateCodilutionSmall
+  imported_as_example: FALSE
+  description: "4 x 1 drugs (co-dilution) for 2 cell lines; no noise"
+combo_codilution:
+  name: finalMAE_combo_codilution
+  file: finalMAE_combo_codilution.qs
+  script: generateCodilution
+  imported_as_example: FALSE
+  description: "12 x 1 drugs (co-dilution) for 8 cell lines; no noise"
+combo_matrix_small:
+  name: finalMAE_combo_matrix_small
+  file: finalMAE_combo_matrix_small.qs
+  script: generateComboMatrixSmall
+  imported_as_example: FALSE
+  description: "3 x 2 drugs (matrix) for 2 cell lines; no noise"
+combo_matrix:
+  name: finalMAE_combo_matrix
+  file: finalMAE_combo_matrix.qs
+  script: generateComboMatrix
+  imported_as_example: TRUE
+  description: "6 x 3 drugs (matrix) for 8 cell lines"
+combo_triple:
+  name: finalMAE_combo_triple
+  file: finalMAE_combo_triple.qs
+  script: generateTripleComboMatrix
+  imported_as_example: TRUE
+  description: "2 x 3 x 2 drugs (triple matrix) for 4 cell lines"
+medium:
+  name: finalMAE_medium
+  file: finalMAE_medium.qs
+  script: generateMediumData
+  imported_as_example: TRUE
+  description: "40 drugs (6 different drug_moa) by 15 lines (3 tissues); single agent"
+small_no_noise:
+  name: finalMAE_small_no_noise
+  file: finalMAE_small_no_noise.qs
+  script: generateNoNoiseRawData
+  imported_as_example: FALSE
+  description: "10 drugs (3 different drug_moa) by 10 lines (3 tissues); single agent - no noise in the data"
+small:
+  name: finalMAE_small
+  file: finalMAE_small.qs
+  script: generateNoiseRawData
+  imported_as_example: TRUE
+  description: "10 drugs (3 different drug_moa) by 10 lines (3 tissues); single agent"
+wLigand:
+  name: finalMAE_wLigand
+  file: finalMAE_wLigand.qs
+  script: generateLigandData
+  imported_as_example: TRUE
+  description: "3 drugs by 4 lines (3 tissues); `Ligand = 0.1` as reference; single agent"
