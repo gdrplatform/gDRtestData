@@ -21,7 +21,7 @@ Add data with day 0
 
 cell_lines <- create_synthetic_cell_lines()
 drugs <- create_synthetic_drugs()
-data <- gDRtestData:::prepareData(cell_lines[seq_len(2), ], drugs[seq_len(4), ])
+data <- prepareData(cell_lines[seq_len(2), ], drugs[seq_len(4), ])
 data$Duration <- 72
 data$ReadoutValue <- 0
 add_day0_data(data)
