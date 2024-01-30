@@ -41,7 +41,6 @@ In further step user may generate set of synthetic results:
 1. Hill coefficient
 ```{r}
 hill <- generate_hill_coef(cell_lines, drugs) 
-head(hill)
 ```
 
 2. EC50 metric
