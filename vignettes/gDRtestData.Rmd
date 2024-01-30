@@ -8,21 +8,53 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
 ```{r, echo=FALSE}
 library(gDRtestData)
 ```
 
 # Overview
 
-The `gDRtestData` package is intended to store and generate example data that can be used through gDR.
+The `gDRtestData` package is intended to store and generate example data that can be used through the `gDR` suite.
 
 # Use Cases
 
-## Data generation
-All key functions can be found in `gDRcore/R/generate_wrappers.R`. In `inst/scripts` you can find a script `generate_example_data.R` showing how to generate and process testing data.
+## Synthetic data generation
+
+Since `gDR`is a computational suite for drug response data from any experiment, a synthetic dataset is also needed for testing and exploration purposes. 
+
+The basis of everything are two functions to generate the synthetic sets of cell lines and drugs.
+
+```{r}
+cell_lines <- create_synthetic_cell_lines()
+drugs <- create_synthetic_drugs()
+```
+
+The user can create synthetic raw data
+
+```{r}
+raw_data <- prepareData(create_synthetic_cell_lines(), create_synthetic_drugs())
+head(raw_data)
+```
+
+
+## Synthetic object of gDR data model
+
+The gDR data model is built on the MultiAssayExperiments (MAE) structure. Detailed description of gDR data model may be found in gDRcore package vignette. 
+In `inst/testdata` user may find a set of `qs` file that are example of gDR data model for different data type. In file `synthetic_list.yml` maye be found list of these dataset.
+
+In `inst/scripts` you can find a script `generate_example_data.R` showing how to generate and process above mentioned data sets.
+All key functions in this script can be found in `gDRcore/R/generate_wrappers.R`. 
 
 
 ## Package installation
+
 The function `installAllDeps` assists in installing package dependencies.  
 
 # SessionInfo {-}
