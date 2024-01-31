@@ -1,4 +1,5 @@
 # Helper functions
+
 #' prepareData
 #' 
 #' Create data.table with input data for testing purposes
@@ -82,7 +83,7 @@ prepareComboMergedData <- function(cell_lines,
 
 #' prepareCodilutionData
 #' 
-#' Create data.table with input codilution data containing noise for testing purposes 
+#' Create data.table with input co-dilution data containing noise for testing purposes 
 #'
 #' @param df data.table object with experiment data
 #' @param df_layout data.table object with experiment design containing drugs and cell line data
