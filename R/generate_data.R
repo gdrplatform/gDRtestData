@@ -54,7 +54,8 @@ add_concentration <- function(df_layout, concentrations = 10 ^ (seq(-3, 1, 0.5))
 #' 
 #' cell_lines <- create_synthetic_cell_lines()
 #' drugs <- create_synthetic_drugs()
-#' prepareData(cell_lines[seq_len(2), ], drugs[seq_len(4), ])
+#' df_layout <- prepareData(cell_lines[seq_len(2), ], drugs[seq_len(4), ])
+#' generate_response_data(df_layout)
 #' 
 #'
 #' @return data.table with response data
@@ -88,6 +89,7 @@ generate_response_data <- function(df_layout, noise_level = 0.1) {
   df_layout
 }
 
+#' @keywords internal
 getReadoutCoef <- function(df, e_inf, ec50, hill_coef, suffix = "") {
   apply(df, 1, function(x) {
     clid <- x["clid"]
@@ -102,6 +104,7 @@ getReadoutCoef <- function(df, e_inf, ec50, hill_coef, suffix = "") {
   })
 }
 
+#' @keywords internal
 introduceVehicle <- function(df, suffix = "") {
   zeroIdx <- df[[paste0("Concentration", suffix)]] == 0
   
@@ -112,6 +115,7 @@ introduceVehicle <- function(df, suffix = "") {
   df
 }
 
+#' @keywords internal
 introduceGNum <- function(df, e_inf, ec50, hill_coef, suffix) {
   df$ReadoutValue <- df$ReadoutValue * getReadoutCoef(df, e_inf, ec50, hill_coef, suffix)
   df <- introduceVehicle(df, suffix)
@@ -128,10 +132,10 @@ introduceGNum <- function(df, e_inf, ec50, hill_coef, suffix) {
 #' 
 #' cell_lines <- create_synthetic_cell_lines()
 #' drugs <- create_synthetic_drugs()
-#' data <- prepareData(cell_lines[seq_len(2), ], drugs[seq_len(4), ])
-#' data$Duration <- 72
-#' data$ReadoutValue <- 0
-#' add_day0_data(data)
+#' df_merged <- prepareData(cell_lines[seq_len(2), ], drugs[seq_len(4), ])
+#' df_merged$Duration <- 72
+#' df_merged$ReadoutValue <- 0
+#' add_day0_data(df_merged)
 #'
 #' @return data.table with day0 data
 #' @export
