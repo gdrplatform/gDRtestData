@@ -55,7 +55,14 @@ cl_con <- add_concentration(cell_lines)
 head(cl_con)
 ```
 
-In further step user may generate set of synthetic results:
+Or the user can do both with one function:
+
+```{r}
+base_data <- prepareData(cell_lines, drugs)
+head(base_data)
+```
+
+In further step the user may generate set of synthetic results:
 
 1. Hill coefficient
 ```{r}
@@ -72,7 +79,7 @@ ec50_met <- generate_ec50(cell_lines, drugs)
 einf_met <- generate_e_inf(cell_lines, drugs)
 ```
 
-Or even synthetic dataset with full response data.
+Or the user can create full response data with one fucntion:
 
 ```{r}
 df_layout <- prepareData(cell_lines[seq_len(2), ], drugs[seq_len(4), ])
@@ -80,7 +87,7 @@ response_data <- generate_response_data(df_layout)
 head(response_data)
 ```
 
-and fill data for the day 0
+Additional, the user may fill the full response data with the day 0 part
 
 ```{r}
 merge_dt <- prepareData(cell_lines[seq_len(2), ], drugs[seq_len(4), ])
@@ -101,7 +108,7 @@ raw_data <- prepareData(create_synthetic_cell_lines(), create_synthetic_drugs())
 
 The gDR data model is built on the MultiAssayExperiments (MAE) structure. Detailed description of gDR data model may be found in gDRcore package vignette. 
 
-In `inst/testdata` user may find a set of `qs` file that are example of gDR data model for different data type. In file `synthetic_list.yml` maybe be found list of these datasets.
+In `inst/testdata` the user may find a set of `qs` file that are example of gDR data model for different data type. In file `synthetic_list.yml` maybe be found list of these datasets.devt
 
 In `inst/scripts` you can find a script `generate_example_data.R` showing how to generate and process above mentioned datasets.
 All key functions may be found in package `gDRcore` in script `generate_wrappers.R`. 
@@ -109,7 +116,7 @@ All key functions may be found in package `gDRcore` in script `generate_wrappers
 
 ## Annotation data
 
-In `inst/annotation_data` user may find `csv` files that are used in `gDRcore` for test of annotation functions.
+In `inst/annotation_data` the user may find `csv` files that are used in `gDRcore` for test of annotation functions.
 
 ## Other
 
