@@ -27,16 +27,16 @@ The `gDRtestData` package is intended to store and generate example data that ca
 
 ## Synthetic data generation
 
-Since `gDR`is a computational suite for drug response data from any experiment, a synthetic dataset is also needed for testing and exploration purposes. 
+Since gDR is a computational suite for drug response data from any experiment, a synthetic dataset is also needed for testing and exploration.
 
-The basis of everything are two functions to generate the synthetic sets of cell lines and drugs.
+The basis of this package is two functions to generate the synthetic sets of cell lines and drugs.
 
 ```{r}
 cell_lines <- create_synthetic_cell_lines()
 drugs <- create_synthetic_drugs()
 ```
 
-These base items can be extended with additional information.
+These base objects can be extended with additional information.
 
 1. Replicates
 
@@ -59,7 +59,7 @@ df_layout <- prepareData(cell_lines, drugs)
 head(df_layout)
 ```
 
-Additional, the user may fill the full response data with the day 0 part
+Additionally, the user may fill in the full response data with the day 0 part.
 
 ```{r eval=FALSE}
 df_layout_small <- prepareData(cell_lines[seq_len(2), ], drugs[seq_len(4), ])
@@ -69,7 +69,7 @@ df_layout_small_with_Day0 <- add_day0_data(df_layout_small)
 head(df_layout_small_with_Day0)
 ```
 
-In further step the user may generate set of synthetic results:
+In a further step, the user may generate a set of synthetic results:
 
 1. Hill coefficient
 ```{r}
@@ -107,20 +107,20 @@ head(response_data)
 
 ## Synthetic object of gDR data model
 
-The gDR data model is built on the MultiAssayExperiments (MAE) structure. Detailed description of gDR data model may be found in gDRcore package vignette. 
+The gDR data model is built on the MultiAssayExperiments (MAE) structure. A detailed description of the gDR data model may be found in `gDRcore` package vignette.  
 
-In `inst/testdata` the user may find a set of `qs` file that are example of gDR data model for different data type. In file `synthetic_list.yml` maybe be found list of these datasets. Currently available are: 
+In `inst/testdata` the user may find a set of `qs` files that are examples of gDR data model for different data types. In the file `synthetic_list.yml` might be found a list of these datasets. Currently available are: 
 ```{r echo=FALSE}
 yml_path <- system.file(package = "gDRtestData", "testdata", "synthetic_list.yml")
 cat(paste0("* ", names(yaml::read_yaml(yml_path)), collapse = ", \n"), ".")
 ```
 
-The script `generate_example_data.R` which is showing how to generate and process above mentioned datasets is in `inst/scripts` dir.
+The script `generate_example_data.R` which shows how to generate and process above-mentioned datasets is in `inst/scripts` dir.
 All key functions may be found in package `gDRcore` in script `generate_wrappers.R`. 
 
 ## Annotation data
 
-In `inst/annotation_data` the user may find `csv` files that are used in `gDRcore` for testing annotation functions.
+In `inst/annotation_data` the user may find `CSV` files used in `gDRcore` for testing annotation functions.
 
 ## Other
 
