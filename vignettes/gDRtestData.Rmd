@@ -39,6 +39,22 @@ drugs <- create_synthetic_drugs()
 head(drugs)
 ```
 
+These base sets can be extended with additional information.
+
+1. Replicates
+
+```{r}
+cl_rep <- add_data_replicates(cell_lines)
+head(cl_rep)
+```
+
+2. Concentration
+
+```{r}
+cl_con <- add_concentration(cell_lines)
+head(cl_con)
+```
+
 In further step user may generate set of synthetic results:
 
 1. Hill coefficient
@@ -54,6 +70,24 @@ ec50_met <- generate_ec50(cell_lines, drugs)
 3. E inf metric
 ```{r}
 einf_met <- generate_e_inf(cell_lines, drugs)
+```
+
+Or even synthetic dataset with full response data.
+
+```{r}
+df_layout <- prepareData(cell_lines[seq_len(2), ], drugs[seq_len(4), ])
+response_data <- generate_response_data(df_layout)
+head(response_data)
+```
+
+and fill data for the day 0
+
+```{r}
+merge_dt <- prepareData(cell_lines[seq_len(2), ], drugs[seq_len(4), ])
+merge_dt$Duration <- 72
+merge_dt$ReadoutValue <- 0
+merge_dt_withDay0 <- add_day0_data(merge_dt)
+head(merge_dt_withDay0)
 ```
 
 The user can create synthetic raw data
@@ -72,6 +106,14 @@ In `inst/testdata` user may find a set of `qs` file that are example of gDR data
 In `inst/scripts` you can find a script `generate_example_data.R` showing how to generate and process above mentioned datasets.
 All key functions may be found in package `gDRcore` in script `generate_wrappers.R`. 
 
+
+## Annotation data
+
+In `inst/annotation_data` user may find `csv` files that are used in `gDRcore` for test of annotation functions.
+
+## Other
+
+Other files which were not mentioned above are used for testing gDR suite functionality.
 
 # SessionInfo {-}
 
