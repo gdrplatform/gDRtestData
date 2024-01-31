@@ -33,7 +33,10 @@ The basis of everything are two functions to generate the synthetic sets of cell
 
 ```{r}
 cell_lines <- create_synthetic_cell_lines()
+head(cell_lines)
+
 drugs <- create_synthetic_drugs()
+head(drugs)
 ```
 
 In further step user may generate set of synthetic results:
@@ -64,15 +67,11 @@ raw_data <- prepareData(create_synthetic_cell_lines(), create_synthetic_drugs())
 
 The gDR data model is built on the MultiAssayExperiments (MAE) structure. Detailed description of gDR data model may be found in gDRcore package vignette. 
 
-In `inst/testdata` user may find a set of `qs` file that are example of gDR data model for different data type. In file `synthetic_list.yml` maybe be found list of these dataset.
+In `inst/testdata` user may find a set of `qs` file that are example of gDR data model for different data type. In file `synthetic_list.yml` maybe be found list of these datasets.
 
-In `inst/scripts` you can find a script `generate_example_data.R` showing how to generate and process above mentioned data sets.
-All key functions in this script can be found in `gDRcore/R/generate_wrappers.R`. 
+In `inst/scripts` you can find a script `generate_example_data.R` showing how to generate and process above mentioned datasets.
+All key functions may be found in package `gDRcore` in script `generate_wrappers.R`. 
 
-
-# Package installation
-
-The function `installAllDeps` assists in installing package dependencies.  
 
 # SessionInfo {-}
 
