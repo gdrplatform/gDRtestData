@@ -33,11 +33,10 @@ The basis of everything are two functions to generate the synthetic sets of cell
 
 ```{r}
 cell_lines <- create_synthetic_cell_lines()
-
 drugs <- create_synthetic_drugs()
 ```
 
-These base sets can be extended with additional information.
+These base items can be extended with additional information.
 
 1. Replicates
 
@@ -49,11 +48,11 @@ head(cl_rep)
 2. Concentration
 
 ```{r eval=FALSE}
-cl_con <- add_concentration(cell_lines)
-head(cl_con)
+cl_conc <- add_concentration(cell_lines)
+head(cl_conc)
 ```
 
-Or the user can do both with one function (for single-agent):
+Or the user can do both with one function:
 
 ```{r eval=FALSE}
 df_layout <- prepareData(cell_lines, drugs)
@@ -63,11 +62,11 @@ head(df_layout)
 Additional, the user may fill the full response data with the day 0 part
 
 ```{r eval=FALSE}
-df_merged <- prepareData(cell_lines[seq_len(2), ], drugs[seq_len(4), ])
-df_merged$Duration <- 72
-df_merged$ReadoutValue <- 0
-df_merged_with_Day0 <- add_day0_data(df_merged)
-head(df_merged_with_Day0)
+df_layout_small <- prepareData(cell_lines[seq_len(2), ], drugs[seq_len(4), ])
+df_layout_small$Duration <- 72
+df_layout_small$ReadoutValue <- 0
+df_layout_small_with_Day0 <- add_day0_data(df_layout_small)
+head(df_layout_small_with_Day0)
 ```
 
 In further step the user may generate set of synthetic results:
@@ -87,7 +86,7 @@ ec50_met <- generate_ec50(cell_lines, drugs)
 einf_met <- generate_e_inf(cell_lines, drugs)
 ```
 
-Or the user can create full response data with one function:
+Or the user can create full response data with one function (for single-agent):
 
 ```{r eval=FALSE}
 response_data <- prepareMergedData(cell_lines, drugs)
@@ -99,12 +98,12 @@ head(response_data)
 
 | Step | Function     | Output (`data.table`) |
 | :--: | :----------- | :-------------------- |
-| 0    | create_synthetic_cell_lines() | synthetic cell lines |
-| 0    | create_synthetic_drugs()      | synthetic drugs |
-| 1    | prepareData()                 | cell lines and drug merged with replicates and concentration |
-| 2    | prepareMergedData()           | full response data for single-agent |
-| 2    | prepareComboMergedData()      | full response data for combo |
-| 2    | prepareCodilutionData ()      | full response data for co-dilution |
+|  0   | create_synthetic_cell_lines() | synthetic cell lines |
+|  0   | create_synthetic_drugs()      | synthetic drugs |
+|  1   | prepareData()                 | cell lines and drug merged with replicates and concentration |
+|  2   | prepareMergedData()           | full response data for single-agent |
+|  2   | prepareComboMergedData()      | full response data for combo |
+|  2   | prepareCodilutionData ()      | full response data for co-dilution |
 
 ## Synthetic object of gDR data model
 
@@ -113,7 +112,7 @@ The gDR data model is built on the MultiAssayExperiments (MAE) structure. Detail
 In `inst/testdata` the user may find a set of `qs` file that are example of gDR data model for different data type. In file `synthetic_list.yml` maybe be found list of these datasets. Currently available are: 
 ```{r echo=FALSE}
 yml_path <- system.file(package = "gDRtestData", "testdata", "synthetic_list.yml")
-cat(paste0(names(yaml::read_yaml(yml_path)), collapse = ", \n"), ".")
+cat(paste0("* ", names(yaml::read_yaml(yml_path)), collapse = ", \n"), ".")
 ```
 
 The script `generate_example_data.R` which is showing how to generate and process above mentioned datasets is in `inst/scripts` dir.
