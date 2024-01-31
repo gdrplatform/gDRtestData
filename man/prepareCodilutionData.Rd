@@ -19,9 +19,10 @@ Create data.table with input codilution data containing noise for testing purpos
 }
 \examples{
 
-df_layout <- prepareData(create_synthetic_cell_lines()[seq_len(2), ],
-                         create_synthetic_drugs()[seq_len(4), ])
-df <- cbind(create_synthetic_cell_lines()[1, , drop = FALSE],
+cell_lines <- create_synthetic_cell_lines()
+drugs <- create_synthetic_drugs()
+df_layout <- prepareData(cell_lines[seq_len(2), ], drugs[seq_len(4), ])
+df <- cbind(drugs[1, , drop = FALSE],
             df_layout[, "Concentration", drop = FALSE])
 prepareCodilutionData(df, df_layout)
 
