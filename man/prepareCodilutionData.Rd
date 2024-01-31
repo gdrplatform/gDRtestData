@@ -15,7 +15,7 @@ prepareCodilutionData(df, df_layout)
 data.table with input data for testing
 }
 \description{
-Create data.table with input codilution data containing noise for testing purposes
+Create data.table with input co-dilution data containing noise for testing purposes
 }
 \examples{
 
