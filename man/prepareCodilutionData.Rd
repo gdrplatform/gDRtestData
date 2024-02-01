@@ -17,7 +17,7 @@ prepareCodilutionData(
 
 \item{drugs}{data.table with drug info}
 
-\item{drugsIdx2}{numeric index of ids for secondary drug (in \code{drugs} data.table)}
+\item{drugsIdx2}{numeric vector of ids for secondary drug (in \code{drugs} data.table)}
 
 \item{conc}{vector of doses}
 
