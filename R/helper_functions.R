@@ -117,5 +117,5 @@ prepareCodilutionData <- function(cell_lines,
   cols <- c("Concentration", "Concentration_2")
   df_layout_2[rows, (cols) := lapply(.SD, function(x) x / 2), .SDcols = cols]
   
-  generate_response_data(df_layout_2, noise = noise)
+  generate_response_data(df_layout_2, noise)
 }
