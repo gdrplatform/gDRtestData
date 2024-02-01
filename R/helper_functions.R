@@ -87,7 +87,7 @@ prepareComboMergedData <- function(cell_lines,
 #'
 #' @param cell_lines data.table with cell line info
 #' @param drugs data.table with drug info
-#' @param drugsIdx2 numeric index of ids for secondary drug (in `drugs` data.table)
+#' @param drugsIdx2 numeric vector of ids for secondary drug (in `drugs` data.table)
 #' @param conc vector of doses
 #' @param noise number indicating level of noise
 #' 
