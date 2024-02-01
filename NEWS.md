@@ -1,3 +1,6 @@
+## 1.1.6 (2024-02-01)
+- standardize full response data functions
+
 ## 1.1.5 (2024-01-30)
 - update package vignette
 

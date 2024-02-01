@@ -4,12 +4,24 @@
 \alias{prepareCodilutionData}
 \title{prepareCodilutionData}
 \usage{
-prepareCodilutionData(df, df_layout)
+prepareCodilutionData(
+  cell_lines,
+  drugs,
+  drugsIdx2 = 1,
+  conc = 10^(seq(-3, 1, 0.5)),
+  noise = 0.1
+)
 }
 \arguments{
-\item{df}{data.table object with experiment data}
+\item{cell_lines}{data.table with cell line info}
 
-\item{df_layout}{data.table object with experiment design containing drugs and cell line data}
+\item{drugs}{data.table with drug info}
+
+\item{drugsIdx2}{numeric index of ids for secondary drug (in \code{drugs} data.table)}
+
+\item{conc}{vector of doses}
+
+\item{noise}{number indicating level of noise}
 }
 \value{
 data.table with input data for testing
@@ -19,11 +31,7 @@ Create data.table with input co-dilution data containing noise for testing purpo
 }
 \examples{
 
-cell_lines <- create_synthetic_cell_lines()
-drugs <- create_synthetic_drugs()
-df_layout <- prepareData(cell_lines[seq_len(2), ], drugs[seq_len(4), ])
-df <- cbind(drugs[1, , drop = FALSE],
-            df_layout[, "Concentration", drop = FALSE])
-prepareCodilutionData(df, df_layout)
+prepareCodilutionData(create_synthetic_cell_lines()[seq_len(2), ],
+                      create_synthetic_drugs()[seq_len(4), ])
 
 }
