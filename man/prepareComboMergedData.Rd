@@ -34,7 +34,7 @@ single agent data}
 data.table with input data for testing
 }
 \description{
-Create data.table with input commbination data containg noise for testing purpses
+Create data.table with input combination data containing noise for testing purposes
 }
 \examples{
 
