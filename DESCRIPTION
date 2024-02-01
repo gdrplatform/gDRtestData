@@ -28,7 +28,8 @@ Suggests:
     reshape2,
     rmarkdown,
     SummarizedExperiment,
-    testthat
+    testthat,
+    yaml
 Enhanced:
 URL: https://github.com/gdrplatform/gDRtestData
 BugReports: https://github.com/gdrplatform/gDRtestData/issues
