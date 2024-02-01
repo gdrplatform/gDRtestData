@@ -17,7 +17,7 @@ prepareData(cell_lines, drugs, conc = 10^(seq(-3, 1, 0.5)))
 data.table with input data for testing
 }
 \description{
-Create data.table with input data for testing purpses
+Create data.table with input data for testing purposes
 }
 \examples{
 

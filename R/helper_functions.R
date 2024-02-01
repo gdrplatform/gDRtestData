@@ -1,7 +1,8 @@
 # Helper functions
+
 #' prepareData
 #' 
-#' Create data.table with input data for testing purpses
+#' Create data.table with input data for testing purposes
 #'
 #' @param cell_lines data.table with cell line info
 #' @param drugs data.table with drug info
@@ -22,7 +23,7 @@ prepareData <- function(cell_lines, drugs, conc = 10 ^ (seq(-3, 1, 0.5))) {
 
 #' prepareMergedData
 #' 
-#' Create data.table with input data containg noise for testing purpses 
+#' Create data.table with input data containing noise for testing purposes 
 #'
 #' @param cell_lines data.table with cell line info
 #' @param drugs data.table with drug info
@@ -42,7 +43,7 @@ prepareMergedData <- function(cell_lines, drugs, noise = 0.1) {
 
 #' prepareComboMergedData
 #' 
-#' Create data.table with input commbination data containg noise for testing purpses 
+#' Create data.table with input combination data containing noise for testing purposes 
 #'
 #' @param cell_lines data.table with cell line info
 #' @param drugs data.table with drug info
@@ -82,18 +83,19 @@ prepareComboMergedData <- function(cell_lines,
 
 #' prepareCodilutionData
 #' 
-#' Create data.table with input codilution data containg noise for testing purpses 
+#' Create data.table with input co-dilution data containing noise for testing purposes 
 #'
 #' @param df data.table object with experiment data
-#' @param df_layout data.table object with experiment design containg drugs and cell line data
+#' @param df_layout data.table object with experiment design containing drugs and cell line data
 #' @return data.table with input data for testing
 #' 
 #' @examples
 #' 
-#' df_layout <- prepareData(create_synthetic_cell_lines()[seq_len(2), ],
-#' create_synthetic_drugs()[seq_len(4), ])
-#' df <- cbind(create_synthetic_cell_lines()[1, , drop = FALSE],
-#' df_layout[, "Concentration", drop = FALSE])
+#' cell_lines <- create_synthetic_cell_lines()
+#' drugs <- create_synthetic_drugs()
+#' df_layout <- prepareData(cell_lines[seq_len(2), ], drugs[seq_len(4), ])
+#' df <- cbind(drugs[1, , drop = FALSE],
+#'             df_layout[, "Concentration", drop = FALSE])
 #' prepareCodilutionData(df, df_layout)
 #' 
 #' @export

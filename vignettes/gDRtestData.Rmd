@@ -8,22 +8,123 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
 ```{r, echo=FALSE}
 library(gDRtestData)
 ```
 
 # Overview
 
-The `gDRtestData` package is intended to store and generate example data that can be used through gDR.
+The `gDRtestData` package is intended to store and generate example data that can be used through the `gDR` suite.
 
 # Use Cases
 
-## Data generation
-All key functions can be found in `gDRcore/R/generate_wrappers.R`. In `inst/scripts` you can find a script `generate_example_data.R` showing how to generate and process testing data.
+## Synthetic data generation
+
+Since gDR is a computational suite for drug response data from any experiment, a synthetic dataset is also needed for testing and exploration.
+
+The basis of this package are two functions to generate the synthetic sets of cell lines and drugs.
+
+```{r}
+cell_lines <- create_synthetic_cell_lines()
+drugs <- create_synthetic_drugs()
+```
+
+These base objects can be extended with additional information.
+
+1. Replicates
+
+```{r eval=FALSE}
+cl_rep <- add_data_replicates(cell_lines)
+head(cl_rep)
+```
+
+2. Concentration
+
+```{r eval=FALSE}
+cl_conc <- add_concentration(cell_lines)
+head(cl_conc)
+```
+
+Or the user can do both with one function:
+
+```{r eval=FALSE}
+df_layout <- prepareData(cell_lines, drugs)
+head(df_layout)
+```
+
+Additionally, the user may fill in the full response data with the day 0 part.
+
+```{r eval=FALSE}
+df_layout_small <- prepareData(cell_lines[seq_len(2), ], drugs[seq_len(4), ])
+df_layout_small$Duration <- 72
+df_layout_small$ReadoutValue <- 0
+df_layout_small_with_Day0 <- add_day0_data(df_layout_small)
+head(df_layout_small_with_Day0)
+```
+
+In a further step, the user may generate a set of synthetic results:
+
+1. Hill coefficient
+```{r}
+hill <- generate_hill_coef(cell_lines, drugs) 
+```
+
+2. EC50 metric
+```{r}
+ec50_met <- generate_ec50(cell_lines, drugs) 
+```
+
+3. E inf metric
+```{r}
+einf_met <- generate_e_inf(cell_lines, drugs)
+```
+
+Or the user can create full response data with one function (for single-agent):
+
+```{r eval=FALSE}
+response_data <- prepareMergedData(cell_lines, drugs)
+head(response_data)
+```
 
 
-## Package installation
-The function `installAllDeps` assists in installing package dependencies.  
+**SUMMARY**
+
+| Step | Function     | Output (`data.table`) |
+| :--: | :----------- | :-------------------- |
+|  0   | create_synthetic_cell_lines() | synthetic cell lines |
+|  0   | create_synthetic_drugs()      | synthetic drugs |
+|  1   | prepareData()                 | cell lines and drug merged with replicates and concentration |
+|  2   | prepareMergedData()           | full response data for single-agent |
+|  2   | prepareComboMergedData()      | full response data for combo |
+|  2   | prepareCodilutionData ()      | full response data for co-dilution |
+
+## Synthetic object of gDR data model
+
+The gDR data model is built on the MultiAssayExperiments (MAE) structure. A detailed description of the gDR data model can be found in `gDRcore` package vignette.  
+
+In `inst/testdata` the user may find a set of `qs` files that are examples of gDR data model for different data types. In the file `synthetic_list.yml` one can find a list of these datasets. Currently available are: 
+```{r echo=FALSE}
+yml_path <- system.file(package = "gDRtestData", "testdata", "synthetic_list.yml")
+cat(paste0("* ", names(yaml::read_yaml(yml_path)), collapse = ", \n"), ".")
+```
+
+The script `generate_example_data.R` which shows how to generate and process above-mentioned datasets is in `inst/scripts` dir.
+All key functions can be found in package `gDRcore` in script `generate_wrappers.R`. 
+
+## Annotation data
+
+In `inst/annotation_data` the user can find `CSV` files used in `gDRcore` for testing annotation functions.
+
+## Other
+
+Other files which were not mentioned above are used for testing gDR suite functionality.
 
 # SessionInfo {-}
 

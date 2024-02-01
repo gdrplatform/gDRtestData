@@ -1,3 +1,6 @@
+## 1.1.5 (2024-01-30)
+- update package vignette
+
 ## 1.1.4 (2024-01-22)
 - update testdata
 

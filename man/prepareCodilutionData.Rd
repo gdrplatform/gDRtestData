@@ -9,20 +9,21 @@ prepareCodilutionData(df, df_layout)
 \arguments{
 \item{df}{data.table object with experiment data}
 
-\item{df_layout}{data.table object with experiment design containg drugs and cell line data}
+\item{df_layout}{data.table object with experiment design containing drugs and cell line data}
 }
 \value{
 data.table with input data for testing
 }
 \description{
-Create data.table with input codilution data containg noise for testing purpses
+Create data.table with input co-dilution data containing noise for testing purposes
 }
 \examples{
 
-df_layout <- prepareData(create_synthetic_cell_lines()[seq_len(2), ],
-create_synthetic_drugs()[seq_len(4), ])
-df <- cbind(create_synthetic_cell_lines()[1, , drop = FALSE],
-df_layout[, "Concentration", drop = FALSE])
+cell_lines <- create_synthetic_cell_lines()
+drugs <- create_synthetic_drugs()
+df_layout <- prepareData(cell_lines[seq_len(2), ], drugs[seq_len(4), ])
+df <- cbind(drugs[1, , drop = FALSE],
+            df_layout[, "Concentration", drop = FALSE])
 prepareCodilutionData(df, df_layout)
 
 }

@@ -22,7 +22,8 @@ Generate response data
 
 cell_lines <- create_synthetic_cell_lines()
 drugs <- create_synthetic_drugs()
-gDRtestData:::prepareData(cell_lines[seq_len(2), ], drugs[seq_len(4), ])
+df_layout <- prepareData(cell_lines[seq_len(2), ], drugs[seq_len(4), ])
+generate_response_data(df_layout)
 
 
 }
