@@ -29,7 +29,7 @@ The `gDRtestData` package is intended to store and generate example data that ca
 
 Since gDR is a computational suite for drug response data from any experiment, a synthetic dataset is also needed for testing and exploration.
 
-The basis of this package is two functions to generate the synthetic sets of cell lines and drugs.
+The basis of this package are two functions to generate the synthetic sets of cell lines and drugs.
 
 ```{r}
 cell_lines <- create_synthetic_cell_lines()
@@ -107,20 +107,20 @@ head(response_data)
 
 ## Synthetic object of gDR data model
 
-The gDR data model is built on the MultiAssayExperiments (MAE) structure. A detailed description of the gDR data model may be found in `gDRcore` package vignette.  
+The gDR data model is built on the MultiAssayExperiments (MAE) structure. A detailed description of the gDR data model can be found in `gDRcore` package vignette.  
 
-In `inst/testdata` the user may find a set of `qs` files that are examples of gDR data model for different data types. In the file `synthetic_list.yml` might be found a list of these datasets. Currently available are: 
+In `inst/testdata` the user may find a set of `qs` files that are examples of gDR data model for different data types. In the file `synthetic_list.yml` one can find a list of these datasets. Currently available are: 
 ```{r echo=FALSE}
 yml_path <- system.file(package = "gDRtestData", "testdata", "synthetic_list.yml")
 cat(paste0("* ", names(yaml::read_yaml(yml_path)), collapse = ", \n"), ".")
 ```
 
 The script `generate_example_data.R` which shows how to generate and process above-mentioned datasets is in `inst/scripts` dir.
-All key functions may be found in package `gDRcore` in script `generate_wrappers.R`. 
+All key functions can be found in package `gDRcore` in script `generate_wrappers.R`. 
 
 ## Annotation data
 
-In `inst/annotation_data` the user may find `CSV` files used in `gDRcore` for testing annotation functions.
+In `inst/annotation_data` the user can find `CSV` files used in `gDRcore` for testing annotation functions.
 
 ## Other
 
