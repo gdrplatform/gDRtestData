@@ -1,7 +1,8 @@
 # Helper functions
+
 #' prepareData
 #' 
-#' Create data.table with input data for testing purpses
+#' Create data.table with input data for testing purposes
 #'
 #' @param cell_lines data.table with cell line info
 #' @param drugs data.table with drug info
@@ -22,7 +23,7 @@ prepareData <- function(cell_lines, drugs, conc = 10 ^ (seq(-3, 1, 0.5))) {
 
 #' prepareMergedData
 #' 
-#' Create data.table with input data containg noise for testing purpses 
+#' Create data.table with input data containing noise for testing purposes 
 #'
 #' @param cell_lines data.table with cell line info
 #' @param drugs data.table with drug info
@@ -42,7 +43,7 @@ prepareMergedData <- function(cell_lines, drugs, noise = 0.1) {
 
 #' prepareComboMergedData
 #' 
-#' Create data.table with input commbination data containg noise for testing purpses 
+#' Create data.table with input combination data containing noise for testing purposes 
 #'
 #' @param cell_lines data.table with cell line info
 #' @param drugs data.table with drug info
@@ -82,27 +83,39 @@ prepareComboMergedData <- function(cell_lines,
 
 #' prepareCodilutionData
 #' 
-#' Create data.table with input codilution data containg noise for testing purpses 
+#' Create data.table with input co-dilution data containing noise for testing purposes 
 #'
-#' @param df data.table object with experiment data
-#' @param df_layout data.table object with experiment design containg drugs and cell line data
+#' @param cell_lines data.table with cell line info
+#' @param drugs data.table with drug info
+#' @param drugsIdx2 numeric vector of ids for secondary drug (in `drugs` data.table)
+#' @param conc vector of doses
+#' @param noise number indicating level of noise
+#' 
 #' @return data.table with input data for testing
 #' 
 #' @examples
 #' 
-#' df_layout <- prepareData(create_synthetic_cell_lines()[seq_len(2), ],
-#' create_synthetic_drugs()[seq_len(4), ])
-#' df <- cbind(create_synthetic_cell_lines()[1, , drop = FALSE],
-#' df_layout[, "Concentration", drop = FALSE])
-#' prepareCodilutionData(df, df_layout)
+#' prepareCodilutionData(create_synthetic_cell_lines()[seq_len(2), ],
+#'                       create_synthetic_drugs()[seq_len(4), ])
 #' 
 #' @export
-prepareCodilutionData <- function(df, df_layout) {
-  colnames(df) <- paste0(colnames(df), "_2")
-  df_2 <- cbind(df_layout, df)
-  df_2 <- df_2[df_2$DrugName != df_2$DrugName_2, ]
-  rows <- which(df_2$Concentration_2 > 0)
+prepareCodilutionData <- function(cell_lines,
+                                  drugs,
+                                  drugsIdx2 = 1,
+                                  conc = 10 ^ (seq(-3, 1, 0.5)),
+                                  noise = 0.1) {
+  
+  df_layout <- prepareData(cell_lines = cell_lines, drugs = drugs, conc = conc)
+  
+  df_2 <- cbind(drugs[drugsIdx2, , drop = FALSE],
+                df_layout[, "Concentration", drop = FALSE])
+  colnames(df_2) <- paste0(colnames(df_2), "_2")
+  
+  df_layout_2 <- cbind(df_layout, df_2)
+  df_layout_2 <- df_layout_2[df_layout_2$DrugName != df_layout_2$DrugName_2, ]
+  rows <- which(df_layout_2$Concentration_2 > 0)
   cols <- c("Concentration", "Concentration_2")
-  df_2[rows, (cols) := lapply(.SD, function(x) x / 2), .SDcols = cols]
-  df_2
+  df_layout_2[rows, (cols) := lapply(.SD, function(x) x / 2), .SDcols = cols]
+  
+  generate_response_data(df_layout_2, noise)
 }

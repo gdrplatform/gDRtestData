@@ -1,5 +1,11 @@
-## 1.1.5 (2024-01-30)
+## 1.1.7 (2024-02-07)
 - update test data as per new combo model
+
+## 1.1.6 (2024-02-01)
+- standardize full response data functions
+
+## 1.1.5 (2024-01-30)
+- update package vignette
 
 ## 1.1.4 (2024-01-22)
 - update testdata
