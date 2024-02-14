@@ -40,3 +40,6 @@ vignettes/*.pdf
 
 # Settings files
 /*.DS_Store
+
+# pkdown
+docs
