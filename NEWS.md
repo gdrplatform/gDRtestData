@@ -1,3 +1,6 @@
+## 1.1.8 (2024-02-14)
+- make documentation compatible with pkdgdown
+
 ## 1.1.7 (2024-02-07)
 - update test data as per new combo model
 
