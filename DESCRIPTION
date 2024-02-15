@@ -22,7 +22,7 @@ Imports:
     data.table
 Suggests:
     BiocStyle,
-    gDRstyle (>= 1.1.1),
+    gDRstyle (>= 1.1.3),
     knitr,
     qs,
     reshape2,
