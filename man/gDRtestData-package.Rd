@@ -18,6 +18,7 @@ To learn more about functions start with \code{help(package = "gDRtestData")}
 Useful links:
 \itemize{
   \item \url{https://github.com/gdrplatform/gDRtestData}
+  \item \url{https://gdrplatform.github.io/gDRtestData/}
   \item Report bugs at \url{https://github.com/gdrplatform/gDRtestData/issues}
 }
 
