@@ -1,3 +1,6 @@
+## 1.1.9 (2024-02-22)
+- remove redundant annotation files
+
 ## 1.1.8 (2024-02-14)
 - make documentation compatible with pkdgdown
 
