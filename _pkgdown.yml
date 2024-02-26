@@ -2,3 +2,16 @@ url: https://gdrplatform.github.io/gDRtestData/
 template:
   bootstrap: 5
 
+reference:
+- title: Generate data
+- contents:
+  - has_keyword("generate_data")
+- title: Get test datasets
+- contents:
+  - has_keyword("get_test_datasets")
+- title: Random data
+- contents:
+  - has_keyword("random_data")
+- title: Helper functions
+- contents:
+  - has_keyword("helper_functions")

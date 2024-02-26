@@ -2,6 +2,7 @@
 #'
 #' @param df_layout data.table that should contains the cell line,
 #' drug, concentration, and replicate columns along with the annotations that needs to be propagated
+#' @keywords generate_data
 #'
 #'
 #'
@@ -11,6 +12,7 @@
 #' add_data_replicates(cell_lines)
 #' 
 #' @return data.table with replicates
+#' @keywords generate_data
 #' @export
 #'
 add_data_replicates <- function(df_layout) {
@@ -25,6 +27,7 @@ add_data_replicates <- function(df_layout) {
 #' @param df_layout data.table that should contains the cell line,
 #' drug, concentration, and replicate columns along with the annotations that needs to be propagated
 #' @param concentrations vector of numeric concentrations that will be added to df_layout
+#' @keywords generate_data
 #'
 #' @examples
 #' 
@@ -48,6 +51,7 @@ add_concentration <- function(df_layout, concentrations = 10 ^ (seq(-3, 1, 0.5))
 #' @param df_layout data.table that should contains the cell line,
 #' drug, concentration, and replicate columns along with the annotations that needs to be propagated
 #' @param noise_level numeric scalar with the level of noise added to the data
+#' @keywords generate_data
 #'
 #'
 #' @examples
@@ -127,6 +131,7 @@ introduceGNum <- function(df, e_inf, ec50, hill_coef, suffix) {
 #'
 #' @param df_merged data.table with merged data
 #' @param noise_level numeric scalar with the level of noise added to the data
+#' @keywords generate_data
 #'
 #' @examples
 #' 
