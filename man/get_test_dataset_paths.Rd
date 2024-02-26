@@ -29,3 +29,4 @@ get_test_dataset_paths(path)
 \author{
 Kamil Foltyński \email{kamil.foltynski@contractors.roche.com}
 }
+\keyword{get_test_datasets}

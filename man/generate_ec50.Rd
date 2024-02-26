@@ -21,3 +21,4 @@ Calculate EC50 metric
 generate_ec50(create_synthetic_drugs(), create_synthetic_cell_lines())
 
 }
+\keyword{random_data}
