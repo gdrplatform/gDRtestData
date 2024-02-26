@@ -1,5 +1,6 @@
 #' Create data.table with synthetic cell lines
 #'
+#' @keywords random_data
 #' @return data.table with synthetic cell lines
 #'
 #' @examples
@@ -23,6 +24,7 @@ create_synthetic_cell_lines <- function() {
 
 #' Create data.table with synthetic drugs
 #'
+#' @keywords random_data
 #' @return data.table with synthetic drugs
 #' @examples
 #' create_synthetic_drugs()
@@ -46,6 +48,7 @@ create_synthetic_drugs <- function() {
 #'
 #' @param drugs data.table with drugs
 #' @param cell_lines data.table with cell lines
+#' @keywords random_data
 #'
 #' @return matrix with random hill coefficient
 #' @examples
@@ -63,6 +66,7 @@ generate_hill_coef <- function(drugs, cell_lines) {
 #'
 #' @param drugs data.table with drugs
 #' @param cell_lines data.table with cell lines
+#' @keywords random_data
 #'
 #' @return matrix with random EC50
 #' @examples
@@ -101,6 +105,7 @@ generate_ec50 <- function(drugs, cell_lines) {
 #'
 #' @param drugs data.table with drugs
 #' @param cell_lines data.table with cell lines
+#' @keywords random_data
 #'
 #' @return matrix with random E inf
 #' @examples
