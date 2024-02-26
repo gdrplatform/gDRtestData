@@ -21,3 +21,4 @@ Generate hill coefficient
 generate_hill_coef(create_synthetic_drugs(), create_synthetic_cell_lines()) 
 
 }
+\keyword{random_data}

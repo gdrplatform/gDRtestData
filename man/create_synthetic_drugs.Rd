@@ -16,3 +16,4 @@ Create data.table with synthetic drugs
 create_synthetic_drugs()
 
 }
+\keyword{random_data}
