@@ -24,4 +24,4 @@ Create data.table with input data for testing purposes
 prepareData(create_synthetic_cell_lines(), create_synthetic_drugs())
 
 }
-\keyword{helper_functions}
+\keyword{generate_test_data}

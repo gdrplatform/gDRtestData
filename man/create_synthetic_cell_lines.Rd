@@ -16,4 +16,4 @@ Create data.table with synthetic cell lines
 create_synthetic_cell_lines()
 
 }
-\keyword{random_data}
+\keyword{generate_data}

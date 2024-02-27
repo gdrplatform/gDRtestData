@@ -24,4 +24,4 @@ Create data.table with input data containing noise for testing purposes
 prepareMergedData(create_synthetic_cell_lines(), create_synthetic_drugs())
 
 }
-\keyword{helper_functions}
+\keyword{generate_test_data}
