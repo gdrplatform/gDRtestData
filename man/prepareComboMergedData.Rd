@@ -41,4 +41,4 @@ Create data.table with input combination data containing noise for testing purpo
 prepareComboMergedData(create_synthetic_cell_lines(), create_synthetic_drugs())
 
 }
-\keyword{helper_functions}
+\keyword{generate_test_data}

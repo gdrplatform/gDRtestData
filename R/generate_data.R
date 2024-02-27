@@ -51,7 +51,7 @@ add_concentration <- function(df_layout, concentrations = 10 ^ (seq(-3, 1, 0.5))
 #' @param df_layout data.table that should contains the cell line,
 #' drug, concentration, and replicate columns along with the annotations that needs to be propagated
 #' @param noise_level numeric scalar with the level of noise added to the data
-#' @keywords generate_data
+#' @keywords generate_results
 #'
 #'
 #' @examples

@@ -3,15 +3,12 @@ template:
   bootstrap: 5
 
 reference:
-- title: Generate data
+- title: Generate synthetic data
 - contents:
   - has_keyword("generate_data")
-- title: Get test datasets
+- title: Generate synthetic results
 - contents:
-  - has_keyword("get_test_datasets")
-- title: Random data
+  - has_keyword("generate_results")
+- title: Generate test data
 - contents:
-  - has_keyword("random_data")
-- title: Helper functions
-- contents:
-  - has_keyword("helper_functions")
+  - has_keyword("generate_test_data")
