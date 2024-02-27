@@ -79,7 +79,7 @@
 * update testdata
   
 ## gDRtestData 0.99.6 - 2023-04-18
-* moved wrappers to gDRcore
+* move wrappers to gDRcore
   
 ## gDRtestData 0.99.5 - 2023-04-17
 * update packages version
