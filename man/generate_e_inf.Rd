@@ -21,3 +21,4 @@ Calculate E inf metric
 generate_e_inf(create_synthetic_drugs(), create_synthetic_cell_lines())
 
 }
+\keyword{generate_results}

@@ -27,3 +27,4 @@ df_merged$ReadoutValue <- 0
 add_day0_data(df_merged)
 
 }
+\keyword{generate_data}

@@ -2,3 +2,13 @@ url: https://gdrplatform.github.io/gDRtestData/
 template:
   bootstrap: 5
 
+reference:
+- title: Generate synthetic data
+- contents:
+  - has_keyword("generate_data")
+- title: Generate synthetic results
+- contents:
+  - has_keyword("generate_results")
+- title: Generate test data
+- contents:
+  - has_keyword("generate_test_data")
