@@ -1,4 +1,7 @@
-## gDRstyle 1.1.9 - 2024-02-26
+## gDRtestData 1.1.10 - 2024-02-28
+- remove redundant annotation files
+
+## gDRtestData 1.1.9 - 2024-02-26
 * improve pkgdown site
   * improved references
   * valid NEWS.md
