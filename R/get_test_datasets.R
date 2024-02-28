@@ -6,6 +6,7 @@
 #' If \code{NULL}, then \code{inst/testdata} directory from \code{gDRtestData} will be used.
 #' @param pattern used to: (1) filter to qs files from the dataset_dir path
 #'        and (2) prettify the labels of the files
+#' @keywords generate_test_data
 #'
 #' @return named vector of absolute paths
 #' 
