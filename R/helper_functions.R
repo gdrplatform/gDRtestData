@@ -7,6 +7,7 @@
 #' @param cell_lines data.table with cell line info
 #' @param drugs data.table with drug info
 #' @param conc vector of doses
+#' @keywords generate_test_data
 #'
 #' @return data.table with input data for testing
 #' 
@@ -28,6 +29,7 @@ prepareData <- function(cell_lines, drugs, conc = 10 ^ (seq(-3, 1, 0.5))) {
 #' @param cell_lines data.table with cell line info
 #' @param drugs data.table with drug info
 #' @param noise number indicating level of noise
+#' @keywords generate_test_data
 #'
 #' @return data.table with input data for testing
 #' 
@@ -53,6 +55,7 @@ prepareMergedData <- function(cell_lines, drugs, noise = 0.1) {
 #' @param noise number indicating level of noise
 #' @param modifyDf2 Boolean indicating if the table should me modified to keep reverse
 #' single agent data
+#' @keywords generate_test_data
 #'
 #' @return data.table with input data for testing
 #' 
@@ -90,6 +93,7 @@ prepareComboMergedData <- function(cell_lines,
 #' @param drugsIdx2 numeric vector of ids for secondary drug (in `drugs` data.table)
 #' @param conc vector of doses
 #' @param noise number indicating level of noise
+#' @keywords generate_test_data
 #' 
 #' @return data.table with input data for testing
 #' 

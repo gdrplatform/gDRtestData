@@ -24,3 +24,4 @@ cell_lines <- create_synthetic_cell_lines()
 add_concentration(cell_lines)
 
 }
+\keyword{generate_data}

@@ -35,3 +35,4 @@ prepareCodilutionData(create_synthetic_cell_lines()[seq_len(2), ],
                       create_synthetic_drugs()[seq_len(4), ])
 
 }
+\keyword{generate_test_data}
