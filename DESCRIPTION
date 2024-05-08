@@ -1,7 +1,7 @@
 Package: gDRtestData
-Title: gDRtestData - R data package with testing dose reponse data
-Version: 1.1.10
-Date: 2024-02-28
+Title: gDRtestData - R data package with testing dose response data
+Version: 1.1.11
+Date: 2024-05-08
 Description: R package with internal dose-response test data. Package provides functions to generate
   input testing data that can be used as the input for gDR pipeline. It also contains qs files
   with MAE data processed by gDR.
@@ -25,7 +25,7 @@ Imports:
     data.table
 Suggests:
     BiocStyle,
-    gDRstyle (>= 1.1.3),
+    gDRstyle (>= 1.1.5),
     knitr,
     qs,
     reshape2,
@@ -41,5 +41,5 @@ VignetteBuilder: knitr
 License: Artistic-2.0
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE) 
-RoxygenNote: 7.3.0
+RoxygenNote: 7.3.1
 Config/testthat/edition: 3

@@ -4,7 +4,7 @@
 \name{gDRtestData-package}
 \alias{gDRtestData}
 \alias{gDRtestData-package}
-\title{gDRtestData: gDRtestData - R data package with testing dose reponse data}
+\title{gDRtestData: gDRtestData - R data package with testing dose response data}
 \value{
 package help page
 }
@@ -24,18 +24,18 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Arkadiusz Gladki \email{gladki.arkadiusz@gmail.com}
+\strong{Maintainer}: Arkadiusz Gladki \email{gladki.arkadiusz@gmail.com} (\href{https://orcid.org/0000-0002-7059-6378}{ORCID})
 
 Authors:
 \itemize{
   \item Aleksander Chlebowski
-  \item Bartosz Czech
-  \item Marc Hafner
+  \item Bartosz Czech (\href{https://orcid.org/0000-0002-9908-3007}{ORCID})
+  \item Marc Hafner (\href{https://orcid.org/0000-0003-1337-7598}{ORCID})
   \item Marcin Kamianowski
   \item Sergiu Mocanu
   \item Natalia Potocka
   \item Dariusz Scigocki
-  \item Smola Janina
+  \item Janina Smola
   \item Allison Voung
 }
 
