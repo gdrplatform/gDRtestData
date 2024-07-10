@@ -1,3 +1,6 @@
+## gDRtestData 1.3.2 - 2024-07-09
+* reprocess datasets as per new columns added into Metrics assay
+
 ## gDRtestData 1.3.1 - 2024-05-27
 * synchronize Bioconductor and GitHub versioning
 
