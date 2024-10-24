@@ -1,3 +1,6 @@
+## gDRtestData 1.3.3 - 2024-10-24
+* update annotation cols
+
 ## gDRtestData 1.3.2 - 2024-07-09
 * reprocess datasets as per new columns added into Metrics assay
 
