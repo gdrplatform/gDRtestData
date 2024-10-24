@@ -1,4 +1,4 @@
-cell_line_identifier,cell_line_name,primary_tissue,doubling_time,parental_identifier,subtype
+clid,CellLineName,Tissue,ReferenceDivisionTime,parental_identifier,subtype
 CL00016,cellline_GB,breast,46,cellline_GB,NA
 CL00017,cellline_HB,breast,50,cellline_HB,NA
 CL00011,cellline_BA,breast,26,cellline_BA,NA
