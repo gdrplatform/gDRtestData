@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">gDRtestData</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,30 +64,30 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"annotation_data"</span>, <span class="st">"cell_lines.csv"</span>, package <span class="op">=</span> <span class="st">"gDRtestData"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">data.table</span><span class="fu">::</span><span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/fread.html" class="external-link">fread</a></span><span class="op">(</span>file <span class="op">=</span> <span class="va">path</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     cell_line_identifier cell_line_name primary_tissue doubling_time</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                   &lt;char&gt;         &lt;char&gt;         &lt;char&gt;         &lt;int&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  1:              CL00016    cellline_GB         breast            46</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  2:              CL00017    cellline_HB         breast            50</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  3:              CL00011    cellline_BA         breast            26</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  4:              CL00012    cellline_CA         breast            30</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  5:              CL00013    cellline_DA         breast            34</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  6:              CL00014    cellline_EA         breast            38</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  7:              CL00015    cellline_FA         breast            42</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  8:              CL00018    cellline_IB         breast            54</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  9:              CL00019    cellline_JB         breast            58</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10:              CL00020    cellline_KB         breast            62</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     parental_identifier subtype</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                  &lt;char&gt;  &lt;lgcl&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  1:         cellline_GB      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  2:         cellline_HB      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  3:         cellline_BA      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  4:         cellline_CA      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  5:         cellline_DA      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  6:         cellline_EA      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  7:         cellline_FA      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  8:         cellline_IB      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  9:         cellline_JB      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10:         cellline_KB      NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        clid CellLineName Tissue ReferenceDivisionTime parental_identifier</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      &lt;char&gt;       &lt;char&gt; &lt;char&gt;                 &lt;int&gt;              &lt;char&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  1: CL00016  cellline_GB breast                    46         cellline_GB</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2: CL00017  cellline_HB breast                    50         cellline_HB</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  3: CL00011  cellline_BA breast                    26         cellline_BA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  4: CL00012  cellline_CA breast                    30         cellline_CA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  5: CL00013  cellline_DA breast                    34         cellline_DA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  6: CL00014  cellline_EA breast                    38         cellline_EA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  7: CL00015  cellline_FA breast                    42         cellline_FA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  8: CL00018  cellline_IB breast                    54         cellline_IB</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  9: CL00019  cellline_JB breast                    58         cellline_JB</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10: CL00020  cellline_KB breast                    62         cellline_KB</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     subtype</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      &lt;lgcl&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  1:      NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2:      NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  3:      NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  4:      NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  5:      NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  6:      NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  7:      NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  8:      NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  9:      NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10:      NA</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
