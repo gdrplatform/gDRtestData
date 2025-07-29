@@ -1,3 +1,6 @@
+## gDRtestData 1.7.2 - 2025-07-29
+* update test data
+
 ## gDRtestData 1.7.1 - 2025-04-16
 * synchronize Bioconductor and GitHub versioning
 
