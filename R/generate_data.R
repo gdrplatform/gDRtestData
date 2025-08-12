@@ -146,11 +146,11 @@ introduceGNum <- function(df, e_inf, ec50, hill_coef, suffix) {
 #' @export
 #'
 add_day0_data <- function(df_merged, noise_level = 0.05) {
-  cond <- ifelse(
-    array("Concentration_2", nrow(df_merged)) %in% colnames(df_merged),
-    df_merged$Concentration_2 == 0, 
+  cond <- if ("Concentration_2" %in% colnames(df_merged)) {
+    df_merged$Concentration_2 == 0
+  } else {
     TRUE
-  )
+  }
   df_Day0 <- unique(df_merged[df_merged$Concentration == 0 & cond, ])
   
   df_Day0$ReadoutValue <- df_Day0$ReadoutValue / 2 ^ (df_Day0$Duration / df_Day0$ReferenceDivisionTime)
