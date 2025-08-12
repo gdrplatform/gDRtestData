@@ -1,3 +1,6 @@
+## gDRtestData 1.7.3 - 2025-08-12
+* fix usage of `ifelse`
+
 ## gDRtestData 1.7.2 - 2025-07-29
 * update test data
 
