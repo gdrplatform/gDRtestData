@@ -3,7 +3,7 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   gDRtestData: gDRtestData.html
-last_built: 2025-08-21T07:25Z
+last_built: 2025-10-30T09:34Z
 urls:
   reference: https://gdrplatform.github.io/gDRtestData/reference
   article: https://gdrplatform.github.io/gDRtestData/articles
