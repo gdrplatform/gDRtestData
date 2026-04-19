@@ -5,7 +5,7 @@ gDRtestData - R data package with testing dose response data to be used by all g
 
 # Available data
 
-- `inst/testdata/` directory with R datasets provided in the package in qs format
+- `inst/testdata/` directory with R datasets provided in the package in qs2 format
 
 - `inst/annotation_data/`	annotation data provided in the package
 
