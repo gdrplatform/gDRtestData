@@ -1,3 +1,6 @@
+## gDRtestData 1.11.1 - 2026-04-29
+* synchronize Bioconductor and GitHub versioning
+
 ## gDRtestData 1.9.2 - 2026-04-13
 * migrate test data files from `.qs` to `.qs2` format
 
