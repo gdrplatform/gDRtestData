@@ -15,7 +15,7 @@ create_synthetic_cell_lines <- function() {
     ReferenceDivisionTime = seq(22, 80, 4)
   )
   cell_lines <- Reduce(rbind, list(cell_lines)[rep(1, times = 6)])
-  cell_lines$clid <- paste0("CL000", 9 + (seq_len(nrow(cell_lines))))
+  cell_lines$clid <- paste0("CL000", 9 + (seq_len(NROW(cell_lines))))
   cell_lines$CellLineName <- paste0(cell_lines$CellLineName, sort(array(LETTERS[seq_len(15)], 90)))
   cell_lines$Tissue[16:40] <- "tissue_w"
   cell_lines$Tissue[41:50] <- "tissue_v"
@@ -37,8 +37,8 @@ create_synthetic_drugs <- function() {
     drug_moa = sort(paste0("moa_", array(LETTERS[c(1, seq_len(6), 6)], 40)))
   )
   drugs <- Reduce(rbind, list(drugs)[rep(1, times = 6)])
-  drugs$Gnumber <- sprintf("G00%03i", seq_len(nrow(drugs)))
-  drugs$DrugName <- sprintf("drug_%03i", seq_len(nrow(drugs)))
+  drugs$Gnumber <- sprintf("G00%03i", seq_len(NROW(drugs)))
+  drugs$DrugName <- sprintf("drug_%03i", seq_len(NROW(drugs)))
   drugs$drug_moa[-seq_len(80)] <- sort(paste0("moa_", array(LETTERS[seq_len(24)], 160)))
   drugs
 }
@@ -56,7 +56,7 @@ create_synthetic_drugs <- function() {
 #' 
 #' @export
 generate_hill_coef <- function(drugs, cell_lines) {
-  hill_coef <- matrix(1.8 + stats::runif(nrow(drugs) * nrow(cell_lines)), nrow(drugs), nrow(cell_lines))
+  hill_coef <- matrix(1.8 + stats::runif(NROW(drugs) * NROW(cell_lines)), NROW(drugs), NROW(cell_lines))
   colnames(hill_coef) <- cell_lines$clid
   rownames(hill_coef) <- drugs$Gnumber
   hill_coef
@@ -77,8 +77,8 @@ generate_ec50 <- function(drugs, cell_lines) {
   checkmate::assert_data_table(drugs)
   checkmate::assert_data_table(cell_lines)
   
-  nDrugs <- nrow(drugs)
-  nCells <- nrow(cell_lines)
+  nDrugs <- NROW(drugs)
+  nCells <- NROW(cell_lines)
   ec50 <- matrix(stats::runif(nDrugs * nCells) - 0.5, nDrugs, nCells) +
     matrix(sort(rep(seq(-1.2, 0, 0.3), 8)), nDrugs, nCells) +
     t(matrix(seq(-0.4, 0, 0.1), nCells, nDrugs))
@@ -116,8 +116,8 @@ generate_e_inf <- function(drugs, cell_lines) {
   checkmate::assert_data_table(drugs)
   checkmate::assert_data_table(cell_lines)
   
-  nDrugs <- nrow(drugs)
-  nCells <- nrow(cell_lines)
+  nDrugs <- NROW(drugs)
+  nCells <- NROW(cell_lines)
   
   e_inf <- matrix(0.5 * stats::runif(nDrugs * nCells), nDrugs, nCells) +
     t(matrix(seq(0, 0.2, 0.05), nCells, nDrugs))
