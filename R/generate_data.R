@@ -17,7 +17,7 @@
 #'
 add_data_replicates <- function(df_layout) {
   df_layout_duplicates <- Reduce(rbind, list(df_layout)[rep(1, times = 3)])
-  barcode <- do.call(c, lapply(paste0("plate_", seq_len(3)), function(x) rep(x, nrow(df_layout))))
+  barcode <- do.call(c, lapply(paste0("plate_", seq_len(3)), function(x) rep(x, NROW(df_layout))))
   cbind(Barcode = barcode, df_layout_duplicates)
 }
 
@@ -75,8 +75,8 @@ generate_response_data <- function(df_layout, noise_level = 0.1) {
   
   df_layout$ReadoutValue <- round(100 * pmax(
     getReadoutCoef(df_layout, e_inf, ec50, hill_coef) +
-      (noise_level * stats::runif(nrow(df_layout)) - (noise_level / 2)),  # add some noise
-    0.01 * stats::runif(nrow(df_layout)) + 0.005), # avoid hard 0 values
+      (noise_level * stats::runif(NROW(df_layout)) - (noise_level / 2)),  # add some noise
+    0.01 * stats::runif(NROW(df_layout)) + 0.005), # avoid hard 0 values
     1)
   df_layout$BackgroundValue <- 0
   df_layout$Duration <- 72
@@ -154,7 +154,7 @@ add_day0_data <- function(df_merged, noise_level = 0.05) {
   df_Day0 <- unique(df_merged[df_merged$Concentration == 0 & cond, ])
   
   df_Day0$ReadoutValue <- df_Day0$ReadoutValue / 2 ^ (df_Day0$Duration / df_Day0$ReferenceDivisionTime)
-  coef <- (1 - noise_level / 2 + noise_level * stats::runif(nrow(df_Day0)))
+  coef <- (1 - noise_level / 2 + noise_level * stats::runif(NROW(df_Day0)))
   df_Day0$ReadoutValue <- round(df_Day0$ReadoutValue * coef, 1)
   
   df_Day0$Duration <- 0
