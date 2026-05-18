@@ -6,7 +6,7 @@
 #' @examples
 #' path <- system.file("annotation_data", "cell_lines.csv", package = "gDRtestData")
 #' data.table::fread(file = path)
-#' 
+#'
 #' @return data.table
 NULL
 
@@ -15,9 +15,9 @@ NULL
 #' @name drugs
 #' @docType data
 #' @keywords data internal
-#' @examples 
+#' @examples
 #' path <- system.file("annotation_data", "drugs.csv", package = "gDRtestData")
 #' data.table::fread(file = path)
-#' 
+#'
 #' @return data.table
 NULL
