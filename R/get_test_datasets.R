@@ -1,5 +1,5 @@
 #' get_test_dataset_paths
-#' 
+#'
 #' Returns named vector of absolute paths to test datasets.
 #'
 #' @param datasets_dir path to directory with datasets (default \code{NULL}).
@@ -9,13 +9,13 @@
 #' @keywords generate_test_data
 #'
 #' @return named vector of absolute paths
-#' 
+#'
 #' @examples
-#' 
+#'
 #' get_test_dataset_paths()
 #' path <- system.file("testdata", package = "gDRtestData", mustWork = TRUE)
 #' get_test_dataset_paths(path)
-#' 
+#'
 #' @export
 #'
 #' @author Kamil Foltyński \email{kamil.foltynski@@contractors.roche.com}
@@ -30,12 +30,10 @@ get_test_dataset_paths <-
    }
    checkmate::assert_string(datasets_dir, min.chars = 1)
    checkmate::assert_directory_exists(datasets_dir)
-   
+
    checkmate::assert_string(pattern, min.chars = 1)
-   
+
    epaths <- list.files(datasets_dir, pattern = paste0(pattern, ".*\\.qs2$"), full.names = TRUE)
    enames <- gsub(pattern, "", gsub("\\.qs2$", "", basename(epaths)))
    structure(epaths, names = enames)
  }
-   
-

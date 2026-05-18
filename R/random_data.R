@@ -5,7 +5,7 @@
 #'
 #' @examples
 #' create_synthetic_cell_lines()
-#' 
+#'
 #' @export
 create_synthetic_cell_lines <- function() {
   cell_lines <- data.table::data.table(
@@ -28,7 +28,7 @@ create_synthetic_cell_lines <- function() {
 #' @return data.table with synthetic drugs
 #' @examples
 #' create_synthetic_drugs()
-#' 
+#'
 #' @export
 create_synthetic_drugs <- function() {
   drugs <- data.table::data.table(
@@ -52,8 +52,8 @@ create_synthetic_drugs <- function() {
 #'
 #' @return matrix with random hill coefficient
 #' @examples
-#' generate_hill_coef(create_synthetic_drugs(), create_synthetic_cell_lines()) 
-#' 
+#' generate_hill_coef(create_synthetic_drugs(), create_synthetic_cell_lines())
+#'
 #' @export
 generate_hill_coef <- function(drugs, cell_lines) {
   hill_coef <- matrix(1.8 + stats::runif(NROW(drugs) * NROW(cell_lines)), NROW(drugs), NROW(cell_lines))
@@ -71,12 +71,12 @@ generate_hill_coef <- function(drugs, cell_lines) {
 #' @return matrix with random EC50
 #' @examples
 #' generate_ec50(create_synthetic_drugs(), create_synthetic_cell_lines())
-#' 
+#'
 #' @export
 generate_ec50 <- function(drugs, cell_lines) {
   checkmate::assert_data_table(drugs)
   checkmate::assert_data_table(cell_lines)
-  
+
   nDrugs <- NROW(drugs)
   nCells <- NROW(cell_lines)
   ec50 <- matrix(stats::runif(nDrugs * nCells) - 0.5, nDrugs, nCells) +
@@ -110,15 +110,15 @@ generate_ec50 <- function(drugs, cell_lines) {
 #' @return matrix with random E inf
 #' @examples
 #' generate_e_inf(create_synthetic_drugs(), create_synthetic_cell_lines())
-#' 
+#'
 #' @export
 generate_e_inf <- function(drugs, cell_lines) {
   checkmate::assert_data_table(drugs)
   checkmate::assert_data_table(cell_lines)
-  
+
   nDrugs <- NROW(drugs)
   nCells <- NROW(cell_lines)
-  
+
   e_inf <- matrix(0.5 * stats::runif(nDrugs * nCells), nDrugs, nCells) +
     t(matrix(seq(0, 0.2, 0.05), nCells, nDrugs))
 
@@ -135,9 +135,9 @@ generate_e_inf <- function(drugs, cell_lines) {
   e_inf[moa_BE, tissue_x] <- e_inf[moa_BE, tissue_x] - 0.5 * stats::runif(sum(tissue_x))
   e_inf[moa_F, ] <- e_inf[moa_F, ] + 0.3 + 0.2 * stats::runif(sum(moa_F))
   e_inf <- matrix(pmin(0.89, pmax(0.01, e_inf)) + stats::runif(nDrugs * nCells) * 0.1, nDrugs, nCells)
-  
+
   colnames(e_inf) <- cell_lines$clid
   rownames(e_inf) <- drugs$Gnumber
-  
+
   e_inf
 }
