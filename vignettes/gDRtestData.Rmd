@@ -112,7 +112,7 @@ The gDR data model is built on the MultiAssayExperiments (MAE) structure. A deta
 In `inst/testdata` the user may find a set of `qs2` files that are examples of gDR data model for different data types. In the file `synthetic_list.yml` one can find a list of these datasets. Currently available are:
 ```{r echo=FALSE}
 yml_path <- system.file(package = "gDRtestData", "testdata", "synthetic_list.yml")
-cat(paste("* ", names(yaml::read_yaml(yml_path)), collapse = ", \n"), ".")
+cat(paste0("* ", names(yaml::read_yaml(yml_path)), collapse = ", \n"), ".")
 ```
 
 The script `generate_example_data.R` which shows how to generate and process above-mentioned datasets is in `inst/scripts` dir.
