@@ -1,5 +1,5 @@
 ## gDRtestData 1.11.2 - 2026-05-18
-* fix linting violations from updated gDRstyle rules
+* apply updated gDRstyle rules
 
 ## gDRtestData 1.11.1 - 2026-04-29
 * synchronize Bioconductor and GitHub versioning
