@@ -18,7 +18,7 @@ matrix with random hill coefficient
 Generate hill coefficient
 }
 \examples{
-generate_hill_coef(create_synthetic_drugs(), create_synthetic_cell_lines()) 
+generate_hill_coef(create_synthetic_drugs(), create_synthetic_cell_lines())
 
 }
 \keyword{generate_results}
