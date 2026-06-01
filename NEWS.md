@@ -1,5 +1,8 @@
-## gDRtestData 1.11.2 - 2026-05-26
+## gDRtestData 1.11.3 - 2026-06-01
 * add public data from DepMap Portal
+
+## gDRtestData 1.11.2 - 2026-05-18
+* apply updated gDRstyle rules
 
 ## gDRtestData 1.11.1 - 2026-04-29
 * synchronize Bioconductor and GitHub versioning
@@ -79,10 +82,10 @@
 * update testdata
 
 ## gDRtestData 0.99.19 - 2023-06-23
-* BiocStyle added to dependency
+* add BiocStyle to dependency
 
 ## gDRtestData 0.99.18 - 2023-06-22
-* replaced rds files with qs
+* replace rds files with qs
 
 ## gDRtestData 0.99.17 - 2023-06-15
 * switch from merge to [[
@@ -93,7 +96,7 @@
 ## gDRtestData 0.99.15 - 2023-05-24
 * format the vignette with BiocStyle
 
-## gDRtestData 0.99.14 - 22023-05-15
+## gDRtestData 0.99.14 - 2023-05-15
 * fix related with data.table
 
 ## gDRtestData 0.99.13 - 2023-05-15
@@ -103,10 +106,10 @@
 * update testdata as per new data model
 
 ## gDRtestData 0.99.11 - 2023-04-25
-* changed data.frame to data.table
+* change data.frame to data.table
   
 ## gDRtestData 0.99.10 - 2023-04-24
-* removing redundant files
+* remove redundant files
 
 ## gDRtestData 0.99.9 - 2023-04-20
 * fix warning in Bioc check
