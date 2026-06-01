@@ -1,3 +1,6 @@
+## gDRtestData 1.11.3 - 2026-06-01
+* add public data from DepMap Portal
+
 ## gDRtestData 1.11.2 - 2026-05-18
 * apply updated gDRstyle rules
 
