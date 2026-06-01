@@ -66,9 +66,10 @@ ls_col <- c(
 
 depmap_models <- depmap_models_raw[, .SD, .SDcols = ls_col]
 
-write.csv(depmap_models,
-  file = file.path(final_dir, file_name),
-  row.names = FALSE
+data.table::fwrite(
+  depmap_models,
+  file = file.path(final_dir, paste0(file_name, ".gz")),
+  compress = "gzip"
 )
 
 # ============================================================================
@@ -86,9 +87,10 @@ ls_col_hotspot <- names(mutations_hotspot_raw)[names(mutations_hotspot_raw) != i
 ls_col_hotspot <- withr::with_seed(42, sample(ls_col_hotspot, 150))
 depmap_mutations_hotspot <- mutations_hotspot_raw[, .SD, .SDcols = c(id_col, ls_col_hotspot)]
 
-write.csv(depmap_mutations_hotspot,
-  file = file.path(final_dir, file_name),
-  row.names = FALSE
+data.table::fwrite(
+  depmap_mutations_hotspot,
+  file = file.path(final_dir, paste0(file_name, ".gz")),
+  compress = "gzip"
 )
 
 # ============================================================================
@@ -105,9 +107,10 @@ id_col <- intersect(c("V1", "ModelID"), names(mutations_damaging_raw))
 ls_col <- intersect(names(mutations_damaging_raw), ls_col_hotspot)
 depmap_mutations_damaging <- mutations_damaging_raw[, .SD, .SDcols = c(id_col, ls_col)]
 
-write.csv(depmap_mutations_damaging,
-  file = file.path(final_dir, file_name),
-  row.names = FALSE
+data.table::fwrite(
+  depmap_mutations_damaging,
+  file = file.path(final_dir, paste0(file_name, ".gz")),
+  compress = "gzip"
 )
 
 # ============================================================================
@@ -125,9 +128,10 @@ ls_col <- intersect(names(crispr_raw), ls_col_hotspot)
 depmap_crispr_gene_effect <- crispr_raw[, .SD, .SDcols = c(id_col, ls_col)]
 depmap_crispr_gene_effect[, (ls_col) := lapply(.SD, round, 4), .SDcols = ls_col]
 
-write.csv(depmap_crispr_gene_effect,
-  file = file.path(final_dir, file_name),
-  row.names = FALSE
+data.table::fwrite(
+  depmap_crispr_gene_effect,
+  file = file.path(final_dir, paste0(file_name, ".gz")),
+  compress = "gzip"
 )
 
 # ============================================================================
@@ -145,9 +149,10 @@ ls_col <- intersect(names(expression_raw), ls_col_hotspot)
 depmap_expression <- expression_raw[, .SD, .SDcols = c(id_col, ls_col)]
 depmap_expression[, (ls_col) := lapply(.SD, round, 4), .SDcols = ls_col]
 
-write.csv(depmap_expression,
-  file = file.path(final_dir, file_name),
-  row.names = FALSE
+data.table::fwrite(
+  depmap_expression,
+  file = file.path(final_dir, paste0(file_name, ".gz")),
+  compress = "gzip"
 )
 
 # ============================================================================
@@ -165,9 +170,10 @@ ls_col <- intersect(names(cn_raw), ls_col_hotspot)
 depmap_copy_number <- cn_raw[, .SD, .SDcols = c(id_col, ls_col)]
 depmap_copy_number[, (ls_col) := lapply(.SD, round, 4), .SDcols = ls_col]
 
-write.csv(depmap_copy_number,
-  file = file.path(final_dir, file_name),
-  row.names = FALSE
+data.table::fwrite(
+  depmap_copy_number,
+  file = file.path(final_dir, paste0(file_name, ".gz")),
+  compress = "gzip"
 )
 
 # ============================================================================
@@ -239,3 +245,16 @@ dataset_info <- list(
     )
   )
 )
+
+message("\n  Version:         ", dataset_info$version)
+message("  Download Date:   ", dataset_info$download_date)
+message("  Source:          ", dataset_info$source_url)
+
+message("\n  Datasets Prepared:")
+for (dataset_name in names(dataset_info$datasets)) {
+  ds <- dataset_info$datasets[[dataset_name]]
+  message(sprintf(
+    "    %-30s  %8d rows × %6d columns",
+    dataset_name, ds$rows, ds$cols
+  ))
+}
