@@ -9,6 +9,8 @@ gDRtestData - R data package with testing dose response data to be used by all g
 
 - `inst/annotation_data/`	annotation data provided in the package
 
+- `inst/depmap_data/`	data from DepMap Portal (shorten)
+
 - `inst/scripts/`	scripts to generate example dataset
 
 # Website
