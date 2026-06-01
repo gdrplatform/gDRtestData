@@ -1,3 +1,6 @@
+## gDRtestData 1.11.2 - 2026-05-26
+* add public data from DepMap Portal
+
 ## gDRtestData 1.11.1 - 2026-04-29
 * synchronize Bioconductor and GitHub versioning
 
