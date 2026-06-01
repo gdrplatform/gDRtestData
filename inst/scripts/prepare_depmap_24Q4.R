@@ -1,13 +1,13 @@
 # ============================================================================
 # Prepare DepMap 24Q4 Data for gDRtestData Package
 # ============================================================================
-# 
+#
 # This script documents and reproduces the data preparation workflow.
-# 
+#
 # Source: DepMap Public 24Q4
 # Downloaded: May 26, 2026
 # URL: https://depmap.org/portal/data_page/?tab=allData
-# 
+#
 # Citation: DepMap, Broad (2024). DepMap 24Q4 Public. Figshare+. Dataset.
 #           https://doi.org/10.25452/figshare.plus.27993248.v1
 #
@@ -26,7 +26,7 @@ for (pkg in required_packages) {
 }
 
 source_dir <- "PATH_TO_DOWLOAD_DIR" # Update this path
-final_dir <- "~/projects/gDRtestData/inst/depmap_data/"
+final_dir <- "inst/depmap_data/"
 
 # Verify directories exist
 if (!dir.exists(source_dir)) {
@@ -67,8 +67,9 @@ ls_col <- c(
 depmap_models <- depmap_models_raw[, .SD, .SDcols = ls_col]
 
 write.csv(depmap_models,
-          file = file.path(final_dir, file_name),
-          row.names = FALSE)
+  file = file.path(final_dir, file_name),
+  row.names = FALSE
+)
 
 # ============================================================================
 # 2. SOMATIC MUTATIONS - HOTSPOT
@@ -80,13 +81,15 @@ message("Processing Somatic Mutations (Hotspot)...")
 
 mutations_hotspot_raw <- data.table::fread(file.path(source_dir, file_name))
 
-ls_col_hotspot <- c(names(mutations_hotspot_raw)[1],
-                    withr::with_seed(42, sample(names(mutations_hotspot_raw)[-1], 150)))
-depmap_mutations_hotspot <- mutations_hotspot_raw[, .SD, .SDcols = ls_col_hotspot]
+id_col <- intersect(c("V1", "ModelID"), names(mutations_hotspot_raw))
+ls_col_hotspot <- names(mutations_hotspot_raw)[names(mutations_hotspot_raw) != id_col]
+ls_col_hotspot <- withr::with_seed(42, sample(ls_col_hotspot, 150))
+depmap_mutations_hotspot <- mutations_hotspot_raw[, .SD, .SDcols = c(id_col, ls_col_hotspot)]
 
 write.csv(depmap_mutations_hotspot,
-          file = file.path(final_dir, file_name),
-          row.names = FALSE)
+  file = file.path(final_dir, file_name),
+  row.names = FALSE
+)
 
 # ============================================================================
 # 3. SOMATIC MUTATIONS - DAMAGING
@@ -98,12 +101,14 @@ message("Processing Somatic Mutations (Damaging)...")
 
 mutations_damaging_raw <- data.table::fread(file.path(source_dir, file_name))
 
+id_col <- intersect(c("V1", "ModelID"), names(mutations_damaging_raw))
 ls_col <- intersect(names(mutations_damaging_raw), ls_col_hotspot)
-depmap_mutations_damaging <- mutations_damaging_raw[, .SD, .SDcols = ls_col]
+depmap_mutations_damaging <- mutations_damaging_raw[, .SD, .SDcols = c(id_col, ls_col)]
 
 write.csv(depmap_mutations_damaging,
-          file = file.path(final_dir, file_name),
-          row.names = FALSE)
+  file = file.path(final_dir, file_name),
+  row.names = FALSE
+)
 
 # ============================================================================
 # 4. CRISPR GENE EFFECT
@@ -115,14 +120,15 @@ message("Processing CRISPR Gene Effect...")
 
 crispr_raw <- data.table::fread(file.path(source_dir, file_name))
 
+id_col <- intersect(c("V1", "ModelID"), names(crispr_raw))
 ls_col <- intersect(names(crispr_raw), ls_col_hotspot)
-depmap_crispr_gene_effect <- crispr_raw[, .SD, .SDcols = ls_col]
-num_cols <- ls_col[-1]
-depmap_crispr_gene_effect[, (num_cols) := lapply(.SD, round, 4), .SDcols = num_cols]
+depmap_crispr_gene_effect <- crispr_raw[, .SD, .SDcols = c(id_col, ls_col)]
+depmap_crispr_gene_effect[, (ls_col) := lapply(.SD, round, 4), .SDcols = ls_col]
 
 write.csv(depmap_crispr_gene_effect,
-          file = file.path(final_dir, file_name),
-          row.names = FALSE)
+  file = file.path(final_dir, file_name),
+  row.names = FALSE
+)
 
 # ============================================================================
 # 5. GENE EXPRESSION (Protein-Coding Genes, TPM, Log-transformed)
@@ -134,14 +140,15 @@ message("Processing Gene Expression...")
 
 expression_raw <- data.table::fread(file.path(source_dir, file_name))
 
+id_col <- intersect(c("V1", "ModelID"), names(expression_raw))
 ls_col <- intersect(names(expression_raw), ls_col_hotspot)
-depmap_expression <- expression_raw[, .SD, .SDcols = ls_col]
-num_cols <- ls_col[-1]
-depmap_expression[, (num_cols) := lapply(.SD, round, 4), .SDcols = num_cols]
+depmap_expression <- expression_raw[, .SD, .SDcols = c(id_col, ls_col)]
+depmap_expression[, (ls_col) := lapply(.SD, round, 4), .SDcols = ls_col]
 
 write.csv(depmap_expression,
-          file = file.path(final_dir, file_name),
-          row.names = FALSE)
+  file = file.path(final_dir, file_name),
+  row.names = FALSE
+)
 
 # ============================================================================
 # 6. COPY NUMBER VARIATION (CNV)
@@ -153,14 +160,15 @@ message("Processing Copy Number Variation...")
 
 cn_raw <- data.table::fread(file.path(source_dir, file_name))
 
+id_col <- intersect(c("V1", "ModelID"), names(cn_raw))
 ls_col <- intersect(names(cn_raw), ls_col_hotspot)
-depmap_copy_number <- cn_raw[, .SD, .SDcols = ls_col]
-num_cols <- ls_col[-1]
-depmap_copy_number[, (num_cols) := lapply(.SD, round, 4), .SDcols = num_cols]
+depmap_copy_number <- cn_raw[, .SD, .SDcols = c(id_col, ls_col)]
+depmap_copy_number[, (ls_col) := lapply(.SD, round, 4), .SDcols = ls_col]
 
 write.csv(depmap_copy_number,
-          file = file.path(final_dir, file_name),
-          row.names = FALSE)
+  file = file.path(final_dir, file_name),
+  row.names = FALSE
+)
 
 # ============================================================================
 # 7. VALIDATION
@@ -168,23 +176,31 @@ write.csv(depmap_copy_number,
 
 message("\n=== Data Consistency Check ===")
 # Ensure all datasets have consistent cell line IDs
-common_models <- Reduce(intersect,
-                        list(depmap_models[[1]],
-                             depmap_crispr_gene_effect[[1]],
-                             depmap_expression[[1]],
-                             depmap_mutations_hotspot[[1]],
-                             depmap_mutations_damaging[[1]],
-                             depmap_copy_number[[1]]))
+common_models <- Reduce(
+  intersect,
+  list(
+    depmap_models[[1]],
+    depmap_crispr_gene_effect[[1]],
+    depmap_expression[[1]],
+    depmap_mutations_hotspot[[1]],
+    depmap_mutations_damaging[[1]],
+    depmap_copy_number[[1]]
+  )
+)
 cat(sprintf("Common models across all datasets (%d models)", NROW(common_models)))
 
 
 # Ensure all datasets have consistent genes
-common_genes <- Reduce(intersect, 
-                       list(names(depmap_crispr_gene_effect)[-1],
-                            names(depmap_expression)[-1],
-                            names(depmap_mutations_hotspot)[-1],
-                            names(depmap_mutations_damaging)[-1],
-                            names(depmap_copy_number)[-1]))
+common_genes <- Reduce(
+  intersect,
+  list(
+    names(depmap_crispr_gene_effect)[-1],
+    names(depmap_expression)[-1],
+    names(depmap_mutations_hotspot)[-1],
+    names(depmap_mutations_damaging)[-1],
+    names(depmap_copy_number)[-1]
+  )
+)
 cat(sprintf("Common genes across all datasets (%d genes)", NROW(common_genes)))
 
 # ============================================================================

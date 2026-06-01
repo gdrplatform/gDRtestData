@@ -19,7 +19,7 @@
 #'   \item{OncotreeCode}{Oncotree code for cancer models; left blank if
 #'   no corresponding code exists}
 #'   \item{PrimaryOrMetastasis}{Site of tumor origin (Primary/Metastatic/Recurrence/Other/Unknown)}
-#'   \item{Age` | numeric | Age at time of tissue sampling}
+#'   \item{Age}{Age at time of tissue sampling}
 #'   \item{AgeCategory}{Age category at time of sampling (Adult/Pediatric/Fetus/Unknown)}
 #'   \item{Sex}{Sex at time of sampling (Female/Male/Unknown)}
 #'   \item{PatientRace}{Patient/clinical indicated race (not derived)}
@@ -47,7 +47,7 @@ NULL
 #' @source \url{https://depmap.org/portal/data_page/?tab=allData}
 #'
 #' @details
-#' - Rows: Cell line identifiers matching `depmap_models$model_id`
+#' - Rows: Cell line identifiers
 #' - Columns: NCBI gene IDs (Entrez format)
 #' - Values: Dependency scores (-1 to +1); lower = more essential
 #' - NA indicates insufficient screen coverage
