@@ -1,0 +1,193 @@
+---
+title: "DepMap Portal Data"
+author: "gDR team"
+output: BiocStyle::html_document
+vignette: >
+  %\VignetteIndexEntry{DepMap Portal Data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r, echo=FALSE}
+library(gDRtestData)
+```
+
+# Introduction
+The gDRtestData package includes a curated subset of DepMap Public 24Q4 data,
+serving multiple purposes:
+
+ - test data: validate gDR analysis functions with realistic genomic datasets
+ - example data: demonstrate gDR package capabilities in documentation and vignettes
+ - reproducible research: enable reproducible examples across the gDR platform.
+ 
+This vignette describes the included DepMap datasets, their contents, and how to use them.
+
+## Data Source & Citation
+
+**Orginal source**: [DepMap Portal](https://depmap.org/portal) 
+
+**Release**: DepMap Public 24Q4 (Loaded May 26, 2026)
+
+**Citation**:
+DepMap, Broad (2024). DepMap 24Q4 Public. Figshare+. Dataset. 
+https://doi.org/10.25452/figshare.plus.27993248.v1
+
+# Data Overview
+The DepMap 24Q4 release contains new cell models and data from:
+
+ - Whole Genome/Exome Sequencing (Copy Number and Mutation)
+ - RNA Sequencing (Expression and Fusions)
+ - Genome-wide CRISPR knockout screens.
+
+The following datasets are included in the `gDRtestData` pacakge:
+
+| Dataset | Type | Dimensions | Description | Dataset url |
+| --- | --- | --- | -------------| --- |
+| **Models** | Metadata | ~1,000 cell lines | Cell line information and annotations | [url](https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=Model.csv) |
+| **CRISPRGeneEffect** | Functional | ~1,000 × ~18,000 | CRISPR knockout gene effect scores (integrated via Chronos) | [url](https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=CRISPRGeneEffect.csv) |
+| **Expression** | Omics | ~1,000 × ~19,000 | Gene expression (log2 TPM, protein-coding genes) | [url](https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=OmicsExpressionProteinCodingGenesTPMLogp1.csv) |
+| **Mutations (Hotspot)** | Somatic | ~1,000 × ~3,000 | Binary matrix of hotspot mutations | [url](https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=OmicsSomaticMutationsMatrixHotspot.csv) |
+| **Mutations (Damaging)** | Somatic | ~1,000 × ~3,000 | Binary matrix of damaging mutations | [url](https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=OmicsSomaticMutationsMatrixDamaging.csv) |
+| **OmicsCNGene** | CNV | ~1,000 × ~20,000 | Gene-level copy number estimates | [url](https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=OmicsCNGene.csv) |
+
+## Data Dictionary
+
+### Models (Cell Line Metadata)
+
+**file name** Model.csv
+
+| Aspect | Details |
+|--------|---------|
+| **Rows** | Individual cell lines (~1,000 models) |
+| **Columns** | Metadata columns (see below) |
+| **Values** | Cell line annotations and patient information |
+| **Data Type** | Mixed (character, numeric) |
+| **Interpretation** | Comprehensive metadata for each cell line model |
+| **NA Handling** | Missing values indicate information not available for that model |
+
+
+**Column Details:**
+
+Column Summary:
+
+- `ModelID`: Unique cell line identifier
+- `CCLEName`: Cell line name from CCLE database
+- `CellLineName`: Common cell line name
+- `TissueOrigin`: Tissue type (Human, Mouse, Other)
+- `DepmapModelType`, `OncotreeLineage`, `OncotreePrimaryDisease`, `OncotreeSubtype`: Cancer classification (from Oncotree)
+- `OncotreeCode`: Oncotree classification code
+- `PrimaryOrMetastasis`: Tumor site (Primary/Metastatic/Recurrence)
+- `Age`: Age at sampling 
+- `AgeCategory`: Age category at time of sampling (Adult/Pediatric/Fetus/Unknown)
+- `Sex`: Sex at sampling (Female/Male/Unknown)
+- `PatientRace`: Patient-reported race
+
+Notes:
+
+- Classification: Oncotree taxonomy for cancer models
+- Quality: Authenticated, high-quality cell lines only
+- Completeness: Some fields may be NA; indicates information not available
+- Use: Primary reference for cell line metadata; join with other datasets via ModelID
+
+### Somatic Mutations (Hotspot)
+
+**file name**: OmicsSomaticMutationsMatrixHotspot.csv
+
+| Aspect | Details |
+|--------|---------|
+| **Rows** | Cell line identifiers |
+| **Columns** | NCBI gene IDs |
+| **Values** | Binary (0/1); 1 = hotspot mutation present |
+| **Definition** | Mutations in known cancer hotspots (COSMIC, OncoKB) |
+| **Sequencing** | Whole exome sequencing (WES) |
+
+Note: Recurrent mutations at known oncogenic positions.
+
+### Somatic Mutations (Damaging)
+
+**file name**: OmicsSomaticMutationsMatrixDamaging.csv
+
+| Aspect | Details |
+|--------|---------|
+| **Rows** | Cell line identifiers |
+| **Columns** | NCBI gene IDs |
+| **Values** | Binary (0/1); 1 = damaging mutation present |
+| **Definition** | Frame-shift, stop-gain, or splice-site mutations |
+| **Quality** | High confidence damaging variants |
+
+Note: Loss-of-function mutations (frameshifts, nonsense, etc.)
+
+### CRISPR Gene Effect
+
+**file name**: CRISPRGeneEffect.csv
+
+| Aspect | Details |
+|--------|---------|
+| **Rows** | Cell line identifiers |
+| **Columns** | NCBI gene IDs (Entrez format) as column names |
+| **Values** | CRISPR knockout effect scores |
+| **Scale** | -1 to +1 (typically); negative = essential gene in that cell line |
+| **Interpretation** | Lower values indicate genes more essential for cell viability |
+| **NA Handling** | Missing values indicate insufficient screen coverage |
+
+Note:
+
+- Method: Genome-wide CRISPR/Cas9 knockout screens
+- Scale: Dependency scores (probability of essentiality)
+- Processing: Already normalized and quality-filtered by DepMap
+
+### Gene Expression
+
+**file name**: OmicsExpressionProteinCodingGenesTPMLogp1.csv
+
+| Aspect | Details |
+|--------|---------|
+| **Rows** | Cell line identifiers |
+| **Columns** | NCBI gene IDs (protein-coding genes only) |
+| **Values** | Expression levels (numeric) |
+| **Scale** | Log2(TPM + 1); already log-transformed |
+| **Range** | Typically 0-20 (log2 scale) |
+| **Quality** | RNA-seq from standardized Broad CCL protocols |
+
+Note:
+
+- Only protein-coding genes included
+- Already log-transformed (TPM + 1 pseudocount)
+- Row-wise and gene-wise normalization already applied by DepMap
+
+### Copy Number Variation (CNV)
+
+**file name**: OmicsCNGene.csv
+
+| Aspect | Details |
+|--------|---------|
+| **Rows** | Cell line identifiers |
+| **Columns** | NCBI gene IDs |
+| **Values** | Numeric (continuous); gene-level CN estimates |
+| **Scale** | Log2 ratio relative to diploid reference (typically -2 to +3) |
+| **Method** | SNP microarray or WES-derived CN calling |
+| **Interpretation** | 0 = diploid (2 copies); <0 = deletion; >0 = amplification |
+
+
+# Important Limitations & Disclaimers 
+
+1. **Data Subset**: This package includes a curated subset for testing/examples. 
+For comprehensive analyses, download the full DepMap Portal data.
+
+2. **Licensing & Usage**: DepMap data is publicly available but has specific usage terms.
+Verify compliance with your intended use: https://depmap.org/portal/documentation/
+
+3. **Citation**: Always cite both DepMap (original source) and gDRtestData package.
+
+# SessionInfo {-}
+
+```{r sessionInfo}
+sessionInfo()
+```
