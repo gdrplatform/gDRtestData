@@ -15,7 +15,7 @@ Genome-wide CRISPR/Cas9 knockout dependency scores.
 }
 \details{
 \itemize{
-\item Rows: Cell line identifiers matching \code{depmap_models$model_id}
+\item Rows: Cell line identifiers
 \item Columns: NCBI gene IDs (Entrez format)
 \item Values: Dependency scores (-1 to +1); lower = more essential
 \item NA indicates insufficient screen coverage
