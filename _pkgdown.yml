@@ -12,3 +12,6 @@ reference:
 - title: Generate test data
 - contents:
   - has_keyword("generate_test_data")
+- title: Examples of real data
+- contents:
+  - has_keyword("real_data")

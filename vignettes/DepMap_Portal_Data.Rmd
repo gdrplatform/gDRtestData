@@ -65,7 +65,7 @@ The following datasets are included in the `gDRtestData` pacakge:
 
 | Aspect | Details |
 |--------|---------|
-| **Rows** | Individual cell lines (~1,000 models) |
+| **Rows** | Individual cell lines |
 | **Columns** | Metadata columns (see below) |
 | **Values** | Cell line annotations and patient information |
 | **Data Type** | Mixed (character, numeric) |
