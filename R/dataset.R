@@ -2,7 +2,17 @@
 #'
 #' Cell line information from DepMap Public 24Q4.
 #'
+#' @section Loading:
+#' \code{data.table::fread(system.file("depmap_data/Model.csv.gz", package = "gDRtestData"))}
+#'
 #' @format Table
+#'
+#' @section Description:
+#' - Rows: Cell line identifiers
+#' - Columns: Metadata columns (see below)
+#' - Values: Cell line annotations and patient information
+#'
+#' Columns:
 #' \describe{
 #'   \item{ModelID}{Unique cell line identifier (ACH-XXXXX format)}
 #'   \item{CCLEName}{Cell line name from Cancer Cell Line Encyclopedia (CCLE)}
@@ -25,16 +35,20 @@
 #'   \item{PatientRace}{Patient/clinical indicated race (not derived)}
 #' }
 #'
-#' @source \url{https://depmap.org/portal/data_page/?tab=allData}
+#' @section Source:
+#' [DepMap Portal - Data](https://depmap.org/portal/data_page/?tab=allData)
 #'
-#' @details
-#' Downloaded May 26, 2024 from DepMap Portal (version 24Q4).
+#' @section Details:
+#' Downloaded May 26, 2026 from DepMap Portal (version 24Q4).
 #'
-#' Citation: DepMap, Broad (2024). DepMap 24Q4 Public. Figshare+.
-#' https://doi.org/10.25452/figshare.plus.27993248.v1
+#' Citation: 24Q4 DepMap Release, including CRISPR Screens, PRISM Drug Screens, Copy Number,
+#' Mutation, Expression, and Fusions
+#' DepMap, Broad (2024). DepMap 24Q4 Public. Figshare+. Dataset.
+#' \url{https://doi.org/10.25452/figshare.plus.27993248.v1}
+#'
 #'
 #' @docType data
-#' @keywords internal
+#' @keywords real_data
 #' @name DepMap_Model
 NULL
 
@@ -42,18 +56,23 @@ NULL
 #'
 #' Genome-wide CRISPR/Cas9 knockout dependency scores.
 #'
+#' @section Loading:
+#' \code{data.table::fread(system.file("depmap_data/CRISPRGeneEffect.csv.gz",
+#' package = "gDRtestData"))}
+#'
 #' @format Matrix with cell lines as rows and genes as columns
 #'
-#' @source \url{https://depmap.org/portal/data_page/?tab=allData}
-#'
-#' @details
+#' @section Description:
 #' - Rows: Cell line identifiers
 #' - Columns: NCBI gene IDs (Entrez format)
 #' - Values: Dependency scores (-1 to +1); lower = more essential
 #' - NA indicates insufficient screen coverage
 #'
+#' @inheritSection DepMap_Model Source
+#' @inheritSection DepMap_Model Details
+#'
 #' @docType data
-#' @keywords internal
+#' @keywords real_data
 #' @name DepMap_CRISPRGeneEffect
 NULL
 
@@ -62,18 +81,25 @@ NULL
 #'
 #' RNA-seq based gene expression for protein-coding genes.
 #'
-#' @format Matrix with ~1000 rows (cell lines) and ~19,000 columns (genes)
+#' @section Loading:
+#' \code{data.table::fread(
+#' system.file("depmap_data/OmicsExpressionProteinCodingGenesTPMLogp1.csv.gz",
+#' package = "gDRtestData"))}
 #'
-#' @source \url{https://depmap.org/portal/data_page/?tab=allData}
+#' @format Matrix with cell lines as rows and genes as column
 #'
-#' @details
+#' @section Description:
 #' - Rows: Cell line identifiers
 #' - Columns: NCBI gene IDs (Entrez format)
 #' - Values: Log2(TPM + 1) transformed expression
 #' - Only protein-coding genes included
 #'
+#' @inheritSection DepMap_Model Source
+#' @inheritSection DepMap_Model Details
+#'
+#'
 #' @docType data
-#' @keywords internal
+#' @keywords real_data
 #' @name DepMap_OmicsExpressionProteinCodingGenesTPMLogp1
 NULL
 
@@ -82,18 +108,24 @@ NULL
 #'
 #' Binary matrix of known hotspot mutations from whole exome sequencing.
 #'
+#' @section Loading:
+#' \code{data.table::fread(system.file("depmap_data/OmicsSomaticMutationsMatrixHotspot.csv.gz",
+#' package = "gDRtestData"))}
+#'
 #' @format Matrix with cell lines as rows and genes as columns
 #'
-#' @source \url{https://depmap.org/portal/data_page/?tab=allData}
-#'
-#' @details
+#' @section Description:
 #' - Rows: Cell line identifiers
 #' - Columns: NCBI gene IDs
 #' - Values: Binary (0 = no mutation, 1 = hotspot mutation)
 #' - Hotspots defined by COSMIC and OncoKB
 #'
+#' @inheritSection DepMap_Model Source
+#' @inheritSection DepMap_Model Details
+#'
+#'
 #' @docType data
-#' @keywords internal
+#' @keywords real_data
 #' @name DepMap_OmicsSomaticMutationsMatrixHotspot
 NULL
 
@@ -102,18 +134,24 @@ NULL
 #'
 #' Binary matrix of damaging mutations (frame-shift, stop-gain, splice-site).
 #'
+#' @section Loading:
+#' \code{data.table::fread(system.file("depmap_data/OmicsSomaticMutationsMatrixDamaging.csv.gz",
+#' package = "gDRtestData"))}
+#'
 #' @format Matrix with cell lines as rows and genes as columns
 #'
-#' @source \url{https://depmap.org/portal/data_page/?tab=allData}
-#'
-#' @details
+#' @section Description:
 #' - Rows: Cell line identifiers
 #' - Columns: NCBI gene IDs
 #' - Values: Binary (0 = no mutation, 1 = damaging mutation)
 #' - High-confidence loss-of-function mutations
 #'
+#' @inheritSection DepMap_Model Source
+#' @inheritSection DepMap_Model Details
+#'
+#'
 #' @docType data
-#' @keywords internal
+#' @keywords real_data
 #' @name DepMap_OmicsSomaticMutationsMatrixDamaging
 NULL
 
@@ -122,18 +160,23 @@ NULL
 #'
 #' Gene-level copy number estimates from SNP microarray or WES.
 #'
+#' @section Loading:
+#' \code{data.table::fread(system.file("depmap_data/OmicsCNGene.csv.gz", package = "gDRtestData"))}
+#'
 #' @format Matrix with cell lines as rows and genes as columns
 #'
-#' @source \url{https://depmap.org/portal/data_page/?tab=allData}
-#'
-#' @details
+#' @section Description:
 #' - Rows: Cell line identifiers
 #' - Columns: NCBI gene IDs
 #' - Values: Log2 ratio relative to diploid reference
 #' - Typical range: -2 (deletion) to +3 (amplification)
 #' - 0 = diploid (2 copies)
 #'
+#' @inheritSection DepMap_Model Source
+#' @inheritSection DepMap_Model Details
+#'
+#'
 #' @docType data
-#' @keywords internal
+#' @keywords real_data
 #' @name DepMap_OmicsCNGene
 NULL
