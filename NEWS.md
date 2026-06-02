@@ -1,3 +1,6 @@
+## gDRtestData 1.11.4 - 2026-06-02
+* add PRISM public dataset
+
 ## gDRtestData 1.11.3 - 2026-06-01
 * add public data from DepMap Portal
 
