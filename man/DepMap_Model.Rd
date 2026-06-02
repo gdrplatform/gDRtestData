@@ -6,6 +6,24 @@
 \title{DepMap Models (Cell Line Metadata)}
 \format{
 Table
+}
+\description{
+Cell line information from DepMap Public 24Q4.
+}
+\section{Loading}{
+
+\code{data.table::fread(system.file("depmap_data/Model.csv.gz", package = "gDRtestData"))}
+}
+
+\section{Description}{
+
+\itemize{
+\item Rows: Cell line identifiers
+\item Columns: Metadata columns (see below)
+\item Values: Cell line annotations and patient information
+}
+
+Columns:
 \describe{
 \item{ModelID}{Unique cell line identifier (ACH-XXXXX format)}
 \item{CCLEName}{Cell line name from Cancer Cell Line Encyclopedia (CCLE)}
@@ -28,16 +46,20 @@ no corresponding code exists}
 \item{PatientRace}{Patient/clinical indicated race (not derived)}
 }
 }
-\source{
-\url{https://depmap.org/portal/data_page/?tab=allData}
-}
-\description{
-Cell line information from DepMap Public 24Q4.
-}
-\details{
-Downloaded May 26, 2024 from DepMap Portal (version 24Q4).
 
-Citation: DepMap, Broad (2024). DepMap 24Q4 Public. Figshare+.
-https://doi.org/10.25452/figshare.plus.27993248.v1
+\section{Source}{
+
+\href{https://depmap.org/portal/data_page/?tab=allData}{DepMap Portal - Data}
 }
-\keyword{internal}
+
+\section{Details}{
+
+Downloaded May 26, 2026 from DepMap Portal (version 24Q4).
+
+Citation: 24Q4 DepMap Release, including CRISPR Screens, PRISM Drug Screens, Copy Number,
+Mutation, Expression, and Fusions
+DepMap, Broad (2024). DepMap 24Q4 Public. Figshare+. Dataset.
+\url{https://doi.org/10.25452/figshare.plus.27993248.v1}
+}
+
+\keyword{real_data}
