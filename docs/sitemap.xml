@@ -1,78 +1,35 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://gdrplatform.github.io/gDRtestData/404.html</loc>
-  </url>
-  <url>
-    <loc>https://gdrplatform.github.io/gDRtestData/PULL_REQUEST_TEMPLATE.html</loc>
-  </url>
-  <url>
-    <loc>https://gdrplatform.github.io/gDRtestData/articles/gDRtestData.html</loc>
-  </url>
-  <url>
-    <loc>https://gdrplatform.github.io/gDRtestData/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://gdrplatform.github.io/gDRtestData/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://gdrplatform.github.io/gDRtestData/index.html</loc>
-  </url>
-  <url>
-    <loc>https://gdrplatform.github.io/gDRtestData/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://gdrplatform.github.io/gDRtestData/reference/add_concentration.html</loc>
-  </url>
-  <url>
-    <loc>https://gdrplatform.github.io/gDRtestData/reference/add_data_replicates.html</loc>
-  </url>
-  <url>
-    <loc>https://gdrplatform.github.io/gDRtestData/reference/add_day0_data.html</loc>
-  </url>
-  <url>
-    <loc>https://gdrplatform.github.io/gDRtestData/reference/cell_lines.html</loc>
-  </url>
-  <url>
-    <loc>https://gdrplatform.github.io/gDRtestData/reference/create_synthetic_cell_lines.html</loc>
-  </url>
-  <url>
-    <loc>https://gdrplatform.github.io/gDRtestData/reference/create_synthetic_drugs.html</loc>
-  </url>
-  <url>
-    <loc>https://gdrplatform.github.io/gDRtestData/reference/drugs.html</loc>
-  </url>
-  <url>
-    <loc>https://gdrplatform.github.io/gDRtestData/reference/gDRtestData-package.html</loc>
-  </url>
-  <url>
-    <loc>https://gdrplatform.github.io/gDRtestData/reference/generate_e_inf.html</loc>
-  </url>
-  <url>
-    <loc>https://gdrplatform.github.io/gDRtestData/reference/generate_ec50.html</loc>
-  </url>
-  <url>
-    <loc>https://gdrplatform.github.io/gDRtestData/reference/generate_hill_coef.html</loc>
-  </url>
-  <url>
-    <loc>https://gdrplatform.github.io/gDRtestData/reference/generate_response_data.html</loc>
-  </url>
-  <url>
-    <loc>https://gdrplatform.github.io/gDRtestData/reference/get_test_dataset_paths.html</loc>
-  </url>
-  <url>
-    <loc>https://gdrplatform.github.io/gDRtestData/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://gdrplatform.github.io/gDRtestData/reference/prepareCodilutionData.html</loc>
-  </url>
-  <url>
-    <loc>https://gdrplatform.github.io/gDRtestData/reference/prepareComboMergedData.html</loc>
-  </url>
-  <url>
-    <loc>https://gdrplatform.github.io/gDRtestData/reference/prepareData.html</loc>
-  </url>
-  <url>
-    <loc>https://gdrplatform.github.io/gDRtestData/reference/prepareMergedData.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://gdrplatform.github.io/gDRtestData/404.html</loc></url>
+<url><loc>https://gdrplatform.github.io/gDRtestData/PULL_REQUEST_TEMPLATE.html</loc></url>
+<url><loc>https://gdrplatform.github.io/gDRtestData/articles/DepMap_Portal_Data.html</loc></url>
+<url><loc>https://gdrplatform.github.io/gDRtestData/articles/gDRtestData.html</loc></url>
+<url><loc>https://gdrplatform.github.io/gDRtestData/articles/index.html</loc></url>
+<url><loc>https://gdrplatform.github.io/gDRtestData/authors.html</loc></url>
+<url><loc>https://gdrplatform.github.io/gDRtestData/index.html</loc></url>
+<url><loc>https://gdrplatform.github.io/gDRtestData/news/index.html</loc></url>
+<url><loc>https://gdrplatform.github.io/gDRtestData/reference/DepMap_CRISPRGeneEffect.html</loc></url>
+<url><loc>https://gdrplatform.github.io/gDRtestData/reference/DepMap_Model.html</loc></url>
+<url><loc>https://gdrplatform.github.io/gDRtestData/reference/DepMap_OmicsCNGene.html</loc></url>
+<url><loc>https://gdrplatform.github.io/gDRtestData/reference/DepMap_OmicsExpressionProteinCodingGenesTPMLogp1.html</loc></url>
+<url><loc>https://gdrplatform.github.io/gDRtestData/reference/DepMap_OmicsSomaticMutationsMatrixDamaging.html</loc></url>
+<url><loc>https://gdrplatform.github.io/gDRtestData/reference/DepMap_OmicsSomaticMutationsMatrixHotspot.html</loc></url>
+<url><loc>https://gdrplatform.github.io/gDRtestData/reference/add_concentration.html</loc></url>
+<url><loc>https://gdrplatform.github.io/gDRtestData/reference/add_data_replicates.html</loc></url>
+<url><loc>https://gdrplatform.github.io/gDRtestData/reference/add_day0_data.html</loc></url>
+<url><loc>https://gdrplatform.github.io/gDRtestData/reference/cell_lines.html</loc></url>
+<url><loc>https://gdrplatform.github.io/gDRtestData/reference/create_synthetic_cell_lines.html</loc></url>
+<url><loc>https://gdrplatform.github.io/gDRtestData/reference/create_synthetic_drugs.html</loc></url>
+<url><loc>https://gdrplatform.github.io/gDRtestData/reference/drugs.html</loc></url>
+<url><loc>https://gdrplatform.github.io/gDRtestData/reference/gDRtestData-package.html</loc></url>
+<url><loc>https://gdrplatform.github.io/gDRtestData/reference/generate_e_inf.html</loc></url>
+<url><loc>https://gdrplatform.github.io/gDRtestData/reference/generate_ec50.html</loc></url>
+<url><loc>https://gdrplatform.github.io/gDRtestData/reference/generate_hill_coef.html</loc></url>
+<url><loc>https://gdrplatform.github.io/gDRtestData/reference/generate_response_data.html</loc></url>
+<url><loc>https://gdrplatform.github.io/gDRtestData/reference/get_test_dataset_paths.html</loc></url>
+<url><loc>https://gdrplatform.github.io/gDRtestData/reference/index.html</loc></url>
+<url><loc>https://gdrplatform.github.io/gDRtestData/reference/prepareCodilutionData.html</loc></url>
+<url><loc>https://gdrplatform.github.io/gDRtestData/reference/prepareComboMergedData.html</loc></url>
+<url><loc>https://gdrplatform.github.io/gDRtestData/reference/prepareData.html</loc></url>
+<url><loc>https://gdrplatform.github.io/gDRtestData/reference/prepareMergedData.html</loc></url>
 </urlset>
+
