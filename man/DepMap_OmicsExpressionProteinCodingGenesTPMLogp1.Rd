@@ -5,7 +5,7 @@
 \alias{DepMap_OmicsExpressionProteinCodingGenesTPMLogp1}
 \title{Gene Expression (Log2 TPM)}
 \format{
-Matrix with cell lines as rows and genes as column
+Matrix with cell lines as rows and genes as columns
 }
 \description{
 RNA-seq based gene expression for protein-coding genes.

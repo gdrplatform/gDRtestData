@@ -86,7 +86,7 @@ NULL
 #' system.file("depmap_data/OmicsExpressionProteinCodingGenesTPMLogp1.csv.gz",
 #' package = "gDRtestData"))}
 #'
-#' @format Matrix with cell lines as rows and genes as column
+#' @format Matrix with cell lines as rows and genes as columns
 #'
 #' @section Description:
 #' - Rows: Cell line identifiers
@@ -184,7 +184,7 @@ NULL
 #' PRISM Broad Screen Cancer Cell Line Viability Dataset
 #'
 #' The single-agent screening data from the PRISM platform -
-#' with one drug and 774 cell line.
+#' with one drug and 774 cell lines.
 #'
 #' @section Loading:
 #' \code{gDRutils::get_synthetic_data("prism")}

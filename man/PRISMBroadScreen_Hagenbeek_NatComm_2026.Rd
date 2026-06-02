@@ -13,7 +13,7 @@ Hagenbeek et al, Nat Comm 2026, Accepted
 }
 \description{
 The single-agent screening data from the PRISM platform -
-with one drug and 774 cell line.
+with one drug and 774 cell lines.
 }
 \section{Loading}{
 
