@@ -7,13 +7,16 @@
 \format{
 Matrix with cell lines as rows and genes as columns
 }
-\source{
-\url{https://depmap.org/portal/data_page/?tab=allData}
-}
 \description{
 Gene-level copy number estimates from SNP microarray or WES.
 }
-\details{
+\section{Loading}{
+
+\code{data.table::fread(system.file("depmap_data/OmicsCNGene.csv.gz", package = "gDRtestData"))}
+}
+
+\section{Description}{
+
 \itemize{
 \item Rows: Cell line identifiers
 \item Columns: NCBI gene IDs
@@ -22,4 +25,20 @@ Gene-level copy number estimates from SNP microarray or WES.
 \item 0 = diploid (2 copies)
 }
 }
-\keyword{internal}
+
+\section{Source}{
+
+\href{https://depmap.org/portal/data_page/?tab=allData}{DepMap Portal - Data}
+}
+
+\section{Details}{
+
+Downloaded May 26, 2026 from DepMap Portal (version 24Q4).
+
+Citation: 24Q4 DepMap Release, including CRISPR Screens, PRISM Drug Screens, Copy Number,
+Mutation, Expression, and Fusions
+DepMap, Broad (2024). DepMap 24Q4 Public. Figshare+. Dataset.
+\url{https://doi.org/10.25452/figshare.plus.27993248.v1}
+}
+
+\keyword{real_data}
