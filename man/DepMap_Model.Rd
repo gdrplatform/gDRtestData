@@ -20,7 +20,7 @@ Cell line information from DepMap Public 24Q4.
 \itemize{
 \item Rows: Cell line identifiers
 \item Columns: Metadata columns (see below)
-\item Values: Cell line annotations and patient information
+\item Values: Cell line annotations and donor demographics
 }
 
 Columns:

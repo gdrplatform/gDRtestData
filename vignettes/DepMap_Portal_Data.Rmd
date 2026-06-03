@@ -67,7 +67,7 @@ The following datasets are included in the `gDRtestData` pacakge:
 |--------|---------|
 | **Rows** | Individual cell lines |
 | **Columns** | Metadata columns (see below) |
-| **Values** | Cell line annotations and patient information |
+| **Values** | Cell line annotations and metadata |
 | **Data Type** | Mixed (character, numeric) |
 | **Interpretation** | Comprehensive metadata for each cell line model |
 | **NA Handling** | Missing values indicate information not available for that model |
