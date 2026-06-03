@@ -80,7 +80,6 @@ Column Summary:
 - `ModelID`: Unique cell line identifier
 - `CCLEName`: Cell line name from CCLE database
 - `CellLineName`: Common cell line name
-- `TissueOrigin`: Tissue type (Human, Mouse, Other)
 - `DepmapModelType`, `OncotreeLineage`, `OncotreePrimaryDisease`, `OncotreeSubtype`: Cancer classification (from Oncotree)
 - `OncotreeCode`: Oncotree classification code
 - `PrimaryOrMetastasis`: Tumor site (Primary/Metastatic/Recurrence)
