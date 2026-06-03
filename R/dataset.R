@@ -10,7 +10,7 @@
 #' @section Description:
 #' - Rows: Cell line identifiers
 #' - Columns: Metadata columns (see below)
-#' - Values: Cell line annotations and patient information
+#' - Values: Cell line annotations and donor demographics
 #'
 #' Columns:
 #' \describe{
@@ -209,7 +209,7 @@ NULL
 #'   \item{clid}{Unique Broad Institute cell line identifier.}
 #'   \item{CellLineName}{Publicly recognized cancer cell line name.}
 #'   \item{Tissue}{Primary tissue of origin.}
-#'   \item{parental_identifier}{Identifier for parental strain/patient source.}
+#'   \item{parental_identifier}{Identifier for the parental cell line.}
 #'   \item{subtype}{Histological or molecular subtype.}
 #'   \item{ReferenceDivisionTime}{Estimated doubling time in hours.}
 #' }
@@ -217,7 +217,7 @@ NULL
 #' ### Row Metadata (rowData)
 #' Feature metadata describing the treatment compounds across assays:
 #' \describe{
-#'   \item{Gnumber}{Broad Institute global substance identifier (Genentech/Broad ID).}
+#'   \item{Gnumber}{Genentech compound identifier.}
 #'   \item{DrugName}{Public or commercial name of the tested compound.}
 #'   \item{drug_moa}{Mechanism of action / biological target of the drug.}
 #'   \item{Duration}{Exposure time of the cell lines to the compound (e.g., 72h).}
