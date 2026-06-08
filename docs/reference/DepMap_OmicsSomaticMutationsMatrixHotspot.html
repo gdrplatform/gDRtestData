@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">gDRtestData</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.11.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.11.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,7 +34,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Somatic Mutations (Hotspot)</h1>
-      <small class="dont-index">Source: <a href="https://github.com/gdrplatform/gDRtestData/blob/test_ci_pkgdown/R/dataset.R" class="external-link"><code>R/dataset.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/gdrplatform/gDRtestData/blob/main/R/dataset.R" class="external-link"><code>R/dataset.R</code></a></small>
       <div class="d-none name"><code>DepMap_OmicsSomaticMutationsMatrixHotspot.Rd</code></div>
     </div>
 
@@ -48,17 +48,37 @@
     <p>Matrix with cell lines as rows and genes as columns</p>
     </div>
     <div class="section level2">
-    <h2 id="source">Source<a class="anchor" aria-label="anchor" href="#source"></a></h2>
-    <p><a href="https://depmap.org/portal/data_page/?tab=allData" class="external-link">https://depmap.org/portal/data_page/?tab=allData</a></p>
+    <h2 id="loading">Loading<a class="anchor" aria-label="anchor" href="#loading"></a></h2>
+
+
+<p><code>data.table::fread(system.file("depmap_data/OmicsSomaticMutationsMatrixHotspot.csv.gz",
+package = "gDRtestData"))</code></p>
     </div>
     <div class="section level2">
-    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <h2 id="description">Description<a class="anchor" aria-label="anchor" href="#description"></a></h2>
+
 
 <ul><li><p>Rows: Cell line identifiers</p></li>
 <li><p>Columns: NCBI gene IDs</p></li>
 <li><p>Values: Binary (0 = no mutation, 1 = hotspot mutation)</p></li>
 <li><p>Hotspots defined by COSMIC and OncoKB</p></li>
 </ul></div>
+    <div class="section level2">
+    <h2 id="source">Source<a class="anchor" aria-label="anchor" href="#source"></a></h2>
+
+
+<p><a href="https://depmap.org/portal/data_page/?tab=allData" class="external-link">DepMap Portal - Data</a></p>
+    </div>
+    <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+
+
+<p>Downloaded May 26, 2026 from DepMap Portal (version 24Q4).</p>
+<p>Citation: 24Q4 DepMap Release, including CRISPR Screens, PRISM Drug Screens, Copy Number,
+Mutation, Expression, and Fusions
+DepMap, Broad (2024). DepMap 24Q4 Public. Figshare+. Dataset.
+<a href="https://doi.org/10.25452/figshare.plus.27993248.v1" class="external-link">https://doi.org/10.25452/figshare.plus.27993248.v1</a></p>
+    </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>

@@ -51,9 +51,9 @@ The following datasets are included in the `gDRtestData` pacakge:
 
 | Aspect             | Details                                                          |
 |--------------------|------------------------------------------------------------------|
-| **Rows**           | Individual cell lines (~1,000 models)                            |
+| **Rows**           | Individual cell lines                                            |
 | **Columns**        | Metadata columns (see below)                                     |
-| **Values**         | Cell line annotations and patient information                    |
+| **Values**         | Cell line annotations and metadata                               |
 | **Data Type**      | Mixed (character, numeric)                                       |
 | **Interpretation** | Comprehensive metadata for each cell line model                  |
 | **NA Handling**    | Missing values indicate information not available for that model |
@@ -65,7 +65,6 @@ Column Summary:
 - `ModelID`: Unique cell line identifier
 - `CCLEName`: Cell line name from CCLE database
 - `CellLineName`: Common cell line name
-- `TissueOrigin`: Tissue type (Human, Mouse, Other)
 - `DepmapModelType`, `OncotreeLineage`, `OncotreePrimaryDisease`,
   `OncotreeSubtype`: Cancer classification (from Oncotree)
 - `OncotreeCode`: Oncotree classification code
@@ -202,17 +201,17 @@ sessionInfo()
 #> [1] stats     graphics  grDevices utils     datasets  methods   base     
 #> 
 #> other attached packages:
-#> [1] gDRtestData_1.11.3 BiocStyle_2.40.0  
+#> [1] gDRtestData_1.11.4 BiocStyle_2.40.0  
 #> 
 #> loaded via a namespace (and not attached):
-#>  [1] digest_0.6.39       desc_1.4.3          R6_2.6.1           
-#>  [4] bookdown_0.46       fastmap_1.2.0       xfun_0.58          
-#>  [7] cachem_1.1.0        knitr_1.51          htmltools_0.5.9    
-#> [10] rmarkdown_2.31      lifecycle_1.0.5     cli_3.6.6          
-#> [13] sass_0.4.10         pkgdown_2.2.0       data.table_1.18.4  
-#> [16] textshaping_1.0.5   jquerylib_0.1.4     systemfonts_1.3.2  
-#> [19] compiler_4.6.0      tools_4.6.0         ragg_1.5.2         
-#> [22] bslib_0.11.0        evaluate_1.0.5      yaml_2.3.12        
-#> [25] BiocManager_1.30.27 jsonlite_2.0.0      rlang_1.2.0        
-#> [28] fs_2.1.0
+#>  [1] cli_3.6.6           knitr_1.51          rlang_1.2.0        
+#>  [4] xfun_0.58           otel_0.2.0          textshaping_1.0.5  
+#>  [7] data.table_1.18.4   jsonlite_2.0.0      htmltools_0.5.9    
+#> [10] ragg_1.5.2          sass_0.4.10         rmarkdown_2.31     
+#> [13] evaluate_1.0.5      jquerylib_0.1.4     fastmap_1.2.0      
+#> [16] yaml_2.3.12         lifecycle_1.0.5     bookdown_0.46      
+#> [19] BiocManager_1.30.27 compiler_4.6.0      fs_2.1.0           
+#> [22] systemfonts_1.3.2   digest_0.6.39       R6_2.6.1           
+#> [25] bslib_0.11.0        tools_4.6.0         pkgdown_2.2.0      
+#> [28] cachem_1.1.0        desc_1.4.3
 ```

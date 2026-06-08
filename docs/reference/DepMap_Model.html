@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">gDRtestData</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.11.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.11.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,7 +34,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>DepMap Models (Cell Line Metadata)</h1>
-      <small class="dont-index">Source: <a href="https://github.com/gdrplatform/gDRtestData/blob/test_ci_pkgdown/R/dataset.R" class="external-link"><code>R/dataset.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/gdrplatform/gDRtestData/blob/main/R/dataset.R" class="external-link"><code>R/dataset.R</code></a></small>
       <div class="d-none name"><code>DepMap_Model.Rd</code></div>
     </div>
 
@@ -45,7 +45,22 @@
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
-    <p>Table</p><dl><dt>ModelID</dt>
+    <p>Table</p>
+    </div>
+    <div class="section level2">
+    <h2 id="loading">Loading<a class="anchor" aria-label="anchor" href="#loading"></a></h2>
+
+
+<p><code>data.table::fread(system.file("depmap_data/Model.csv.gz", package = "gDRtestData"))</code></p>
+    </div>
+    <div class="section level2">
+    <h2 id="description">Description<a class="anchor" aria-label="anchor" href="#description"></a></h2>
+
+
+<ul><li><p>Rows: Cell line identifiers</p></li>
+<li><p>Columns: Metadata columns (see below)</p></li>
+<li><p>Values: Cell line annotations and donor demographics</p></li>
+</ul><p>Columns:</p><dl><dt>ModelID</dt>
 <dd><p>Unique cell line identifier (ACH-XXXXX format)</p></dd>
 
 <dt>CCLEName</dt>
@@ -53,9 +68,6 @@
 
 <dt>CellLineName</dt>
 <dd><p>Common cell line name (e.g., "A375", "HCT-116")</p></dd>
-
-<dt>TissueOrigin</dt>
-<dd><p>Indicates tissue model was derived from (Human, Mouse, Other)</p></dd>
 
 <dt>DepmapModelType</dt>
 <dd><p>Abbreviated ID for model type. For cancer models, from Oncotree;
@@ -96,13 +108,19 @@ no corresponding code exists</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="source">Source<a class="anchor" aria-label="anchor" href="#source"></a></h2>
-    <p><a href="https://depmap.org/portal/data_page/?tab=allData" class="external-link">https://depmap.org/portal/data_page/?tab=allData</a></p>
+
+
+<p><a href="https://depmap.org/portal/data_page/?tab=allData" class="external-link">DepMap Portal - Data</a></p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>Downloaded May 26, 2024 from DepMap Portal (version 24Q4).</p>
-<p>Citation: DepMap, Broad (2024). DepMap 24Q4 Public. Figshare+.
-https://doi.org/10.25452/figshare.plus.27993248.v1</p>
+
+
+<p>Downloaded May 26, 2026 from DepMap Portal (version 24Q4).</p>
+<p>Citation: 24Q4 DepMap Release, including CRISPR Screens, PRISM Drug Screens, Copy Number,
+Mutation, Expression, and Fusions
+DepMap, Broad (2024). DepMap 24Q4 Public. Figshare+. Dataset.
+<a href="https://doi.org/10.25452/figshare.plus.27993248.v1" class="external-link">https://doi.org/10.25452/figshare.plus.27993248.v1</a></p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
