@@ -1,5 +1,5 @@
-## gDRtestData 1.11.4 - 2026-06-08
-* add workshop drug annotations (G00100-G00106)
+## gDRtestData 1.11.5 - 2026-06-08
+* add workshop drug and cell line annotations (G00100-G00106, CL00100-CL00146)
 
 ## gDRtestData 1.11.3 - 2026-06-01
 * add public data from DepMap Portal
