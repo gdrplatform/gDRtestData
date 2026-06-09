@@ -65,9 +65,9 @@ The following datasets are included in the `gDRtestData` pacakge:
 
 | Aspect | Details |
 |--------|---------|
-| **Rows** | Individual cell lines (~1,000 models) |
+| **Rows** | Individual cell lines |
 | **Columns** | Metadata columns (see below) |
-| **Values** | Cell line annotations and patient information |
+| **Values** | Cell line annotations and metadata |
 | **Data Type** | Mixed (character, numeric) |
 | **Interpretation** | Comprehensive metadata for each cell line model |
 | **NA Handling** | Missing values indicate information not available for that model |
@@ -80,7 +80,6 @@ Column Summary:
 - `ModelID`: Unique cell line identifier
 - `CCLEName`: Cell line name from CCLE database
 - `CellLineName`: Common cell line name
-- `TissueOrigin`: Tissue type (Human, Mouse, Other)
 - `DepmapModelType`, `OncotreeLineage`, `OncotreePrimaryDisease`, `OncotreeSubtype`: Cancer classification (from Oncotree)
 - `OncotreeCode`: Oncotree classification code
 - `PrimaryOrMetastasis`: Tumor site (Primary/Metastatic/Recurrence)

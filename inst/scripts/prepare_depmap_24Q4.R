@@ -51,7 +51,6 @@ depmap_models_raw <- data.table::fread(file.path(source_dir, file_name))
 ls_col <- c(
   "ModelID",
   "CCLEName",
-  "TissueOrigin",
   "DepmapModelType",
   "OncotreeLineage",
   "OncotreePrimaryDisease",
