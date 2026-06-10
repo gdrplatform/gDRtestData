@@ -31,12 +31,12 @@ Source:
 Chlebowski A, Czech B, Gladki A, Hafner M, Kamianowski M, Mocanu S,
 Potocka N, Scigocki D, Smola J, Voung A (2026). *gDRtestData:
 gDRtestData - R data package with testing dose response data*. R package
-version 1.11.4, <https://github.com/gdrplatform/gDRtestData>.
+version 1.11.5, <https://github.com/gdrplatform/gDRtestData>.
 
     @Manual{,
       title = {gDRtestData: gDRtestData - R data package with testing dose response data},
       author = {Aleksander Chlebowski and Bartosz Czech and Arkadiusz Gladki and Marc Hafner and Marcin Kamianowski and Sergiu Mocanu and Natalia Potocka and Dariusz Scigocki and Janina Smola and Allison Voung},
       year = {2026},
-      note = {R package version 1.11.4},
+      note = {R package version 1.11.5},
       url = {https://github.com/gdrplatform/gDRtestData},
     }

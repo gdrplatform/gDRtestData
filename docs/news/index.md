@@ -1,5 +1,9 @@
 # Changelog
 
+## gDRtestData 1.11.5 - 2026-06-09
+
+- add workshop drug and cell line annotations
+
 ## gDRtestData 1.11.4 - 2026-06-02
 
 - add PRISM public dataset
