@@ -9,3 +9,50 @@ CL00015,cellline_FA,breast,42,cellline_FA,NA
 CL00018,cellline_IB,breast,54,cellline_IB,NA
 CL00019,cellline_JB,breast,58,cellline_JB,NA
 CL00020,cellline_KB,breast,62,cellline_KB,NA
+CL00100,CAMA-1,Breast,53,CAMA-1,Adenocarcinoma
+CL00101,EFM-19,Breast,64,EFM-19,Carcinoma
+CL00102,MCF-7,Breast,30,MCF-7,Adenocarcinoma
+CL00103,T-47D,Breast,60,T-47D,Adenocarcinoma Ductal
+CL00104,501A,Skin,27,501A,Melanoma
+CL00105,624 mel,Skin,26,501A,Melanoma
+CL00106,928 mel,Skin,27,928 mel,Melanoma
+CL00107,A-253,Skin,47,A-253,Carcinoma
+CL00108,A-375,Skin,25,A-375,Melanoma
+CL00109,A-431,Skin,30,A-431,Carcinoma Squamous Cell
+CL00110,A2058,Skin,18,A2058,Melanoma
+CL00111,A388,Skin,45,A388,Carcinoma Metastatic
+CL00112,COLO 800,Skin,45,COLO 800,Melanoma
+CL00113,COLO 829,Skin,56,COLO 829,Melanoma
+CL00114,COLO 849,Skin,47,COLO 849,Melanoma Metastatic
+CL00115,COLO 853,Skin,,COLO 853,Melanoma
+CL00116,COLO 857,Skin,31,COLO 857,Melanoma
+CL00117,COLO 858,Skin,,COLO 858,Melanoma
+CL00118,G-361,Skin,35,G-361,Melanoma
+CL00119,HCC1498,Skin,31,HCC1498,Melanoma
+CL00120,HMY-1,Skin,31,HMY-1,Melanoma
+CL00121,HSC-1,Skin,57,HSC-1,Carcinoma Squamous Cell
+CL00122,HSC-5,Skin,,HSC-5,Carcinoma Squamous Cell
+CL00123,HT-144,Skin,57,HT-144,Melanoma
+CL00124,Hs 294T,Skin,36,A101D,Melanoma
+CL00125,Hs 695T,Skin,56,Hs 695T,Melanoma
+CL00126,Hs 852.T,Skin,63,Hs 852.T,Melanoma
+CL00127,IGR-1,Skin,18,IGR-1,Melanoma
+CL00128,IGR-39,Skin,45,IGR-39,Melanoma
+CL00129,MDA-MB-435,Skin,35,MDA-MB-435,Melanoma
+CL00130,MEL-HO,Skin,27,MEL-HO,Melanoma
+CL00131,MEL-JUSO,Skin,29,MEL-JUSO,Melanoma
+CL00132,MMAc,Skin,82,MMAc,Melanoma
+CL00133,RPMI-7951,Skin,30,RPMI-7951,Melanoma
+CL00134,RVH-421,Skin,50,RVH-421,Melanoma
+CL00135,SK-MEL-1,Skin,63,SK-MEL-1,Melanoma Metastatic
+CL00136,SK-MEL-2,Skin,62,SK-MEL-2,Melanoma
+CL00137,SK-MEL-24,Skin,72,SK-MEL-24,Melanoma
+CL00138,SK-MEL-28,Skin,39,SK-MEL-28,Melanoma
+CL00139,SK-MEL-3,Skin,50,SK-MEL-3,Melanoma
+CL00140,SK-MEL-30,Skin,26,SK-MEL-30,Melanoma
+CL00141,SK-MEL-31,Skin,55,SK-MEL-31,Melanoma
+CL00142,SK23-mel,Skin,20,SK-23 MEL,Melanoma
+CL00143,UACC-257,Skin,47,UACC-257,Melanoma
+CL00144,UACC-62,Skin,39,UACC-62,Melanoma Metastatic
+CL00145,UCSD-242l,Skin,46,UCSD-242l,Melanoma
+CL00146,WM-266-4,Skin,29,WM-266-4,Melanoma
