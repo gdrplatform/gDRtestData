@@ -70,3 +70,9 @@ wLigand:
   script: generateLigandData
   imported_as_example: TRUE
   description: "3 drugs by 4 lines (3 tissues); `Ligand = 0.1` as reference; single agent"
+prism:
+  name: finalMAE_prism
+  file: finalMAE_prism.qs2
+  script: none
+  imported_as_example: TRUE
+  description: "1 drugs by 774 lines (30 tissues); single agent"
