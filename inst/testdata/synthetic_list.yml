@@ -75,4 +75,4 @@ prism:
   file: finalMAE_prism.qs2
   script: none
   imported_as_example: TRUE
-  description: "1 drugs by 774 lines (30 tissues); single agent"
+  description: "1 drug by 774 lines (30 tissues); single agent"
