@@ -201,15 +201,15 @@ sessionInfo()
 #> [1] stats     graphics  grDevices utils     datasets  methods   base     
 #> 
 #> other attached packages:
-#> [1] gDRtestData_1.11.5 BiocStyle_2.40.0  
+#> [1] gDRtestData_1.11.6 BiocStyle_2.40.0  
 #> 
 #> loaded via a namespace (and not attached):
 #>  [1] cli_3.6.6           knitr_1.51          rlang_1.2.0        
-#>  [4] xfun_0.58           otel_0.2.0          textshaping_1.0.5  
+#>  [4] xfun_0.59           otel_0.2.0          textshaping_1.0.5  
 #>  [7] data.table_1.18.4   jsonlite_2.0.0      htmltools_0.5.9    
 #> [10] ragg_1.5.2          sass_0.4.10         rmarkdown_2.31     
 #> [13] evaluate_1.0.5      jquerylib_0.1.4     fastmap_1.2.0      
-#> [16] yaml_2.3.12         lifecycle_1.0.5     bookdown_0.46      
+#> [16] yaml_2.3.12         lifecycle_1.0.5     bookdown_0.47      
 #> [19] BiocManager_1.30.27 compiler_4.6.0      fs_2.1.0           
 #> [22] systemfonts_1.3.2   digest_0.6.39       R6_2.6.1           
 #> [25] bslib_0.11.0        tools_4.6.0         pkgdown_2.2.0      
