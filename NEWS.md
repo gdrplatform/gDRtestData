@@ -1,3 +1,6 @@
+## gDRtestData 1.11.7 - 2026-07-07
+* update documentation about PRISM dataset
+
 ## gDRtestData 1.11.6 - 2026-06-22
 * add PRISM public dataset
 
