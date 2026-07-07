@@ -8,6 +8,9 @@
 A \code{\link[MultiAssayExperiment]{MultiAssayExperiment}} object
 containing a single-agent experiment with 5 assays.
 }
+\source{
+Hagenbeek et al, Nat Comm 2026, Accepted
+}
 \description{
 The single-agent screening data from the PRISM platform -
 with one drug and 774 cell lines.
@@ -54,14 +57,6 @@ Feature metadata describing the treatment compounds across assays:
 \item{Duration}{Exposure time of the cell lines to the compound (e.g., 72h).}
 }
 }
-}
-
-\section{Source}{
-
-Hagenbeek, T.J., Zbieg, J., Smith, R. et al.
-Covalent pan-TEAD inhibitors block YAP activity and demonstrate brain penetrance
-in a Hippo-dependent cancer model. Nat Commun (2026).
-\url{https://doi.org/10.1038/s41467-026-74722-5}
 }
 
 \keyword{real_data}
