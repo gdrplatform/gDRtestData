@@ -222,8 +222,11 @@ NULL
 #'   \item{Duration}{Exposure time of the cell lines to the compound (e.g., 72h).}
 #' }
 #'
-#' @source Hagenbeek et al, Nat Comm 2026, Accepted
-#'
+#' @section Source:
+#' Hagenbeek, T.J., Zbieg, J., Smith, R. et al.
+#' Covalent pan-TEAD inhibitors block YAP activity and demonstrate brain penetrance
+#' in a Hippo-dependent cancer model. Nat Commun (2026).
+#' \url{https://doi.org/10.1038/s41467-026-74722-5}
 #'
 #' @docType data
 #' @keywords real_data
