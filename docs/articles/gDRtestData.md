@@ -140,7 +140,7 @@ suite functionality.
 
 ``` r
 sessionInfo()
-#> R version 4.6.0 (2026-04-24)
+#> R version 4.6.1 (2026-06-24)
 #> Platform: x86_64-pc-linux-gnu
 #> Running under: Ubuntu 24.04.4 LTS
 #> 
@@ -161,18 +161,18 @@ sessionInfo()
 #> [1] stats     graphics  grDevices utils     datasets  methods   base     
 #> 
 #> other attached packages:
-#> [1] gDRtestData_1.11.6 BiocStyle_2.40.0  
+#> [1] gDRtestData_1.11.7 BiocStyle_2.40.0  
 #> 
 #> loaded via a namespace (and not attached):
-#>  [1] cli_3.6.6           knitr_1.51          rlang_1.2.0        
+#>  [1] cli_3.6.6           knitr_1.51          rlang_1.3.0        
 #>  [4] xfun_0.59           otel_0.2.0          textshaping_1.0.5  
 #>  [7] data.table_1.18.4   jsonlite_2.0.0      backports_1.5.1    
 #> [10] htmltools_0.5.9     ragg_1.5.2          sass_0.4.10        
 #> [13] rmarkdown_2.31      evaluate_1.0.5      jquerylib_0.1.4    
 #> [16] fastmap_1.2.0       yaml_2.3.12         lifecycle_1.0.5    
-#> [19] bookdown_0.47       BiocManager_1.30.27 compiler_4.6.0     
+#> [19] bookdown_0.47       BiocManager_1.30.27 compiler_4.6.1     
 #> [22] fs_2.1.0            systemfonts_1.3.2   digest_0.6.39      
 #> [25] R6_2.6.1            checkmate_2.3.4     bslib_0.11.0       
-#> [28] tools_4.6.0         pkgdown_2.2.0       cachem_1.1.0       
+#> [28] tools_4.6.1         pkgdown_2.2.1       cachem_1.1.0       
 #> [31] desc_1.4.3
 ```
