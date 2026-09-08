@@ -1,3 +1,6 @@
+## gDRtestData 1.11.8 - 2026-09-09
+* add drug and cell line annotations for the gCSI Sotorasib workshop dataset
+
 ## gDRtestData 1.11.7 - 2026-07-07
 * update documentation for PRISM dataset
 
