@@ -1,3 +1,7 @@
+## gDRtestData 1.11.8 - 2026-09-09
+* add drug and cell line annotations for the gCSI Sotorasib workshop dataset
+* use the Gnumber as the drug name for undisclosed compounds
+
 ## gDRtestData 1.11.7 - 2026-07-07
 * update documentation for PRISM dataset
 
