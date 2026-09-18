@@ -1,5 +1,5 @@
 ## gDRtestData 1.11.8 - 2026-09-17
-* regenerate reference datasets so that constant fits carry the corrected xc50 sign
+* update reference datasets so that constant fits carry the corrected xc50 sign
 
 ## gDRtestData 1.11.7 - 2026-07-07
 * update documentation for PRISM dataset
