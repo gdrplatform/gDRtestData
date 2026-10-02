@@ -1,3 +1,7 @@
+## gDRtestData 1.11.9 - 2026-10-01
+* add drug and cell line annotations for the gCSI Sotorasib workshop dataset
+* use the Gnumber as the drug name for undisclosed compounds
+
 ## gDRtestData 1.11.8 - 2026-09-17
 * update reference datasets so that constant fits carry the corrected xc50 sign
 
