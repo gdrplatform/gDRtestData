@@ -70,6 +70,8 @@ data.table::fread(file = path)
 #> 55: CL00144      UACC-62   Skin                    39             UACC-62
 #> 56: CL00145    UCSD-242l   Skin                    46           UCSD-242l
 #> 57: CL00146     WM-266-4   Skin                    29            WM-266-4
+#> 58: CL00147      NCI-H23   Lung                    37             NCI-H23
+#> 59: CL00148     NCI-H358   Lung                    50            NCI-H358
 #>        clid CellLineName Tissue ReferenceDivisionTime parental_identifier
 #>      <char>       <char> <char>                 <int>              <char>
 #>                     subtype
@@ -131,6 +133,8 @@ data.table::fread(file = path)
 #> 55:     Melanoma Metastatic
 #> 56:                Melanoma
 #> 57:                Melanoma
+#> 58:                   NSCLC
+#> 59:                   NSCLC
 #>                     subtype
 #>                      <char>
 ```
