@@ -36,7 +36,7 @@ Authors:
   \item Sergiu Mocanu
   \item Natalia Potocka
   \item Dariusz Scigocki
-  \item Janina Smola
+  \item Janina Smola (\href{https://orcid.org/0009-0007-4347-7748}{ORCID})
   \item Allison Voung
 }
 
