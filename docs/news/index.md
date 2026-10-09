@@ -1,5 +1,9 @@
 # Changelog
 
+## gDRtestData 1.11.10 - 2026-10-08
+
+- update authors data
+
 ## gDRtestData 1.11.9 - 2026-10-01
 
 - add drug and cell line annotations for the gCSI Sotorasib workshop

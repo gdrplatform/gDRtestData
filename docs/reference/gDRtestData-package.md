@@ -48,6 +48,6 @@ Authors:
 
 - Dariusz Scigocki
 
-- Janina Smola
+- Janina Smola ([ORCID](https://orcid.org/0009-0007-4347-7748))
 
 - Allison Voung
