@@ -1,5 +1,10 @@
 # Changelog
 
+## gDRtestData 1.11.11 - 2026-10-20
+
+- update the combination reference datasets to the current gDRcore,
+  which restores CIScore and the single-agent arm fit
+
 ## gDRtestData 1.11.10 - 2026-10-08
 
 - update authors data
