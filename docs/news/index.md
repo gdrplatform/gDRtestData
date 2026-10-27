@@ -1,5 +1,10 @@
 # Changelog
 
+## gDRtestData 1.11.12 - 2026-10-24
+
+- update the reference datasets to the fit types and p-values of
+  gDRutils 1.11.22
+
 ## gDRtestData 1.11.11 - 2026-10-20
 
 - update the combination reference datasets to the current gDRcore,
