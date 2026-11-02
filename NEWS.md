@@ -1,3 +1,6 @@
+## gDRtestData 1.11.13 - 2026-11-02
+* update the co-dilution reference datasets to one fit per ratio along the total concentration, both concentrations nested
+
 ## gDRtestData 1.11.12 - 2026-10-24
 * update the reference datasets to the fit types and p-values of gDRutils 1.11.22
 
