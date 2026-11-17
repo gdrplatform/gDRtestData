@@ -85,14 +85,14 @@ head(response_data)
 
 **SUMMARY**
 
-| Step | Function                      | Output (`data.table`)                                        |
-|:----:|:------------------------------|:-------------------------------------------------------------|
-|  0   | create_synthetic_cell_lines() | synthetic cell lines                                         |
-|  0   | create_synthetic_drugs()      | synthetic drugs                                              |
-|  1   | prepareData()                 | cell lines and drug merged with replicates and concentration |
-|  2   | prepareMergedData()           | full response data for single-agent                          |
-|  2   | prepareComboMergedData()      | full response data for combo                                 |
-|  2   | prepareCodilutionData ()      | full response data for co-dilution                           |
+| Step | Function | Output (`data.table`) |
+|:--:|:---|:---|
+| 0 | create_synthetic_cell_lines() | synthetic cell lines |
+| 0 | create_synthetic_drugs() | synthetic drugs |
+| 1 | prepareData() | cell lines and drug merged with replicates and concentration |
+| 2 | prepareMergedData() | full response data for single-agent |
+| 2 | prepareComboMergedData() | full response data for combo |
+| 2 | prepareCodilutionData () | full response data for co-dilution |
 
 ### Synthetic object of gDR data model
 
@@ -140,13 +140,13 @@ suite functionality.
 
 ``` r
 sessionInfo()
-#> R version 4.6.1 (2026-06-24)
+#> R version 4.6.2 (2026-10-29)
 #> Platform: x86_64-pc-linux-gnu
-#> Running under: Ubuntu 24.04.5 LTS
+#> Running under: Ubuntu 26.04.1 LTS
 #> 
 #> Matrix products: default
 #> BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
-#> LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0
+#> LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.32.so;  LAPACK version 3.12.0
 #> 
 #> locale:
 #>  [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
@@ -161,18 +161,18 @@ sessionInfo()
 #> [1] stats     graphics  grDevices utils     datasets  methods   base     
 #> 
 #> other attached packages:
-#> [1] gDRtestData_1.11.12 BiocStyle_2.41.0   
+#> [1] gDRtestData_1.11.13 BiocStyle_2.41.0   
 #> 
 #> loaded via a namespace (and not attached):
 #>  [1] cli_3.6.6           knitr_1.52          rlang_1.3.0        
-#>  [4] xfun_0.62           otel_0.2.0          textshaping_1.0.5  
+#>  [4] xfun_0.62           otel_0.3.0          textshaping_1.0.5  
 #>  [7] data.table_1.18.6.1 jsonlite_2.0.0      backports_1.5.1    
 #> [10] htmltools_0.5.9     ragg_1.5.2          sass_0.4.10        
 #> [13] rmarkdown_2.32      evaluate_1.0.5      jquerylib_0.1.4    
 #> [16] fastmap_1.2.0       yaml_2.3.12         lifecycle_1.0.5    
-#> [19] bookdown_0.48       BiocManager_1.30.27 compiler_4.6.1     
-#> [22] fs_2.1.0            systemfonts_1.3.2   digest_0.6.39      
+#> [19] bookdown_0.48       BiocManager_1.30.27 compiler_4.6.2     
+#> [22] fs_2.1.0            systemfonts_1.3.3   digest_0.6.39      
 #> [25] R6_2.6.1            checkmate_2.3.4     bslib_0.12.0       
-#> [28] tools_4.6.1         pkgdown_2.2.1       cachem_1.1.0       
+#> [28] tools_4.6.2         pkgdown_2.2.1       cachem_1.1.0       
 #> [31] desc_1.4.3
 ```

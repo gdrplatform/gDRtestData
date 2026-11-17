@@ -34,14 +34,14 @@ The DepMap 24Q4 release contains new cell models and data from:
 
 The following datasets are included in the `gDRtestData` pacakge:
 
-| Dataset                  | Type       | Description                                                 | Dataset url                                                                                                                                       |
-|--------------------------|------------|-------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Models**               | Metadata   | Cell line information and annotations                       | [url](https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=Model.csv)                                     |
-| **CRISPRGeneEffect**     | Functional | CRISPR knockout gene effect scores (integrated via Chronos) | [url](https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=CRISPRGeneEffect.csv)                          |
-| **Expression**           | Omics      | Gene expression (log2 TPM, protein-coding genes)            | [url](https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=OmicsExpressionProteinCodingGenesTPMLogp1.csv) |
-| **Mutations (Hotspot)**  | Somatic    | Binary matrix of hotspot mutations                          | [url](https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=OmicsSomaticMutationsMatrixHotspot.csv)        |
-| **Mutations (Damaging)** | Somatic    | Binary matrix of damaging mutations                         | [url](https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=OmicsSomaticMutationsMatrixDamaging.csv)       |
-| **OmicsCNGene**          | CNV        | Gene-level copy number estimates                            | [url](https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=OmicsCNGene.csv)                               |
+| Dataset | Type | Description | Dataset url |
+|----|----|----|----|
+| **Models** | Metadata | Cell line information and annotations | [url](https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=Model.csv) |
+| **CRISPRGeneEffect** | Functional | CRISPR knockout gene effect scores (integrated via Chronos) | [url](https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=CRISPRGeneEffect.csv) |
+| **Expression** | Omics | Gene expression (log2 TPM, protein-coding genes) | [url](https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=OmicsExpressionProteinCodingGenesTPMLogp1.csv) |
+| **Mutations (Hotspot)** | Somatic | Binary matrix of hotspot mutations | [url](https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=OmicsSomaticMutationsMatrixHotspot.csv) |
+| **Mutations (Damaging)** | Somatic | Binary matrix of damaging mutations | [url](https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=OmicsSomaticMutationsMatrixDamaging.csv) |
+| **OmicsCNGene** | CNV | Gene-level copy number estimates | [url](https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=OmicsCNGene.csv) |
 
 ### Data Dictionary
 
@@ -49,14 +49,14 @@ The following datasets are included in the `gDRtestData` pacakge:
 
 **file name** Model.csv
 
-| Aspect             | Details                                                          |
-|--------------------|------------------------------------------------------------------|
-| **Rows**           | Individual cell lines                                            |
-| **Columns**        | Metadata columns (see below)                                     |
-| **Values**         | Cell line annotations and metadata                               |
-| **Data Type**      | Mixed (character, numeric)                                       |
-| **Interpretation** | Comprehensive metadata for each cell line model                  |
-| **NA Handling**    | Missing values indicate information not available for that model |
+| Aspect | Details |
+|----|----|
+| **Rows** | Individual cell lines |
+| **Columns** | Metadata columns (see below) |
+| **Values** | Cell line annotations and metadata |
+| **Data Type** | Mixed (character, numeric) |
+| **Interpretation** | Comprehensive metadata for each cell line model |
+| **NA Handling** | Missing values indicate information not available for that model |
 
 **Column Details:**
 
@@ -116,14 +116,14 @@ Note: Loss-of-function mutations (frameshifts, nonsense, etc.)
 
 **file name**: CRISPRGeneEffect.csv
 
-| Aspect             | Details                                                           |
-|--------------------|-------------------------------------------------------------------|
-| **Rows**           | Cell line identifiers                                             |
-| **Columns**        | NCBI gene IDs (Entrez format) as column names                     |
-| **Values**         | CRISPR knockout effect scores                                     |
-| **Scale**          | -1 to +1 (typically); negative = essential gene in that cell line |
-| **Interpretation** | Lower values indicate genes more essential for cell viability     |
-| **NA Handling**    | Missing values indicate insufficient screen coverage              |
+| Aspect | Details |
+|----|----|
+| **Rows** | Cell line identifiers |
+| **Columns** | NCBI gene IDs (Entrez format) as column names |
+| **Values** | CRISPR knockout effect scores |
+| **Scale** | -1 to +1 (typically); negative = essential gene in that cell line |
+| **Interpretation** | Lower values indicate genes more essential for cell viability |
+| **NA Handling** | Missing values indicate insufficient screen coverage |
 
 Note:
 
@@ -154,14 +154,14 @@ Note:
 
 **file name**: OmicsCNGene.csv
 
-| Aspect             | Details                                                       |
-|--------------------|---------------------------------------------------------------|
-| **Rows**           | Cell line identifiers                                         |
-| **Columns**        | NCBI gene IDs                                                 |
-| **Values**         | Numeric (continuous); gene-level CN estimates                 |
-| **Scale**          | Log2 ratio relative to diploid reference (typically -2 to +3) |
-| **Method**         | SNP microarray or WES-derived CN calling                      |
-| **Interpretation** | 0 = diploid (2 copies); \<0 = deletion; \>0 = amplification   |
+| Aspect | Details |
+|----|----|
+| **Rows** | Cell line identifiers |
+| **Columns** | NCBI gene IDs |
+| **Values** | Numeric (continuous); gene-level CN estimates |
+| **Scale** | Log2 ratio relative to diploid reference (typically -2 to +3) |
+| **Method** | SNP microarray or WES-derived CN calling |
+| **Interpretation** | 0 = diploid (2 copies); \<0 = deletion; \>0 = amplification |
 
 ## Important Limitations & Disclaimers
 
@@ -180,13 +180,13 @@ Note:
 
 ``` r
 sessionInfo()
-#> R version 4.6.1 (2026-06-24)
+#> R version 4.6.2 (2026-10-29)
 #> Platform: x86_64-pc-linux-gnu
-#> Running under: Ubuntu 24.04.5 LTS
+#> Running under: Ubuntu 26.04.1 LTS
 #> 
 #> Matrix products: default
 #> BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
-#> LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0
+#> LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.32.so;  LAPACK version 3.12.0
 #> 
 #> locale:
 #>  [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
@@ -201,17 +201,17 @@ sessionInfo()
 #> [1] stats     graphics  grDevices utils     datasets  methods   base     
 #> 
 #> other attached packages:
-#> [1] gDRtestData_1.11.12 BiocStyle_2.41.0   
+#> [1] gDRtestData_1.11.13 BiocStyle_2.41.0   
 #> 
 #> loaded via a namespace (and not attached):
 #>  [1] cli_3.6.6           knitr_1.52          rlang_1.3.0        
-#>  [4] xfun_0.62           otel_0.2.0          textshaping_1.0.5  
+#>  [4] xfun_0.62           otel_0.3.0          textshaping_1.0.5  
 #>  [7] data.table_1.18.6.1 jsonlite_2.0.0      htmltools_0.5.9    
 #> [10] ragg_1.5.2          sass_0.4.10         rmarkdown_2.32     
 #> [13] evaluate_1.0.5      jquerylib_0.1.4     fastmap_1.2.0      
 #> [16] yaml_2.3.12         lifecycle_1.0.5     bookdown_0.48      
-#> [19] BiocManager_1.30.27 compiler_4.6.1      fs_2.1.0           
-#> [22] systemfonts_1.3.2   digest_0.6.39       R6_2.6.1           
-#> [25] bslib_0.12.0        tools_4.6.1         pkgdown_2.2.1      
+#> [19] BiocManager_1.30.27 compiler_4.6.2      fs_2.1.0           
+#> [22] systemfonts_1.3.3   digest_0.6.39       R6_2.6.1           
+#> [25] bslib_0.12.0        tools_4.6.2         pkgdown_2.2.1      
 #> [28] cachem_1.1.0        desc_1.4.3
 ```
