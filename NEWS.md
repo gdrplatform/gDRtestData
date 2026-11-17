@@ -1,3 +1,6 @@
+## gDRtestData 1.11.13 - 2026-11-17
+* add the resistant NCI-H23 and NCI-H358 cell lines to the cell line annotations
+
 ## gDRtestData 1.11.12 - 2026-10-24
 * update the reference datasets to the fit types and p-values of gDRutils 1.11.22
 
