@@ -1,3 +1,6 @@
+## gDRtestData 1.11.14 - 2026-11-22
+* update the single-agent reference datasets: a constant fit reports `x_0` as the mean response (gDRutils 1.11.27)
+
 ## gDRtestData 1.11.13 - 2026-11-17
 * add the resistant NCI-H23 and NCI-H358 cell lines to the cell line annotations
 
