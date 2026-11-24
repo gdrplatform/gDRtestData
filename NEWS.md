@@ -1,3 +1,6 @@
+## gDRtestData 1.13.3 - 2026-11-24
+* update five reference datasets for the `fit_id` and `fit_message` columns of the fits in gDRutils 1.13.4
+
 ## gDRtestData 1.13.1 - 2026-11-24
 * synchronize Bioconductor and GitHub versioning
 
