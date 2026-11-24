@@ -1,5 +1,8 @@
-## gDRtestData 1.11.15 - 2026-11-24
+## gDRtestData 1.13.2 - 2026-11-24
 * remove the drug annotations of the chemical genomics workshop dataset, which carries its own
+
+## gDRtestData 1.13.1 - 2026-11-24
+* synchronize Bioconductor and GitHub versioning
 
 ## gDRtestData 1.11.14 - 2026-11-22
 * update the single-agent reference datasets: a constant fit reports `x_0` as the mean response (gDRutils 1.11.27)
