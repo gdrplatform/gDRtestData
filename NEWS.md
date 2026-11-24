@@ -1,8 +1,11 @@
+## gDRtestData 1.11.15 - 2026-11-24
+* replace the drug names of the chemical genomics workshop dataset with their drug identifiers
+
 ## gDRtestData 1.11.14 - 2026-11-22
 * update the single-agent reference datasets: a constant fit reports `x_0` as the mean response (gDRutils 1.11.27)
 
 ## gDRtestData 1.11.13 - 2026-11-17
-* add the resistant NCI-H23 and NCI-H358 cell lines to the cell line annotations
+* add the resistant derivatives of NCI-H23 and NCI-H358 to the cell line annotations
 
 ## gDRtestData 1.11.12 - 2026-10-24
 * update the reference datasets to the fit types and p-values of gDRutils 1.11.22
@@ -14,7 +17,7 @@
 * update authors data
 
 ## gDRtestData 1.11.9 - 2026-10-01
-* add drug and cell line annotations for a workshop dataset
+* add drug and cell line annotations for the gCSI chemical genomics workshop dataset
 * use the Gnumber as the drug name for undisclosed compounds
 
 ## gDRtestData 1.11.8 - 2026-09-17
