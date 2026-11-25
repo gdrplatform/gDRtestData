@@ -1,5 +1,6 @@
 ## gDRtestData 1.13.3 - 2026-11-24
 * update seven reference datasets for the `fit_id` and `fit_message` columns of the fits in gDRutils 1.13.4
+* regenerate `combo_triple` too: it also changes for a reason unrelated to `fit_id` (an older file)
 
 ## gDRtestData 1.13.1 - 2026-11-24
 * synchronize Bioconductor and GitHub versioning
