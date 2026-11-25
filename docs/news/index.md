@@ -1,5 +1,10 @@
 # Changelog
 
+## gDRtestData 1.13.2 - 2026-11-25
+
+- remove the drug annotations of the chemical genomics workshop dataset
+  from `inst/annotation_data`
+
 ## gDRtestData 1.13.1 - 2026-11-24
 
 - synchronize Bioconductor and GitHub versioning

@@ -12,7 +12,7 @@ package help page
 ## Note
 
 To learn more about functions start with
-[`help(package = "gDRtestData")`](https://rdrr.io/pkg/gDRtestData/man)
+[`help(package = "gDRtestData")`](https://gdrplatform.github.io/gDRtestData/reference)
 
 ## See also
 
