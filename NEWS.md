@@ -1,3 +1,6 @@
+## gDRtestData 1.12.1 - 2026-11-25
+* remove the drug annotations of the chemical genomics workshop dataset from `inst/annotation_data`
+
 ## gDRtestData 1.11.14 - 2026-11-22
 * update the single-agent reference datasets: a constant fit reports `x_0` as the mean response (gDRutils 1.11.27)
 
