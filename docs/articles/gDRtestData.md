@@ -161,7 +161,7 @@ sessionInfo()
 #> [1] stats     graphics  grDevices utils     datasets  methods   base     
 #> 
 #> other attached packages:
-#> [1] gDRtestData_1.13.2 BiocStyle_2.42.0  
+#> [1] gDRtestData_1.13.3 BiocStyle_2.42.0  
 #> 
 #> loaded via a namespace (and not attached):
 #>  [1] cli_3.6.6           knitr_1.52          rlang_1.3.0        
