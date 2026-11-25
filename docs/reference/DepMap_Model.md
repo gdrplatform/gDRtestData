@@ -6,6 +6,20 @@ Cell line information from DepMap Public 24Q4.
 
 Table
 
+## Loading
+
+`data.table::fread(system.file("depmap_data/Model.csv.gz", package = "gDRtestData"))`
+
+## Description
+
+- Rows: Cell line identifiers
+
+- Columns: Metadata columns (see below)
+
+- Values: Cell line annotations and donor demographics
+
+Columns:
+
 - ModelID:
 
   Unique cell line identifier (ACH-XXXXX format)
@@ -17,10 +31,6 @@ Table
 - CellLineName:
 
   Common cell line name (e.g., "A375", "HCT-116")
-
-- TissueOrigin:
-
-  Indicates tissue model was derived from (Human, Mouse, Other)
 
 - DepmapModelType:
 
@@ -69,11 +79,13 @@ Table
 
 ## Source
 
-<https://depmap.org/portal/data_page/?tab=allData>
+[DepMap Portal - Data](https://depmap.org/portal/data_page/?tab=allData)
 
 ## Details
 
-Downloaded May 26, 2024 from DepMap Portal (version 24Q4).
+Downloaded May 26, 2026 from DepMap Portal (version 24Q4).
 
-Citation: DepMap, Broad (2024). DepMap 24Q4 Public. Figshare+.
-https://doi.org/10.25452/figshare.plus.27993248.v1
+Citation: 24Q4 DepMap Release, including CRISPR Screens, PRISM Drug
+Screens, Copy Number, Mutation, Expression, and Fusions DepMap, Broad
+(2024). DepMap 24Q4 Public. Figshare+. Dataset.
+<https://doi.org/10.25452/figshare.plus.27993248.v1>

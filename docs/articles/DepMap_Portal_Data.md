@@ -34,14 +34,14 @@ The DepMap 24Q4 release contains new cell models and data from:
 
 The following datasets are included in the `gDRtestData` pacakge:
 
-| Dataset | Type | Dimensions | Description | Dataset url |
-|----|----|----|----|----|
-| **Models** | Metadata | ~1,000 cell lines | Cell line information and annotations | [url](https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=Model.csv) |
-| **CRISPRGeneEffect** | Functional | ~1,000 × ~18,000 | CRISPR knockout gene effect scores (integrated via Chronos) | [url](https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=CRISPRGeneEffect.csv) |
-| **Expression** | Omics | ~1,000 × ~19,000 | Gene expression (log2 TPM, protein-coding genes) | [url](https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=OmicsExpressionProteinCodingGenesTPMLogp1.csv) |
-| **Mutations (Hotspot)** | Somatic | ~1,000 × ~3,000 | Binary matrix of hotspot mutations | [url](https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=OmicsSomaticMutationsMatrixHotspot.csv) |
-| **Mutations (Damaging)** | Somatic | ~1,000 × ~3,000 | Binary matrix of damaging mutations | [url](https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=OmicsSomaticMutationsMatrixDamaging.csv) |
-| **OmicsCNGene** | CNV | ~1,000 × ~20,000 | Gene-level copy number estimates | [url](https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=OmicsCNGene.csv) |
+| Dataset | Type | Description | Dataset url |
+|----|----|----|----|
+| **Models** | Metadata | Cell line information and annotations | [url](https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=Model.csv) |
+| **CRISPRGeneEffect** | Functional | CRISPR knockout gene effect scores (integrated via Chronos) | [url](https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=CRISPRGeneEffect.csv) |
+| **Expression** | Omics | Gene expression (log2 TPM, protein-coding genes) | [url](https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=OmicsExpressionProteinCodingGenesTPMLogp1.csv) |
+| **Mutations (Hotspot)** | Somatic | Binary matrix of hotspot mutations | [url](https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=OmicsSomaticMutationsMatrixHotspot.csv) |
+| **Mutations (Damaging)** | Somatic | Binary matrix of damaging mutations | [url](https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=OmicsSomaticMutationsMatrixDamaging.csv) |
+| **OmicsCNGene** | CNV | Gene-level copy number estimates | [url](https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=OmicsCNGene.csv) |
 
 ### Data Dictionary
 
@@ -51,9 +51,9 @@ The following datasets are included in the `gDRtestData` pacakge:
 
 | Aspect | Details |
 |----|----|
-| **Rows** | Individual cell lines (~1,000 models) |
+| **Rows** | Individual cell lines |
 | **Columns** | Metadata columns (see below) |
-| **Values** | Cell line annotations and patient information |
+| **Values** | Cell line annotations and metadata |
 | **Data Type** | Mixed (character, numeric) |
 | **Interpretation** | Comprehensive metadata for each cell line model |
 | **NA Handling** | Missing values indicate information not available for that model |
@@ -65,7 +65,6 @@ Column Summary:
 - `ModelID`: Unique cell line identifier
 - `CCLEName`: Cell line name from CCLE database
 - `CellLineName`: Common cell line name
-- `TissueOrigin`: Tissue type (Human, Mouse, Other)
 - `DepmapModelType`, `OncotreeLineage`, `OncotreePrimaryDisease`,
   `OncotreeSubtype`: Cancer classification (from Oncotree)
 - `OncotreeCode`: Oncotree classification code
@@ -202,7 +201,7 @@ sessionInfo()
 #> [1] stats     graphics  grDevices utils     datasets  methods   base     
 #> 
 #> other attached packages:
-#> [1] gDRtestData_1.11.3 BiocStyle_2.42.0  
+#> [1] gDRtestData_1.13.1 BiocStyle_2.42.0  
 #> 
 #> loaded via a namespace (and not attached):
 #>  [1] cli_3.6.6           knitr_1.52          rlang_1.3.0        

@@ -36,3 +36,20 @@
   : prepareData
 - [`prepareMergedData()`](https://gdrplatform.github.io/gDRtestData/reference/prepareMergedData.md)
   : prepareMergedData
+
+## Examples of real data
+
+- [`DepMap_CRISPRGeneEffect`](https://gdrplatform.github.io/gDRtestData/reference/DepMap_CRISPRGeneEffect.md)
+  : CRISPR Gene Effect Scores
+- [`DepMap_Model`](https://gdrplatform.github.io/gDRtestData/reference/DepMap_Model.md)
+  : DepMap Models (Cell Line Metadata)
+- [`DepMap_OmicsCNGene`](https://gdrplatform.github.io/gDRtestData/reference/DepMap_OmicsCNGene.md)
+  : Copy Number Variation (CNV)
+- [`DepMap_OmicsExpressionProteinCodingGenesTPMLogp1`](https://gdrplatform.github.io/gDRtestData/reference/DepMap_OmicsExpressionProteinCodingGenesTPMLogp1.md)
+  : Gene Expression (Log2 TPM)
+- [`DepMap_OmicsSomaticMutationsMatrixDamaging`](https://gdrplatform.github.io/gDRtestData/reference/DepMap_OmicsSomaticMutationsMatrixDamaging.md)
+  : Somatic Mutations (Damaging)
+- [`DepMap_OmicsSomaticMutationsMatrixHotspot`](https://gdrplatform.github.io/gDRtestData/reference/DepMap_OmicsSomaticMutationsMatrixHotspot.md)
+  : Somatic Mutations (Hotspot)
+- [`PRISMBroadScreen_Hagenbeek_NatComm_2026`](https://gdrplatform.github.io/gDRtestData/reference/PRISMBroadScreen_Hagenbeek_NatComm_2026.md)
+  : PRISM Broad Screen Cancer Cell Line Viability Dataset

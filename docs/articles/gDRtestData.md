@@ -105,23 +105,26 @@ examples of gDR data model for different data types. In the file
 `synthetic_list.yml` one can find a list of these datasets. Currently
 available are:
 
-    #> * combo_2dose_nonoise, 
-    #> * combo_2dose_nonoise2, 
-    #> * combo_2dose_nonoise3, 
-    #> * combo_codilution_small, 
-    #> * combo_codilution, 
-    #> * combo_matrix_small, 
-    #> * combo_matrix, 
-    #> * combo_triple, 
-    #> * medium, 
-    #> * small_no_noise, 
-    #> * small, 
-    #> * wLigand .
+- combo_2dose_nonoise,
+- combo_2dose_nonoise2,
+- combo_2dose_nonoise3,
+- combo_codilution_small,
+- combo_codilution,
+- combo_matrix_small,
+- combo_matrix,
+- combo_triple,
+- medium,
+- small_no_noise,
+- small,
+- wLigand,
+- prism
 
 The script `generate_example_data.R` which shows how to generate and
 process above-mentioned datasets is in `inst/scripts` dir. All key
 functions can be found in package `gDRcore` in script
 `generate_wrappers.R`.
+
+*Note*: PRISM data is not created synthetically by the script.
 
 ### Annotation data
 
@@ -158,7 +161,7 @@ sessionInfo()
 #> [1] stats     graphics  grDevices utils     datasets  methods   base     
 #> 
 #> other attached packages:
-#> [1] gDRtestData_1.11.3 BiocStyle_2.42.0  
+#> [1] gDRtestData_1.13.1 BiocStyle_2.42.0  
 #> 
 #> loaded via a namespace (and not attached):
 #>  [1] cli_3.6.6           knitr_1.52          rlang_1.3.0        

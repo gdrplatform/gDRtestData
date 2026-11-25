@@ -19,7 +19,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">gDRtestData</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.11.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.13.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,7 +60,7 @@
                         <h4 data-toc-skip class="author">gDR team</h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/gdrplatform/gDRtestData/blob/test_ci_pkgdown/vignettes/gDRtestData.Rmd" class="external-link"><code>vignettes/gDRtestData.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/gdrplatform/gDRtestData/blob/main/vignettes/gDRtestData.Rmd" class="external-link"><code>vignettes/gDRtestData.Rmd</code></a></small>
       <div class="d-none name"><code>gDRtestData.Rmd</code></div>
     </div>
 
@@ -191,22 +191,27 @@ structure. A detailed description of the gDR data model can be found in
 <code>qs2</code> files that are examples of gDR data model for different
 data types. In the file <code>synthetic_list.yml</code> one can find a
 list of these datasets. Currently available are:</p>
-<pre><code><span><span class="co">#&gt; * combo_2dose_nonoise, </span></span>
-<span><span class="co">#&gt; * combo_2dose_nonoise2, </span></span>
-<span><span class="co">#&gt; * combo_2dose_nonoise3, </span></span>
-<span><span class="co">#&gt; * combo_codilution_small, </span></span>
-<span><span class="co">#&gt; * combo_codilution, </span></span>
-<span><span class="co">#&gt; * combo_matrix_small, </span></span>
-<span><span class="co">#&gt; * combo_matrix, </span></span>
-<span><span class="co">#&gt; * combo_triple, </span></span>
-<span><span class="co">#&gt; * medium, </span></span>
-<span><span class="co">#&gt; * small_no_noise, </span></span>
-<span><span class="co">#&gt; * small, </span></span>
-<span><span class="co">#&gt; * wLigand .</span></span></code></pre>
+<ul>
+<li>combo_2dose_nonoise,</li>
+<li>combo_2dose_nonoise2,</li>
+<li>combo_2dose_nonoise3,</li>
+<li>combo_codilution_small,</li>
+<li>combo_codilution,</li>
+<li>combo_matrix_small,</li>
+<li>combo_matrix,</li>
+<li>combo_triple,</li>
+<li>medium,</li>
+<li>small_no_noise,</li>
+<li>small,</li>
+<li>wLigand,</li>
+<li>prism</li>
+</ul>
 <p>The script <code>generate_example_data.R</code> which shows how to
 generate and process above-mentioned datasets is in
 <code>inst/scripts</code> dir. All key functions can be found in package
 <code>gDRcore</code> in script <code>generate_wrappers.R</code>.</p>
+<p><em>Note</em>: PRISM data is not created synthetically by the
+script.</p>
 </div>
 <div class="section level3">
 <h3 id="annotation-data">Annotation data<a class="anchor" aria-label="anchor" href="#annotation-data"></a>
@@ -225,7 +230,7 @@ suite functionality.</p>
 <div class="section level2">
 <h2 class="unnumbered" id="sessioninfo">SessionInfo<a class="anchor" aria-label="anchor" href="#sessioninfo"></a>
 </h2>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; R version 4.6.2 (2026-10-29)</span></span>
 <span><span class="co">#&gt; Platform: x86_64-pc-linux-gnu</span></span>
@@ -248,7 +253,7 @@ suite functionality.</p>
 <span><span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; other attached packages:</span></span>
-<span><span class="co">#&gt; [1] gDRtestData_1.11.3 BiocStyle_2.42.0  </span></span>
+<span><span class="co">#&gt; [1] gDRtestData_1.13.1 BiocStyle_2.42.0  </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
 <span><span class="co">#&gt;  [1] cli_3.6.6           knitr_1.52          rlang_1.3.0        </span></span>

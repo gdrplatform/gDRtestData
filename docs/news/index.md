@@ -1,5 +1,59 @@
 # Changelog
 
+## gDRtestData 1.13.1 - 2026-11-24
+
+- synchronize Bioconductor and GitHub versioning
+
+## gDRtestData 1.11.14 - 2026-11-22
+
+- update the single-agent reference datasets: a constant fit reports
+  `x_0` as the mean response (gDRutils 1.11.27)
+
+## gDRtestData 1.11.13 - 2026-11-17
+
+- add the resistant NCI-H23 and NCI-H358 cell lines to the cell line
+  annotations
+
+## gDRtestData 1.11.12 - 2026-10-24
+
+- update the reference datasets to the fit types and p-values of
+  gDRutils 1.11.22
+
+## gDRtestData 1.11.11 - 2026-10-20
+
+- update the combination reference datasets to the current gDRcore,
+  which restores CIScore and the single-agent arm fit
+
+## gDRtestData 1.11.10 - 2026-10-08
+
+- update authors data
+
+## gDRtestData 1.11.9 - 2026-10-01
+
+- add drug and cell line annotations for a workshop dataset
+- use the Gnumber as the drug name for undisclosed compounds
+
+## gDRtestData 1.11.8 - 2026-09-17
+
+- update reference datasets so that constant fits carry the corrected
+  xc50 sign
+
+## gDRtestData 1.11.7 - 2026-07-07
+
+- update documentation for PRISM dataset
+
+## gDRtestData 1.11.6 - 2026-06-22
+
+- add PRISM public dataset
+
+## gDRtestData 1.11.5 - 2026-06-09
+
+- add workshop drug and cell line annotations
+
+## gDRtestData 1.11.4 - 2026-06-02
+
+- add PRISM public dataset
+
 ## gDRtestData 1.11.3 - 2026-06-01
 
 - add public data from DepMap Portal
