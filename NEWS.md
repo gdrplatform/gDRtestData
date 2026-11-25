@@ -1,3 +1,7 @@
+## gDRtestData 1.13.3 - 2026-11-25
+* update seven reference datasets for the `fit_id` and `fit_message` columns of the fits in gDRutils 1.13.4
+* update `combo_triple` too: it also changes for a reason unrelated to `fit_id` (an older file)
+
 ## gDRtestData 1.13.2 - 2026-11-25
 * remove the drug annotations of the chemical genomics workshop dataset from `inst/annotation_data`
 
